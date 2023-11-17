@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="nn-hero-image-container">
+        <img src="all_art_hero_img.jpg" alt="Image">
+        <div class="nn_txt">
+           <p>ALL ARTWORKS</p>
+        </div>
+    </div>
+    <div class="container" >
+        <div class="row">
+            <div class="col-3" id="category_filter_container">
+                <h3>CATEGORY</h3>
+                <div class="category" onclick="toggleCheckboxes(this)">
+                    <label>
+                        <input type="checkbox" name="main-category" value="painting"> Painting
+                    </label>
+                    <div class="subcategory">
+                        <label>
+                            <input type="checkbox" name="sub-category" value="oil"> Portrait paintings
+                        </label>
+                        <label>
+                            <input type="checkbox" name="sub-category" value="watercolor"> Landscape painting
+                        </label>
+                        <label>
+                            <input type="checkbox" name="sub-category" value="acrylic"> Mythological
+                        </label>
+                    </div>
+                </div>
+            
+                <div class="category" onclick="toggleCheckboxes(this)">
+                    <label>
+                        <input type="checkbox" name="main-category" value="sculpture"> Sculpture
+                    </label>
+                    <div class="subcategory">
+                        <label>
+                            <input type="checkbox" name="sub-category" value="wood"> Egypt
+                        </label>
+                        <label>
+                            <input type="checkbox" name="sub-category" value="stone"> Greek
+                        </label>
+                        <label>
+                            <input type="checkbox" name="sub-category" value="metal"> East Asia
+                        </label>
+                    </div>
+                </div>
+            
+                <div class="category" onclick="toggleCheckboxes(this)">
+                    <label>
+                        <input type="checkbox" name="main-category" value="fresco"> Fresco
+                    </label>
+                    <div class="subcategory">
+                        <label>
+                            <input type="checkbox" name="sub-category" value="fresco1"> Fresco 1
+                        </label>
+                        <label>
+                            <input type="checkbox" name="sub-category" value="fresco2"> Fresco 2
+                        </label>
+                        <label>
+                            <input type="checkbox" name="sub-category" value="fresco3"> Fresco 3
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class=" col-9">
+                <div id="artworks_container">
+                    <div class="artwork">
+                        <img src="licensed-image.jpg" alt="">
+                        <b>artwork</b>
+                    </div>
+                    <div class="artwork">
+                        <img src="licensed-image.jpg" alt="">
+                        <b>artwork</b>
+                    </div>
+                    <div class="artwork">
+                        <img src="vincent-van-goghs-starry-night-symbolism-and-iconography-part-1.jpg" alt="">
+                        <b>artwork</b>
+                    </div>
+                    <div class="artwork">
+                        <img src="vincent-van-goghs-starry-night-symbolism-and-iconography-part-1.jpg" alt="">
+                        <b>artwork</b>
+                    </div>
+                    <div class="artwork">
+                        <img src="vincent-van-goghs-starry-night-symbolism-and-iconography-part-1.jpg" alt="">
+                        <b>artwork</b>
+                    </div>
+                    <div class="artwork">
+                        <img src="vincent-van-goghs-starry-night-symbolism-and-iconography-part-1.jpg" alt="">
+                        <b>artwork</b>
+                    </div>
+                </div>
+        
+                <ul class="pagination">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+            </ul>
+            </div>
+            
+        </div>
+    </div>   
+</body>
+<script src="script.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</html>
