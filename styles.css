@@ -34,6 +34,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     max-height: 800px;
+    text-align: center;
 }
 
 #artworks_container .artwork {
