@@ -12,6 +12,10 @@ app.get('/', (req, res) => {
     res.render('homepage/homepage');
 })
 
+app.get('/all', (req, res) => {
+    res.render('allartworkpage/allartwork');
+})
+
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`)
 });
