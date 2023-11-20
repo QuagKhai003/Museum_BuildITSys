@@ -24,7 +24,6 @@ p {
 .Homepage-logo {
     width: 60px;
     height: 60px;
-    margin-left: 64px;
 }
 
 .Header-list {
@@ -305,4 +304,62 @@ nav {
     width: 25px;
     height: 25px;
     margin-left: 13px;
+}
+.toggle-button {
+    position: relative;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+}
+
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: black;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+
+/* Your existing styles */
+
+@media only screen and (max-width: 680px) {
+    header {
+        display: flex;
+        flex-direction: row; 
+        justify-content: space-between; 
+    }
+    .Header-list {
+        display: none; 
+    }
+
+    .button-container {
+        display: none;
+    }
+
+    .button1, .button2 {
+        width: 100%; /* Make buttons full width on smaller screens */
+        margin-bottom: 10px; /* Add spacing between buttons */
+    }
+
+    form {
+        margin-top: 10px;
+    }
+
+    .search-input {
+        display: none;
+    }
+
+    .Homepage-logo {
+        margin: 5px;
+    }
+    .search-icon {
+        margin: 5px;
+    }
+    .toggle-button {
+        display: flex;
+    
+    }
 }
