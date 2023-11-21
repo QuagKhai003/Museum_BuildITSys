@@ -157,6 +157,8 @@ input {
     padding: 80px;
 }
 
+
+
 .button-container2 {
     display: flex;
     justify-content: center;
@@ -174,6 +176,10 @@ input {
     font-size: 36px;
     margin: 4px 2px;
     cursor: pointer; /* Changes the cursor when you hover over the button */
+    
+}
+.art {
+    margin-top: 200px;
 }
 
 .button-arrow-container {
@@ -184,12 +190,16 @@ input {
 .right {
     margin-left: auto; /* Push the button to the right */
     margin-right: 200px;
+    
 }
 
 .left {
     margin-right: auto; /* Push the button to the left */
     margin-left: 200px
+    
 }
+
+
 
 .arrow-icon {
     width: 50px;
