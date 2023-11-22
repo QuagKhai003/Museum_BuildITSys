@@ -19,15 +19,19 @@ p {
     color: #FFF;
     font-size: 36px;
     font-family: Arial, Helvetica, sans-serif;
+    width: 500px;
+    text-align: center;
+    margin: 0 auto;
 }
 h2 {
     color: #FFF;
     font-size: 64px;
     font-family: Arial, Helvetica, sans-serif;
     font-style: strong;
-    text-align: center;
-    margin-top: 0px;
+    width: 50%;
+    margin: 0 auto;
 }
+
 
 
 .Homepage-logo {
@@ -116,7 +120,7 @@ input {
 }
 .painting-content {
     height: 805px;
-    text-align: center;
+    text-align: left;
     background-image: url(../images/background/background2.jpg);
     background-size: fill;
     background-position: center;
@@ -127,7 +131,7 @@ input {
 
 .scupture-content {
     height: 805px;
-    text-align: center;
+    text-align: right;
     background-image: url(../images/background/background3.jpg);
     background-size: fill;
     background-position: center;
@@ -138,7 +142,7 @@ input {
 
 .fresco-content {
     height: 805px;
-    text-align: center;
+    text-align: left;
     background-image: url(../images/background/background4.jpg);
     background-size: fill;
     background-position: center;
@@ -155,7 +159,9 @@ input {
     color: Black;
     margin-top: 0px;
     padding: 80px;
+    display: auto;
 }
+
 
 
 
@@ -190,7 +196,7 @@ input {
 .right {
     margin-left: auto; /* Push the button to the right */
     margin-right: 200px;
-    
+    text-align: left;
 }
 
 .left {
