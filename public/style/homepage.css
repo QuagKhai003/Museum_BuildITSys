@@ -150,7 +150,34 @@ input {
     
 }
 
+.museum-name-main {
+    font-size: 128px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: strong;
+    color: Black;
+    margin-top: 0px;
+    padding: 80px;
+    display: auto;
+}
 
+
+.museum-name-right {
+    font-size: 128px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: strong;
+    color: Black;
+    margin-top: 0px;
+    padding: 80px;
+    display: auto;
+}
+
+
+.museum-name-right h2 {
+    margin-right: 150px;
+}
+.museum-name-right p {
+    margin: 0 0 0 auto;
+}
 
 .museum-name {
     font-size: 128px;
@@ -162,8 +189,15 @@ input {
     display: auto;
 }
 
+.museum-name h2 {
+    display: flex;
+    margin-left: 150px;
+    
+}
 
-
+.museum-name p {
+    margin: 0 0 auto 0;
+}
 
 .button-container2 {
     display: flex;
@@ -184,6 +218,15 @@ input {
     cursor: pointer; /* Changes the cursor when you hover over the button */
     
 }
+
+.explore-button:hover {
+    background-color: rgba(0, 0, 0, 0.55)
+}
+
+
+
+
+
 .art {
     margin-top: 200px;
 }
@@ -367,4 +410,39 @@ nav {
     width: 25px;
     height: 25px;
     margin-left: 13px;
+}
+
+
+.Art-message {
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    color: black;
+}
+
+.Art-message h2 {
+   color: black;
+}
+.art-para {
+    font-size: 18px;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.art-mess-button {
+    background-color: rgba(0, 0, 0, 0.25); /* Black with 25% transparency */
+    border: none;
+    color: white; /* Text color */
+    border-radius: 50px;
+    padding: 15px 32px; /* Vertical and horizontal padding */
+    text-align: center; /* Center the text */
+    text-decoration: none; /* Removes underline */
+    font-size: 24px;
+    margin: 4px 2px;
+    cursor: pointer; /* Changes the cursor when you hover over the button */
+    
+}
+
+.art-mess-button:hover {
+    background-color: black
 }

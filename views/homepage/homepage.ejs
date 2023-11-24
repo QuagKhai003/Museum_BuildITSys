@@ -11,8 +11,8 @@
     <%- include('../components/header.ejs'); %>
     <main>
         <div class="first-content">
-            <div class="museum-name">
-                <h1>Museum Name</h1> 
+            <div class="museum-name-main">
+                <h1>Museum Name </h1> 
                 <p>Brief Descript about Museum mission</p>
             </div>
             <div>   
@@ -23,17 +23,17 @@
         </div>   
         <div class="painting-content">           
             <div class="museum-name">
-                <h2 style="margin-left: 150px; display: flex">Painting</h2> 
-                <p style="margin: 0 0 auto 0" >Brief Descript about Museum mission</p>
+                <h2 >Painting</h2> 
+                <p  >Brief Descript about Museum mission</p>
             </div>
             <button class="explore-button art button-arrow-container left  ">Explore more
                 <img src="/images/icon/right-arrow.png" class="arrow right-bounce arrow-icon" alt="arrow">
             </button>                     
         </div> 
         <div class="scupture-content">
-            <div class="museum-name">
-                <h2 style="margin-right: 150px;">Scupture</h2> 
-                <p style="margin: 0 0 0 auto">Brief Descript about Museum mission</p>
+            <div class="museum-name-right">
+                <h2 >Scupture</h2> 
+                <p >Brief Descript about Museum mission</p>
             </div>
             <button class="explore-button art button-arrow-container right ">
                 <img src="/images/icon/left-arrow.png" class="arrow left-bounce arrow-icon" alt="arrow">
@@ -42,13 +42,24 @@
         </div>
         <div class="fresco-content">
             <div class="museum-name">
-                <h2 style="margin-left: 150px; display: flex">Fresco</h2> 
-                <p style="margin: 0 0 auto 0">Brief Descript about Museum mission</p>
+                <h2 >Fresco</h2> 
+                <p >Brief Descript about Museum mission</p>
             </div>
             <button class="explore-button art button-arrow-container left ">Explore more
                 <img src="/images/icon/right-arrow.png" class="arrow right-bounce arrow-icon" alt="arrow">
             </button>          
         </div> 
+        <div class="Art-message">
+            <div>
+                <h2>Art message </h2>
+                <p class="art-para">lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumv</p>
+            </div>
+            <div>
+                <button class="art-mess-button">Browse all artworks</button>
+                <button class="art-mess-button">Join our community
+                </button>
+            </div>
+        </div>
     </main>
     <%- include('../components/footer.ejs'); %>
 </body>
