@@ -446,3 +446,45 @@ nav {
 .art-mess-button:hover {
     background-color: black
 }
+
+
+
+
+@media only screen and (max-width: 767px) {
+    header {
+        display: flex;
+        flex-direction: row; 
+        justify-content: space-between; 
+    }
+    .Header-list {
+        display: none; 
+    }
+
+    .button-container {
+        display: none;
+    }
+
+    .button1, .button2 {
+        width: 100%; /* Make buttons full width on smaller screens */
+        margin-bottom: 10px; /* Add spacing between buttons */
+    }
+
+    form {
+        margin-top: 10px;
+    }
+
+    .search-input {
+        display: none;
+    }
+
+    .Homepage-logo {
+        margin: 5px;
+    }
+    .search-icon {
+        margin: 5px;
+    }
+    .toggle-button {
+        display: flex;
+    
+    }
+}
