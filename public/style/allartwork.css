@@ -28,17 +28,20 @@
     display: flex;
     flex-direction: column;
 }
-#artworks_container {
+#all_artworks_container {
     border-left: 2px solid #333;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    overflow: auto;
+    max-height: 800px;
+    text-align: center;
+}
+#artworks_container {
+    
     max-height: 800px;
     text-align: center;
 }
 
 #artworks_container .artwork {
-    width: 33.33%;
+    width: 100%;
     box-sizing: border-box;
     padding: 10px;
     margin: 0;
