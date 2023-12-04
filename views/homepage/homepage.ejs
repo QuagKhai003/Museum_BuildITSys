@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/homepage.css">
     <title>Document</title>
+    <script src="https://kit.fontawesome.com/e09ff39432.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <%- include('../components/header.ejs'); %>
@@ -61,6 +62,39 @@
             </div>
         </div>
     </main>
-    <%- include('../components/footer.ejs'); %>
+  
+    <script>
+        let searchbtn = document.querySelector('.searchbtn');
+        let closebtn = document.querySelector('.closebtn');
+        let searchBox = document.querySelector('.searchBox'); // Fix the selector
+        let navigation = document.querySelector('.navigation');
+        let menutoggle = document.querySelector('.menutoggle');
+        let header = document.querySelector('header');
+
+
+
+        searchbtn.onclick = function(){
+            searchBox.classList.add('active');
+            closebtn.classList.add('active');
+            searchbtn.classList.add('active');
+            menutoggle.classList.add('hide')
+            header.classList.remove('open')
+        }
+
+        closebtn.onclick = function(){
+            searchBox.classList.remove('active'); // Fix the method name
+            closebtn.classList.remove('active'); 
+            searchbtn.classList.remove('active');
+            menutoggle.classList.remove('hide')
+
+        }
+        menutoggle.onclick = function(){
+            header.classList.toggle('open');
+            searchBox.classList.remove('active'); // Fix the method name
+            closebtn.classList.remove('active'); 
+            searchbtn.classList.remove('active');
+        }
+        
+    </script>
 </body>
 </html>
