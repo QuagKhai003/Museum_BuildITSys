@@ -16,5 +16,12 @@ const visitorSchema = mongoose.Schema({
     role: {
         type: String,
         require: true,
-    }
+        default: 'visitor'
+    },
+    bookmarks: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Savelist'
+    }]
 })
+
+mondule.exports = mongoose.model('Visitor', visitorSchema);
