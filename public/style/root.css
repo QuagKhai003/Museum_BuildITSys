@@ -49,14 +49,14 @@ header {
 }
 
 .button-container {
-    display: flex;
-    gap: 23px;
+    display: grid;
+    grid-template-columns: 90px 90px;
+    gap: 0rem 1rem;
 }
 
 .button1, .button2 {
     border-radius: 10px;
     display: flex;
-    width: 69px;
     height: 35px;
     padding: 16px 24px;
     justify-content: center;
@@ -112,54 +112,115 @@ input::placeholder{
 
 
 footer {
-    background-color: #A59FA1;
-    width: 100%;
-    height: 400px;
+    background-color: var(--black);
+    font-family: var(--title-text);
+    color: var(--white);
+    padding: 2rem;
 }
 
-nav {
+.footer-section {
     display: flex;
-    flex-direction: row;
+    flex-flow: row nowrap;
+    align-items: baseline;
     justify-content: space-evenly;
 }
 
 .museum-intro {
     display: flex;
-    flex-direction: row;
-    font-size: 36px;
     align-items: center;
-}
-
-.museum-intro img {
-    width: 100px;
-    height: 100px;
-}
-
-.museum-intro p {
-    margin-left: 23px;
+    gap: 1rem;
+    font-size: 3rem;
+    font-weight: 600;
 }
 
 .museum-info {
-    margin-top: 20px;
+    margin-top: 1rem;
 }
 
-.museum-info div {
+.infos {
     display: flex;
-    flex-direction: row;
+    flex-flow: row nowrap;
     align-items: center;
-    margin-top: 20px;
+    gap: 1rem;
+}
+
+.infos .fa-headset {
+    font-size: 2rem;
+}
+
+.main-item{
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.explore-main,
+.social-main {
+    margin: 0;
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.material-symbols-outlined.explore, 
+.material-symbols-outlined.social {
+    font-size: 3rem;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 300,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+.infos-list{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 0.5rem 0rem;
+    gap: 0.5rem;
+}
+
+.info-item {
+    font-size: 1rem;
+}
+
+.explore-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 }
 
 .museum-explore {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 23px;
-    margin-right: 150px;
+    gap: 0.5rem;
+}
+
+.explore-list {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.explore-item {
+    margin: 0;
+    padding: 1rem;
+    font-size: 1rem;
 }
 
 .museum-social {
-    margin-top: 23px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 }
 
 .social-main-container {
@@ -171,34 +232,20 @@ nav {
 .social-items-container {
     display: flex;
     flex-direction: column;
+    margin-top: 1rem;
 }
 
 .social-items-container div {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 53px;
-}
-
-.main-item {
-    margin-left: 23px;
-    font-size: 23px;
-}
-
-.info-item {
-    margin-left: 36px;
-    font-size: 13px;
-}
-
-.explore-item {
-    margin-top: 75px;
-    margin-left: 80px;
-    font-size: 13px;
+    gap: 0.5rem;
 }
 
 .social-item {
-    font-size: 13px;
-    margin-left: 40px;
+    margin: 0;
+    padding: 1rem;
+    font-size: 1rem;
 }
 
 .main-logo {
