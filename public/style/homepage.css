@@ -1,99 +1,152 @@
-body {
-    background-color: #A59FA1;
+*{
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
+body {
+    background-color: white;
+    min-height: 100vh;
+    overflow-x: hidden; /* Add this line to hide horizontal overflow */
+    max-width: 100%;
 }
 
 header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: gainsboro;
+    padding: 20px 40px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-evenly;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.05);
 }
+
 h1 {
-    color: #FFF;
     font-size: 128px;
     font-family: Arial, Helvetica, sans-serif;
     font-style: strong;
     text-align: center;
     margin-top: 0px;
 }
-p {
+.description {
     color: #FFF;
     font-size: 36px;
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0 auto;
 }
+
+.museum-name-main.description {
+    text-align: center;
+}
+.museum-name-right {
+    text-align: right;
+}
+.museum-name.description {
+    text-align: left;
+}
+
+
+
+h2 {
+    color: #FFF;
+    font-size: 64px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: strong;
+    margin: 0 auto;
+}
+
+
+
 .Homepage-logo {
     width: 60px;
     height: 60px;
-    margin-left: 64px;
 }
 
 .Header-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
     display: flex;
     align-items: center;
 }
 
-.Header-list li {
-    display: inline-block;
-    padding: 23px;
+header ul {
+    position: relative;
+    display: flex;
+    gap: 30px;
 }
 
-.Header-list a {
-    color: white;
+header ul li {
+    list-style: none;
+}
+
+header ul li a {
+    position: relative;
     text-decoration: none;
+    font-size: 1em;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
 }
 
-.button-container {
-    display: flex;
-    gap: 23px;
+
+.Header-list ul li a:not(.button-login):not(.button-register)::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: black;
+    bottom: -2px;
+    transform: scaleX(0);
+    transition: transform  0.5s ease-in-out;
+    transform-origin: right;
 }
 
-.button1, .button2{
-    border-radius: 10px;
-    display: flex;
-    width: 69px;
-    height: 35px;
-    padding: 16px 24px;
-    justify-content: center;
-    align-items: center;
+.Header-list ul li a:hover:not(.button-login):not(.button-register)::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+
+/* Style for Login button */
+.button-login {
     border: none;
-    text-align: center;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 23px;
-}
-
-.button1 {
-    background: #FFF;
+    text-decoration: none;
+    font-size: 1em;
     color: #0992CC;
+    background-color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 40px; /* Border radius for the button */
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.button2 {
-    background: #0992CC;
-    color: white;
-}
 
-form {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 
-input {
-    width: 300px;
-    height: 35px;
-    border-radius: 23px;
-    background: #D9D9D9;
+/* Style for Register button */
+.button-register {
     border: none;
+    text-decoration: none;
+    font-size: 1em;
+    color: white;
+    background-color: #0992CC;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 40px; /* Border radius for the button */
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.search-icon {
-    width: 35px;
-    height: 35px;
-}
+
+
+
+
+
+
 
 .first-content {
     height: 805px;
@@ -102,12 +155,10 @@ input {
     background-size: fill;
     background-position: center;
     padding: auto;
-    ;
-    
 }
 .painting-content {
     height: 805px;
-    text-align: center;
+    text-align: left;
     background-image: url(../images/background/background2.jpg);
     background-size: fill;
     background-position: center;
@@ -118,7 +169,7 @@ input {
 
 .scupture-content {
     height: 805px;
-    text-align: center;
+    text-align: right;
     background-image: url(../images/background/background3.jpg);
     background-size: fill;
     background-position: center;
@@ -129,7 +180,7 @@ input {
 
 .fresco-content {
     height: 805px;
-    text-align: center;
+    text-align: left;
     background-image: url(../images/background/background4.jpg);
     background-size: fill;
     background-position: center;
@@ -137,172 +188,491 @@ input {
     
 }
 
-.museum-content {
+.museum-name-main {
+    font-size: 128px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: strong;
+    color: Black;
+    margin-top: 0px;
+    padding: 80px;
     display: auto;
-    height: 805px;
-    text-align: center;
-    padding: middle;
+}
+
+
+.museum-name-right {
+    font-size: 128px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: strong;
+    color: Black;
+    margin-top: 0px;
+    padding: 80px;
+    display: auto;
+}
+
+
+.museum-name-right h2 {
+    margin-right: 150px;
+}
+.museum-name-right p {
+    margin: 0 0 0 auto;
 }
 
 .museum-name {
     font-size: 128px;
     font-family: Arial, Helvetica, sans-serif;
     font-style: strong;
-    color: #FFF;
+    color: Black;
     margin-top: 0px;
     padding: 80px;
+    display: auto;
 }
 
-.button-container2 {
-    display: flex;
-    gap: 23px;
-    justify-content: center;
-    margin-top: 23px;
-}
-.explore-button {
-    border: none;
-    font-size: 36px;
-    background-color: black;
-    color: white;
-}
-.arrow-icon {
-    width: 50px;
-    height: 50px;
-    margin-left: 10px;
-}
-.arrow {
-    text-align: center;
-    margin-top: 2px;
-    margin-right: 7px;
-  }
-
-.move {
-    -moz-animation: bounce 2s infinite;
-    -webkit-animation: bounce 500ms infinite;
-    animation: bounce 1000ms infinite;
-}
-  
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(0px);
-    }
-    60% {
-      transform: translateY(8px);
-    }
-  }
-
-
-
-
-
-
-footer {
-    background-color: #A59FA1;
-    width: 100%;
-    height: 400px;
-}
-
-nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-
-.museum-intro {
-    display: flex;
-    flex-direction: row;
-    font-size: 36px;
-    align-items: center;
-}
-
-.museum-intro img {
-    width: 100px;
-    height: 100px;
-}
-
-.museum-intro p {
-    margin-left: 23px;
-}
-
-.museum-info {
-    margin-top: 20px;
-}
-
-.museum-info div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.museum-explore {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 23px;
-    margin-right: 150px;
-}
-
-.museum-social {
-    margin-top: 23px;
-}
-
-.social-main-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.social-items-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.social-items-container div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 53px;
-}
-
-.main-item {
-    margin-left: 23px;
-    font-size: 23px;
-}
-
-.info-item {
-    margin-left: 36px;
-    font-size: 13px;
-}
-
-.explore-item {
-    margin-top: 75px;
-    margin-left: 80px;
-    font-size: 13px;
-}
-
-.social-item {
-    font-size: 13px;
-    margin-left: 40px;
-}
-
-.main-logo {
-    width: 50px;
-    height: 50px;
+.museum-name h2 {
+    margin-left: 150px;
     
 }
 
-.info-logo {
-    width: 25px;
-    height: 25px;
-    margin-left: 10px;
+.museum-name p {
+    margin: 0 0 auto 0;
 }
 
-.social-logo {
-    width: 25px;
-    height: 25px;
-    margin-left: 13px;
+
+
+
+
+
+.art {
+    margin-top: 200px;
 }
+
+.button-arrow-container {
+    display: flex;
+    align-items: center; /* Align vertically */
+}
+
+
+
+.first-content .explore-button {
+    margin-top: 210px;
+}
+
+.scupture-content  .explore-button {
+    margin-right: 290px;
+    margin-top: 120px;
+}
+.fresco-content .explore-button, .painting-content .explore-button {
+    margin-left: 240px;
+    margin-top: 120px;
+}
+
+
+.explore-button {
+    position: relative;
+    display: inline-block;
+    color: black;
+    font-size: 1.5em;
+    letter-spacing: .1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 30px;
+    transition: 0.5s;
+    transition-delay: 0.8s;
+}
+.explore-button:hover {
+    color: white;
+    letter-spacing: 0.25em;
+    text-shadow: 0 0 5px white;
+}
+
+.explore-button span {
+    position: absolute;
+    display: block;
+    background: white;
+    box-shadow: 0 0 5px white;
+}
+.explore-button span:nth-child(1) {
+    left: 0;
+    top: 0;
+    width: 50.5%;
+    height: 1.5px;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.5s;
+}
+
+.explore-button:hover span:nth-child(1) {
+    transform: scaleX(1);
+    transform-origin: right;
+}
+
+.explore-button span:nth-child(2) {
+    right: 0;
+    top: 0;
+    width: 50.5%;
+    height: 1.5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.5s;
+}
+.explore-button:hover span:nth-child(2) {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.explore-button span:nth-child(3) {
+    right: 0;
+    top: 0;
+    width: 1.5px;
+    height: 100%;
+    transform-origin: bottom;
+    transform: scaleY(0);
+    transition: transform 0.5s;
+    transition-delay: 0.4s;
+}
+
+.explore-button:hover span:nth-child(3) {
+    transform: scaleY(1);
+    transform-origin: top;
+}
+
+.explore-button span:nth-child(4) {
+    left: 0;
+    top: 0;
+    width: 1.5px;
+    height: 100%;
+    transform-origin: bottom;
+    transform: scaleY(0);
+    transition: transform 0.5s;
+    transition-delay: 0.4s;
+}
+
+.explore-button:hover span:nth-child(4) {
+    transform: scaleY(1);
+    transform-origin: top;
+}
+
+.explore-button span:nth-child(5) {
+    left: 0;
+    bottom: 0;
+    width: 50.5%;
+    height: 1.5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.5s;
+    transition-delay: 0.8s;
+}
+
+.explore-button:hover span:nth-child(5) {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+.explore-button span:nth-child(6) {
+    right: 0;
+    bottom: 0;
+    width: 50.5%;
+    height: 1.5px;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.5s;
+    transition-delay: 0.8s;
+}
+
+.explore-button:hover span:nth-child(6) {
+    transform: scaleX(1);
+    transform-origin: right;
+}
+
+
+
+
+.Art-message {
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    color: black;
+}
+
+.Art-message h2 {
+   color: black;
+}
+.art-para {
+    font-size: 18px;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.art-mess-button {
+    background-color: rgba(0, 0, 0, 0.25); /* Black with 25% transparency */
+    border: none;
+    color: white; /* Text color */
+    border-radius: 50px;
+    padding: 15px 32px; /* Vertical and horizontal padding */
+    text-align: center; /* Center the text */
+    text-decoration: none; /* Removes underline */
+    font-size: 24px;
+    margin: 4px 2px;
+    cursor: pointer; /* Changes the cursor when you hover over the button */
+    
+}
+
+.art-mess-button:hover {
+    background-color: black
+}
+header .search {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    z-index: 10;
+    cursor: pointer;
+}
+
+
+.searchBox {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    right: -100%;
+    display: flex;
+    background-color: white;
+    align-items: center;
+    padding: 0 30px;
+    transition: 0.5s ease-in-out;
+}
+
+.searchBox.active {
+    right: 0;
+}
+.searchBox input {
+   width: 100%;
+   border: none;
+   outline: none;
+   height: 50px;
+   color: black;
+   font-size: 1.25em;
+   background: white;
+   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+
+
+.searchbtn {
+    position: relative;
+    left: 30px;
+    transition: 0.5s ease-in-out;
+}
+
+.searchbtn.active {
+    left: 0;
+}
+
+.closebtn {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.closebtn.active {
+    opacity: 1;
+    visibility: visible;
+    transition: 0.5s;
+    scale: 1;
+}
+
+i.fa-solid.fa-bars {
+    display: none;
+    position: relative;
+}
+
+
+.container{
+    max-width: 1170px;
+    margin:auto;
+  }
+  .row{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  ul{
+    list-style: none;
+  }
+
+
+  .footer{
+    background-color: black;
+      padding: 70px 0;
+  }
+  .footer-col{
+     width: 33%;
+     padding: 0 15px;
+  }
+  .footer-col h4{
+    font-size: 18px;
+    color: #ffffff;
+    text-transform: capitalize;
+    margin-bottom: 35px;
+    font-weight: 500;
+    position: relative;
+  }
+  .footer-col h4::before{
+    content: '';
+    position: absolute;
+    left:0;
+    bottom: -10px;
+    background-color: yellow;
+    height: 2px;
+    box-sizing: border-box;
+    width: 50px;
+  }
+  .footer-col ul li:not(:last-child){
+    margin-bottom: 10px;
+  }
+  .footer-col ul li a{
+    font-size: 13.5px;
+    text-transform: capitalize;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 300;
+    color: #bbbbbb;
+    display: block;
+    transition: all 0.3s ease;
+  }
+  .footer-col ul li a:hover{
+    color: #ffffff;
+    padding-left: 8px;
+  }
+  .footer-col .social-links a{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-color: rgba(255,255,255,0.2);
+    margin:0 10px 10px 0;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    color: #ffffff;
+    transition: all 0.5s ease;
+  }
+  .footer-col .social-links a:hover{
+    color: #24262b;
+    background-color: #ffffff;
+  }
+  .footer-img {
+    text-align: center; 
+    margin-top: 20px; 
+}
+
+.footer-img img {
+    display: inline-block; 
+}
+
+.footer-line {
+    width: 80%; /* Adjust the width as needed */
+    height: 1px; /* Line height */
+    background-color: #ffffff; /* Line color */
+    margin-top: 20px; /* Adjust the top margin based on your preference */
+    margin-left: auto; /* Center the line */
+    margin-right: auto; /* Center the line */
+}
+
+@media only screen and (max-width: 800px) {
+    i.fa-solid.fa-bars {
+        position: absolute;
+        display: block;
+        font-size: 2em;
+        cursor: pointer;
+        transform: translateX(30px);
+        z-index: 10;
+    }
+
+    .searchbtn {
+        left: 0;
+    }
+   header .navigation {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    left: 100%;
+   }
+   header.open .navigation {
+    top: 80px;
+    opacity: 1;
+    visibility: visible;
+    left: 0;
+    background-color: gainsboro;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 200px );
+    padding: 40px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    align-items: center;
+   }
+   header.open .navigation li a {
+    font-size: 1.25em;
+   }
+   i.fa-solid.fa-bars.hide {
+    display: none;
+   }
+   .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+h2 {
+    text-align: center;
+}
+.museum-name-right h2 {
+    margin-right: 0;
+}
+.museum-name h2 {
+    margin-left: 0;
+    
+}
+.scupture-content  .explore-button {
+    margin-right: 0;
+}
+.fresco-content .explore-button, .painting-content .explore-button {
+    margin-left: 0;
+}
+.fresco-content, .painting-content {
+    text-align: center;
+}
+.scupture-content {
+    text-align: center;
+}
+
+}
+
+@media only screen and (max-width: 576px) {
+    .museum-name-main h1{
+        font-size: 60px;
+    }
+    .description {
+        font-size: 20px;
+        text-align: center;
+    }
+    h2 {
+        text-align: center;
+    }
+    .museum-name-right h2 {
+        margin-right: 0;
+    }
+    .museum-name h2 {
+        margin-left: 0;
+        
+    }
+    .scupture-content  .explore-button {
+        margin-right: 0;
+    }
+    .fresco-content .explore-button, .painting-content .explore-button {
+        margin-left: 0;
+    }
+    .fresco-content, .painting-content {
+        text-align: center;
+    }
+    .scupture-content {
+        text-align: center;
+    }
+}  
+  
