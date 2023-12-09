@@ -20,6 +20,10 @@ app.get('/about', (req, res) => {
     res.render('aboutuspage/aboutus');
 })
 
+app.get('/dashUser', (req, res) => {
+    res.render('dashboardpage/user');
+})
+
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`)
 });
