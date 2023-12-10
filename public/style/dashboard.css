@@ -1,11 +1,17 @@
+
 body {
     margin: 0px;
     padding: 0px
 }
 
+
 .content-container {
     margin: 2vw;
-    
+}
+
+.dropdown.right {
+    display: flex;
+    justify-content: right;
 }
 
 .card-columns {
@@ -52,6 +58,7 @@ body {
     background-color: transparent;
     border: none;
     border-radius: none;
+
     /* Remove position, top, left, and transform properties */
 }
 
@@ -72,8 +79,8 @@ body {
 }
 
 .dropdown-menu {
-    background-color: transparent;
-    float: left;
+    background-color: white;
+    float: center;
     font-size: 24px;
     left: 0;
     list-style: none;
@@ -110,30 +117,27 @@ body {
 @media (min-width: 200px) {
     .btn.btn-secondary.dropdown-toggle,
     .dropdown-menu {
-        width: 25%; 
+        width: 52%; 
     }
 }
 
 @media (min-width: 600px) {
     .btn.btn-secondary.dropdown-toggle,
     .dropdown-menu {
-        width: 50%; 
+        width: 105px; 
     }
 }
-
 @media (min-width: 900px) {
     .btn.btn-secondary.dropdown-toggle,
     .dropdown-menu {
-        width: 75%;
-
+        width: 157px;
     }
 }
 
 @media (min-width: 1200px) {
     .btn.btn-secondary.dropdown-toggle,
     .dropdown-menu {
-        width: 100%;
-    
+        width: 209px; 
     }
 }
 
