@@ -275,7 +275,8 @@ input.searchInput.open {
 }
 
 @media only screen and (max-width: 768px) {  
-    .Header-list ul {
+    .Header-list ul,
+    .search {
         display: none;
     }
 
@@ -294,6 +295,7 @@ input.searchInput.open {
         width: 100%;
         height: max-content;
         background-color: var(--bewhite);
+        z-index: 4;
     }
 
     .search-menu {

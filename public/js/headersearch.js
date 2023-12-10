@@ -29,3 +29,11 @@ menutoggle.addEventListener('click', () => {
 closemenubtn.addEventListener('click', () => {
     menucontainer.classList.remove('open')
 })
+
+window.addEventListener('resize', () => {
+    const windowWidth = window.innerWidth;
+
+    if (windowWidth <= 768 && searchBox.classList.contains('open')) {
+        searchBox.classList.remove('open');
+    }
+});
