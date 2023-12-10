@@ -32,6 +32,7 @@ header {
 }
 
 .Header-list {
+    position: relative;
     display: flex;
     align-items: center;
 }
@@ -50,7 +51,6 @@ header {
 }
 
 .Header-list ul li a {
-    position: relative;
     text-decoration: none;
     font-size: 1rem;
     color: var(--white);
@@ -108,17 +108,29 @@ header {
 .staticSearchBtn {
     font-size: 1.6rem;
     color: var(--white);
+    cursor: pointer;
 }
 
-.Header-list .search {
-    position: relative;
-    color: var(--white);
+.search {
+    opacity: 0;
+    position: fixed;
+    height: 100px;
+    width: 0%;
+    right: -300rem;
+    gap: 20px;
+    padding: 20px 40px;
+}
+
+.search.open {
+    opacity: 1;
     display: flex;
     align-items: center;
-    font-size: 1.5rem;
-    cursor: default;
+    background-color: var(--bewhite);
+    width: 100%;
+    top: 0px;
+    right: 0px;
+    transition: right 0.75s ease-in-out, width 0.75s ease-in-out;
 }
-
 
 .searchbtn,
 .closebtn {
@@ -127,83 +139,51 @@ header {
 }
 
 .searchbtn {
-    width: 0%;
+    opacity: 0;
+    color: var(--black);
 }
 
 .searchbtn.open {
-    position: fixed;
-    color: var(--black);
-    width: 100%;
-    right: -40px;
-    transition: width 0.75s ease-in-out;
-    transform-origin: right;
-    z-index: 2;
-}
-
-.searchBox {
-    background-color: var(--bewhite);
-    right: -300rem;
-    opacity: 0;
-    gap: 0.5rem;
-    z-index: 1;
-}
-
-.searchBox.open {
-    position: fixed;
-    height: 100px;
-    width: 100%;
-    right: 0;
     opacity: 1;
-    transition: width 0.75s ease-in-out, opacity 0.75s ease-in-out;
-    transform-origin: right;
+    transition: opacity 1.5s ease-in-out;
 }
 
 input.searchInput {
-    display: none;
+    font-size: 1.5rem;
     border: none;
     outline: none;
-    right: -300rem;
     opacity: 0;
     background: transparent;
+    transition: opacity 1.5s ease-in-out;
 }
 
 input.searchInput.open {
-    display: flex;
-    position: fixed;
-    height: 100px;
-    width: 100%;
-    right: -80px;
+    flex-grow: 1;
     opacity: 1;
-    transition: width 0.75s ease-in-out, opacity 0.75s ease-in-out;
-    transform-origin: right;
-    z-index: 3;
-}
-
-input.searchInput::placeholder {
     padding-bottom: 5px;
     border-bottom: 2px solid var(--black);
-
 }
 
 .closebtn.fa-solid.fa-x {
-    display: none;
     opacity: 0;
-    transition: opacity 1.5s ease-in-out;
     cursor: pointer;
 }
 
 .closebtn.fa-solid.fa-x.open {
-    display: block;
-    position: fixed;
     opacity: 1;
-    right: 40px;
+    transition: opacity 1.5s ease-in-out;
     color: var(--black);
-    z-index: 4;
 }
 
 .menutoggle.fa-solid.fa-bars {
     display: none;
     position: relative;
+}
+
+.menu-container {
+    position: fixed;
+    opacity: 0;
+    top: -10rem;
 }
 
 .footer{
@@ -282,3 +262,76 @@ input.searchInput::placeholder {
     margin-left: auto; /* Center the line */
     margin-right: auto; /* Center the line */
 }
+
+
+@media only screen and (max-width: 1024px) {
+    header {
+        padding: 20px 20px;
+    }
+    
+    .Header-list ul {
+        gap: 10px;
+    }
+}
+
+@media only screen and (max-width: 768px) {  
+    .Header-list ul {
+        display: none;
+    }
+
+    .menu-container.open {
+        opacity: 1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        transition: top 0.5s ease-in-out;
+        transform: top;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        gap: 2rem;
+        padding: 32px;
+        width: 100%;
+        height: max-content;
+        background-color: var(--bewhite);
+    }
+
+    .search-menu {
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 1.5rem;
+        color: var(--black);
+    }
+
+    .searchMenuInput {
+        border: none;
+        outline: none;
+        flex-grow: 1;
+        background-color: transparent;
+        padding-bottom: 2px;
+        border-bottom: 2px solid var(--black);
+    }
+
+    .menu-container a {
+        color: var(--black);
+        text-decoration: none;
+    }
+
+    .menu-container a.button-register {
+        color: var(--white);
+    }
+
+    .menutoggle.fa-solid.fa-bars {
+        display: block;
+        color: var(--bewhite);
+        font-size: 1.6rem;
+        cursor: pointer;
+    }
+
+}
+
+@media only screen and (max-width: 425px) {  
+    
+} 
