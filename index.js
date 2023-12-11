@@ -28,6 +28,11 @@ app.get('/dashArtist', (req, res) => {
     res.render('dashboardpage/artist');
 })
 
+app.get('/dashAdmin', (req, res) => {
+    res.render('dashboardpage/admin');
+})
+
+
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`)
 });
