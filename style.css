@@ -4,9 +4,10 @@
     align-items: center; 
     height: 100vh;
     border-left: 2px solid #000;
-    border-right: 2px solid #000;
 }
-
+.prof-con2{
+    border-left: 2px solid #000;
+}
 .prof-pic{
     width: 60%; 
     height: auto;
@@ -25,26 +26,21 @@
     text-wrap: wrap;
 }
 
-.prof-btn-con{
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-}
 
 .edit-button {
     padding: 10px 20px;
     text-align: center;
     font-size: 16px;
-    margin: 10px 40px 10px 20px;
     
-  }
+    
+}
 
-  .logout-button {
+.logout-button {
     padding: 10px 20px;
     text-align: center;
     font-size: 16px;
-    margin: 10px 20px 10px 40px;
-  }
+    text-wrap: nowrap;
+}
   
 .prof-header{
     margin-top: 10%;
@@ -60,4 +56,9 @@
     font-size: 32px;
     font-style: normal;
     font-weight: 400;
+}
+.btn-con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
