@@ -135,11 +135,24 @@ body {
     justify-content: space-between;
 }
 
-.approval-buttons {
+.approval-buttons,.approved,.pending,
+.denied {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    margin-bottom: 20px; /* Adjust the margin-top value to move the buttons up or down */
+    margin-bottom: 0px; /* Adjust the margin-top value to move the buttons up or down */
+}
+
+.approved {
+    color: #00FF00;
+}
+
+.denied {
+    color: #FF0000;
+}
+
+.pending {
+    color: #FFA500;
 }
 
 @media (min-width: 200px) {
