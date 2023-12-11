@@ -20,6 +20,10 @@ app.get('/about', (req, res) => {
     res.render('aboutuspage/aboutus');
 })
 
+app.get('/detailed', (req, res) => {
+    res.render('detailedpage/detailedpage');
+})
+
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`)
 });

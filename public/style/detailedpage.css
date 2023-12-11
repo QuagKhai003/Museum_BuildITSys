@@ -1,0 +1,24 @@
+.carousel-inner {
+    height: 350px;
+}
+
+.carousel-item img {
+    height: 350px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+    opacity: 0.2;
+  }
+  
