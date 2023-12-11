@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background: url(/images/Solid\ Pale\ Blue\ Gray.jpg);
+    height: 100vh;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 36px;
+}
+
+.form-container {
+    position: absolute;
+    width: 600px;
+    height: 700px;
+    background: url(/images/1989.jpg);
+    background-size: cover;
+    margin-top: 36px;
+    margin-left: 29%;
+    border-radius: 23px;
+
+    box-shadow: 1px 13px 12px 3px rgba(0,0,0,0,4);
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column;
+    margin-top: 23px;
+}
+
+input {
+    width: 300px;
+    height: 20px;
+    margin-top: 13px;
+    margin-left: 23px;
+}
+
+textarea {
+    width: 300px;
+    margin-left: 23px;
+    margin-top: 13px;
+}
+
+.pl_btn {
+    margin-top: 36px;
+    width: 100px;
+    height: 25px;
+    border: none;
+    background-color: lightblue;
+    border-radius: 13px;
+    cursor: pointer;
+}
+
+.pl_btn:hover {
+    opacity: 0.8;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.pl_btn:active {
+    opacity: 0.7;
+}
+
+/* Ipad resolution */
+@media screen and (max-width: 1024px) {
+    .form-container {
+        width: 70%;
+        margin-left: 15%;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+/* Ipad mini resolution */
+@media screen and (max-width: 768px) {
+    .form-container {
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+/* Mobile resolution */
+@media screen and (max-width: 600px) {
+    .form-container {
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        margin-left: 0;
+    }
+}
