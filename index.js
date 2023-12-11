@@ -13,8 +13,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    // Render each template separately
     res.render('loginpage/login');
+});
+
+app.get('/register', (req, res) => {
     res.render('registeringpage/register');
 });
 
