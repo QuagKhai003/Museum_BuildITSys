@@ -1,5 +1,7 @@
+/* import font */
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&display=swap');
 
+/* create default styling variables */
 :root{
     --golden: #CEA962;
     --black: #13130D;
@@ -11,182 +13,207 @@
 }
 
 body {
-    background-color: #A59FA1;
+    background-color: var(--bewhite);
     margin: 0;
 }
 
 header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    background: gainsboro;
+    background: var(--black);
+    font-family: var(--normal-text);
     padding: 20px 40px;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.05);
 }
+
+.logo-container {
+    height: 60px !important;
+}
+
 .Homepage-logo {
-    width: 60px;
-    height: 60px;
+    width: 100% !important; 
+    object-fit: cover !important;
 }
 
+/* styling header */
 .Header-list {
-    display: flex;
-    align-items: center;
-}
-
-header ul {
     position: relative;
     display: flex;
-    gap: 30px;
+    align-items: center;
 }
 
-header ul li {
+.Header-list ul {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+.Header-list ul li {
+    position: relative;
     list-style: none;
 }
 
-header ul li a {
-    position: relative;
+.Header-list ul li a {
     text-decoration: none;
-    font-size: 1em;
-    color: black;
+    font-size: 1rem;
+    color: var(--white);
     text-transform: uppercase;
-    letter-spacing: 0.2em;
 }
 
-
+/* creating hovering underline effect for different section */
 .Header-list ul li a:not(.button-login):not(.button-register)::before {
     content: '';
     position: absolute;
     width: 100%;
     height: 2px;
-    background: black;
+    background: var(--white);
     bottom: -2px;
     transform: scaleX(0);
-    transition: transform  0.5s ease-in-out;
-    transform-origin: right;
+    transition: transform  0.2s ease-in-out;
+    transform-origin: center;
 }
 
 .Header-list ul li a:hover:not(.button-login):not(.button-register)::before {
     transform: scaleX(1);
-    transform-origin: left;
+    transform-origin: center;
 }
 
-
-/* Style for Login button */
-.button-login {
-    border: none;
-    text-decoration: none;
-    font-size: 1em;
-    color: #0992CC;
-    background-color: white;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    padding: 10px 20px; /* Adjust padding as needed */
-    border-radius: 40px; /* Border radius for the button */
-    transition: background-color 0.3s, color 0.3s;
+/* make login and register button has same width */
+.button-container {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0rem 0.5rem;
 }
 
-
-
-/* Style for Register button */
+/* Style for Login and Register button */
+.button-login,
 .button-register {
+    text-align: center;
     border: none;
     text-decoration: none;
-    font-size: 1em;
-    color: white;
-    background-color: #0992CC;
+    font-size: 1rem;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
     padding: 10px 20px; /* Adjust padding as needed */
     border-radius: 40px; /* Border radius for the button */
     transition: background-color 0.3s, color 0.3s;
 }
-header .search {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5em;
-    z-index: 10;
+
+.button-login {
+    color: var(--black);
+    background-color: var(--greycement);
+}
+
+.button-register {
+    color: var(--white);
+    background-color: var(--golden);
+}
+
+.staticSearchBtn {
+    font-size: 1.6rem;
+    color: var(--white);
     cursor: pointer;
 }
 
-
-.searchBox {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    right: -100%;
-    display: flex;
-    background-color: white;
-    align-items: center;
-    padding: 0 30px;
-    transition: 0.5s ease-in-out;
-}
-
-.searchBox.active {
-    right: 0;
-}
-.searchBox input {
-   width: 100%;
-   border: none;
-   outline: none;
-   height: 50px;
-   color: black;
-   font-size: 1.25em;
-   background: white;
-   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-}
-
-
-
-.searchbtn {
-    position: relative;
-    left: 30px;
-    transition: 0.5s ease-in-out;
-}
-
-.searchbtn.active {
-    left: 0;
-}
-
-.closebtn {
+/* style search box and hide it on the right side to create transition from right to left */
+.search {
     opacity: 0;
-    visibility: hidden;
+    position: fixed;
+    height: 100px;
+    width: 0%;
+    right: -300rem;
+    gap: 20px;
+    padding: 20px 40px;
 }
 
-.closebtn.active {
+.search.open {
     opacity: 1;
-    visibility: visible;
-    transition: 0.5s;
-    scale: 1;
+    display: flex;
+    align-items: center;
+    background-color: var(--bewhite);
+    width: 100%;
+    top: 0px;
+    right: 0px;
+    transition: right 0.75s ease-in-out, width 0.75s ease-in-out;
 }
 
-i.fa-solid.fa-bars {
+.searchbtn,
+.closebtn {
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+/* Add opacity effect search button, search input, close button after clicking */
+.searchbtn {
+    opacity: 0;
+    color: var(--black);
+}
+
+.searchbtn.open {
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+}
+
+input.searchInput {
+    font-size: 1.5rem;
+    border: none;
+    outline: none;
+    opacity: 0;
+    background: transparent;
+    transition: opacity 1.5s ease-in-out;
+}
+
+input.searchInput.open {
+    flex-grow: 1;
+    opacity: 1;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--black);
+}
+
+.closebtn.fa-solid.fa-x {
+    opacity: 0;
+    cursor: pointer;
+}
+
+.closebtn.fa-solid.fa-x.open {
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+    color: var(--black);
+}
+
+/* hide hamburger menu and menu section for devices' screen above 768 */
+.menutoggle.fa-solid.fa-bars {
     display: none;
     position: relative;
 }
+
+.menu-container {
+    position: fixed;
+    opacity: 0;
+    top: -10rem;
+}
+
+/* style ling footer */
 .footer{
+    margin-top: 20rem;
+    font-family: var(--normal-text);
     background-color: black;
-      padding: 70px 0;
-  }
-  .footer-col{
-     width: 33%;
-     padding: 0 15px;
-  }
-  .footer-col h4{
-    font-size: 18px;
+    padding: 70px 0;
+}
+.footer-col{
+    width: 33%;
+    padding: 0 15px;
+}
+
+.footer-col h4{
+    font-size: 1.5rem;
     color: #ffffff;
     text-transform: capitalize;
     margin-bottom: 35px;
     font-weight: 500;
     position: relative;
-  }
-  .footer-col h4::before{
+}
+
+.footer-col h4::before{
     content: '';
     position: absolute;
     left:0;
@@ -195,12 +222,14 @@ i.fa-solid.fa-bars {
     height: 2px;
     box-sizing: border-box;
     width: 50px;
-  }
-  .footer-col ul li:not(:last-child){
+}
+
+.footer-col ul li:not(:last-child){
     margin-bottom: 10px;
-  }
-  .footer-col ul li a{
-    font-size: 13.5px;
+}
+
+.footer-col ul li a{
+    font-size: 1rem;
     text-transform: capitalize;
     color: #ffffff;
     text-decoration: none;
@@ -208,12 +237,14 @@ i.fa-solid.fa-bars {
     color: #bbbbbb;
     display: block;
     transition: all 0.3s ease;
-  }
-  .footer-col ul li a:hover{
+}
+
+.footer-col ul li a:hover{
     color: #ffffff;
     padding-left: 8px;
-  }
-  .footer-col .social-links a{
+}
+
+.footer-col .social-links a{
     display: inline-block;
     height: 40px;
     width: 40px;
@@ -224,12 +255,14 @@ i.fa-solid.fa-bars {
     border-radius: 50%;
     color: #ffffff;
     transition: all 0.5s ease;
-  }
-  .footer-col .social-links a:hover{
+}
+
+.footer-col .social-links a:hover{
     color: #24262b;
     background-color: #ffffff;
-  }
-  .footer-img {
+}
+
+.footer-img {
     text-align: center; 
     margin-top: 20px; 
 }
@@ -247,47 +280,97 @@ i.fa-solid.fa-bars {
     margin-right: auto; /* Center the line */
 }
 
-@media only screen and (max-width: 800px) {
-    i.fa-solid.fa-bars {
-        position: absolute;
-        display: block;
-        font-size: 2em;
-        cursor: pointer;
-        transform: translateX(30px);
-        z-index: 10;
+/* Make element fit in screen below 1024px */
+@media only screen and (max-width: 1024px) {
+    header {
+        padding: 20px 20px;
+    }
+    
+    .Header-list ul {
+        gap: 10px;
+    }
+    
+
+    footer .container .row {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 2rem;
     }
 
-    .searchbtn {
-        left: 0;
+    .footer-col {
+        width: 100%;
     }
-   header .navigation {
-    position: absolute;
-    opacity: 0;
-    visibility: hidden;
-    left: 100%;
-   }
-   header.open .navigation {
-    top: 80px;
-    opacity: 1;
-    visibility: visible;
-    left: 0;
-    background-color: gainsboro;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: calc(100vh - 200px );
-    padding: 40px;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-    align-items: center;
-   }
-   header.open .navigation li a {
-    font-size: 1.25em;
-   }
-   i.fa-solid.fa-bars.hide {
-    display: none;
-   }
-   .footer-col{
-    width: 50%;
-    margin-bottom: 30px;
+    
+
+    .footer-col h4 {
+        font-size: 2rem;
+    }
+
+    .footer-col ul li a {
+        font-size: 1.5rem;
+    }
 }
+
+/* style for hamburger menu and menu section for screen below 768px */
+@media only screen and (max-width: 768px) {  
+    .Header-list ul,
+    .search {
+        display: none;
+    }
+
+    .menu-container.open {
+        opacity: 1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        transition: top 0.5s ease-in-out;
+        transform: top;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        gap: 2rem;
+        padding: 32px;
+        width: 100%;
+        height: max-content;
+        background-color: var(--bewhite);
+        z-index: 4;
+    }
+
+    .search-menu {
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 1.5rem;
+        color: var(--black);
+    }
+
+    .searchMenuInput {
+        border: none;
+        outline: none;
+        flex-grow: 1;
+        background-color: transparent;
+        padding-bottom: 2px;
+        border-bottom: 2px solid var(--black);
+    }
+
+    .menu-container a {
+        color: var(--black);
+        text-decoration: none;
+    }
+
+    .menu-container a.button-register {
+        color: var(--white);
+    }
+
+    .menutoggle.fa-solid.fa-bars {
+        display: block;
+        color: var(--bewhite);
+        font-size: 1.6rem;
+        cursor: pointer;
+    }
 }
+
+@media only screen and (max-width: 425px) {  
+    
+} 
