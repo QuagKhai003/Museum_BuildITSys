@@ -14,16 +14,16 @@
     <div class="form-container register-container">
       <form action="#">
         <h1>Register as.</h1>
-        <button class="user-A">Artist</button>
-        <button class="user-V">Visistor</button>
+        <button onclick="artistRegister(event)" class="user-A" >Artist</button>
+        <button onclick="visitorRegister(event)" class="user-V" >Visistor</button>
       </form>
     </div>
 
     <div class="form-container login-container">
-      <form action="#">
+      <form action="/login" method="post" id="form-login">
         <h1>Login here.</h1>
-        <input type="email" placeholder="Email">
-        <input type="password" placeholder="Password">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
         <div class="content">
           <div class="checkbox">
             <input type="checkbox" name="checkbox" id="checkbox">
@@ -33,7 +33,7 @@
             <a href="#">Forgot password?</a>
           </div>
         </div>
-        <button>Login</button>
+        <button type="submit">Login</button>
         <span>or login with</span>
         <div class="social-container">
           <a href="#" class="social"><i class="lni lni-facebook-fill"></i></a>

@@ -9,3 +9,15 @@ rButton.addEventListener("click", () => {
 lButton.addEventListener("click", () => {
   cont.classList.remove("right-panel-active");
 });
+
+function artistRegister(e) {
+  e.preventDefault();
+  console.log("artistRegister function called");
+  window.location.replace("http://localhost:3000/register/artist");
+}
+
+function visitorRegister(e) {
+  e.preventDefault();
+  console.log("visitorRegister function called");
+  window.location.replace("http://localhost:3000/register/visitor");
+}
