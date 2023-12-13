@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="/style/pintereso/app.css">
     <link rel="stylesheet" href="/style/pintereso/theme.css">
     <link rel="stylesheet" href="/style/dashboard.css">
@@ -31,6 +29,8 @@
         <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Latest</a></li>
             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Oldest</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">A - Z</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Z - A</a></li>
         </ul> 
     </div>    
     <div class="content-container">
@@ -317,13 +317,14 @@
         </div>
 
     </div>
-    </div>
+</div>
+<%- include('../components/rootscript.ejs'); %>
 </body>
 <script src="/script/pintereso/app.js"></script>
 <script src="/script/pintereso/theme.js"></script>
 <script src="/script/pintereso/allartwork.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-    crossorigin="anonymous"></script>
+integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+crossorigin="anonymous"></script>
 
 </html>

@@ -135,7 +135,9 @@ body {
     justify-content: space-between;
 }
 
-.approval-buttons,.approved,.pending,
+.approval-buttons,
+.approved,
+.pending,
 .denied {
     display: flex;
     justify-content: space-between;

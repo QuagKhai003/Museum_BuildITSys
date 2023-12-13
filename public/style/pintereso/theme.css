@@ -93,6 +93,7 @@ body {
   .approved,
   .denied,
   .pending {
+    font-size: large;
     position: absolute;
     bottom: 0;
     left: 0;
