@@ -142,9 +142,15 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    margin-bottom: 0px; /* Adjust the margin-top value to move the buttons up or down */
+    margin-bottom: 0px;
 }
 
+.approval-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    margin-bottom: 0px;
+}
 .approved {
     color: #00FF00;
 }
