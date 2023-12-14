@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const { vistitorRegister } = require('./functions/authRegister');
+const { vistitorRegister, artistRegister } = require('./functions/authRegister');
 const mongoURL = 'mongodb+srv://s3975831:khai0123456@museumdb.wgffvrk.mongodb.net/?retryWrites=true&w=majority';
 const PORT = 3000;
 
@@ -48,8 +48,21 @@ app.post('/register/visitor', vistitorRegister, (req,res) => {
     res.redirect('/')
 })
 
-app.post('/login', authLogin, (req, res) => {
-    console.log('Route Login end')
+app.post('/register/artist', artistRegister, (req,res) => {
+    console.log("Register artist route end")
+    res.redirect('/')
+})
+
+app.post('/login', async (req, res) => {
+    const user = await authLogin(req)
+    .then((eUser) => { return eUser })
+    .catch((err) => { console.log('Falied to verfication')})
+    if(user) {
+        console.log('Route Login end with user: ')
+        console.log(user)
+    } else {
+        console.log('Route Login end with no user')
+    }
 })
 
 app.listen(PORT, () => {

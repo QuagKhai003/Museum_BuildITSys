@@ -9,14 +9,6 @@ const visitorSchema = mongoose.Schema({
         maxLength: 24,
         match: /^[a-zA-Z0-9]+$/,
         require: true,
-        // validate: {
-        //     validator: async (value) => {
-        //         const existedArtist = await Artist.findOne({username: value});
-        //         if (existedArtist) {
-        //             return {message: 'This username is already existed'}
-        //         } else return {message: 'Visitor username is OK'}
-        //     }
-        // }
     },
     email: {
         type: String,
