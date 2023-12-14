@@ -10,60 +10,34 @@
 </head>
 
 <body>
-    <!-- CAROUSEL TO DISPLAY IMAGE(S) -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="background-image" style="background-image: url('/images/artwork/iam.jpg');"></div>
-                <img class="d-block w-100" src="/images/artwork/iam.jpg" alt="First slide">
-            </div>
-            <!-- <div class="carousel-item">
-                <div class="background-image" style="background-image: url('/images/artwork/licensed-image.jpg');"></div>
-                <img class="d-block w-100" src="/images/artwork/licensed-image.jpg" alt="Second slide">
-            </div> -->
-            <div class="carousel-item">
-                <div class="background-image" style="background-image: url('/images/artwork/vincent-van-goghs-starry-night-symbolism-and-iconography-part-1.jpg');"></div>
-                <img class="d-block w-100" src="/images/artwork/vincent-van-goghs-starry-night-symbolism-and-iconography-part-1.jpg" alt="Third slide">
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-
     <!-- ARTWORK INFORMATION -->
     <div class="artwork-info">
-        <!-- ARTWORK TITLE -->
-        <div class="artwork-title">
-            <h1>Lorem ipsum dolor sit amet consectetur.</h1>
-        </div>
+        
         <!-- ARTWORK SPECIFICATION -->
-        <div class="artwork-specification">
-            <table>
-                <tr>
-                  <td class="column1">Date</td>
-                  <td class="column2">Dec, 2023</td>
-                </tr>
-                <tr>
-                  <td class="column1">Collection</td>
-                  <td class="column2">Row 2, Cell 2</td>
-                </tr>
-                <!-- Add more rows as needed -->
-              </table>
-              
-              
-              
+        <div class="detail-container">
+            <div class="box1">
+                    <img src="/images/artwork/iam.jpg" alt="artwork1">
+            </div>
+            <div class="box2">
+                    <!-- ARTWORK TITLE -->
+                    <div class="artwork-title">
+                        <h1>Lorem ipsum dolor sit amet consectetur.</h1>
+                    </div>
+                    <table class="artwork-detail">
+                        <tr>
+                          <td class="column1">Date</td>
+                          <td class="column2">Dec, 2023</td>
+                        </tr>
+                        <tr>
+                          <td class="column1">Collection</td>
+                          <td class="column2">Row 2, Cell 2</td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </table> 
+            </div>
         </div>
+        
+        
         <!-- ARTWORK DESCRIPTION -->
         <div class="artwork-description"></div>
     </div>
