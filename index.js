@@ -65,6 +65,14 @@ app.post('/login', async (req, res) => {
     }
 })
 
+app.get('/all', (req, res) => {
+    res.render('allartworkpage/allartwork');
+})
+  
+app.get('/about', (req, res) => {
+    res.render('aboutuspage/aboutus');
+})
+
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
 });
