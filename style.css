@@ -1,76 +1,16 @@
-.prof-con{
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 100vh;
-    border-left: 2px solid #000;
-}
-.prof-con2{
-    border-left: 2px solid #000;
-}
-.prof-pic{
-    width: 60%; 
-    height: auto;
-    border-radius: 50%; 
-    margin-bottom: 10%;  
-    margin-bottom: 10%;   
-    border-radius: 200px;
-}
-.prof-pic-con{
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-}
-.prof-name{
-    text-align: center;
-    text-wrap: wrap;
+.vh-100 {
+    background-color: #f4f5f7;
 }
 
-
-.edit-button {
-    padding: 10px 20px;
-    text-align: center;
-    font-size: 16px;
-    
-    
+.card  {
+    border-radius: .5rem;
 }
 
-.logout-button {
-    padding: 10px 20px;
-    text-align: center;
-    font-size: 16px;
-    text-wrap: nowrap;
+.text {
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: 5.rem;
 }
-  
-.prof-header{
-    margin-top: 10%;
-    margin-bottom: 15%;
-    color: #000;
-    text-align:left;
-    font-family: Inter;
-    font-size: 64px;
-    font-style: normal;
-    font-weight: 700;
+img {
+    width: 80px;
 }
-.prof-inf{
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 400;
-}
-.btn-con{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-@media (max-width: 768px) {
-    .prof-con{
-        height:fit-content;
-        padding-top: 10%; 
-    }
-    .prof-header{
-        font-size: 32px;
-    }
-    .prof-inf{
-        font-size: 20px;
-    }
-}
+
