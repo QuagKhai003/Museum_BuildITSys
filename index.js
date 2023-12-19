@@ -45,7 +45,7 @@ app.get('/register/visitor', (req, res) => {
 
 app.post('/register/visitor', vistitorRegister, (req,res) => {
     console.log("Register visitor route end")
-    res.redirect('/')
+    res.send('Home')
 })
 
 app.post('/register/artist', artistRegister, (req,res) => {
