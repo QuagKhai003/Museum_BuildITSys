@@ -32,6 +32,10 @@ app.get('/dashAdmin', (req, res) => {
     res.render('dashboardpage/admin');
 })
 
+app.get('/dashboard', (req, res) => {
+    res.render('dashboardpage/adminTest.ejs')
+})
+
 
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`)
