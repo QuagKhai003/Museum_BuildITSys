@@ -1,68 +1,132 @@
-
-.background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: -1;
-    opacity: 0.3;
-  }
-  
-.detail-container {
-    display: flex;
-}  
-
-.box1 {
-    width: 50%;
-    height: 100%;
-    background-color: aqua;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+body{
+  width: 1440px; 
+  height: 1024px; 
+  position: relative; 
+  background: #5F9896
 }
 
-.box2 {
-    width: 50%;
-    height: 100%;
-    background-color: blueviolet;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.artwork{
+  width: 550px;
+  height: 421px; 
+  left: 226px; 
+  top: 177px; 
+  position: absolute; 
+  box-shadow: 18px 15px 30px rgba(0, 0, 0, 0.35); 
+  border-radius: 12px;
 }
 
-table {
-    width: 90%;
-    margin: 5vw;
+img.artwork:where(img[class*="wp-image-"]) { 
+	height: auto;
+	max-width: 100%;
 }
 
-.artwork-detail {
-  width: 100%; /* Add this */
-  justify-content: center;
-  align-items: center;
+img.artwork:hover { 
+	transform: scale(1.2);
+	transition: all 1s ease 0s;
 }
 
 
-.artwork-title h1 {
-    margin: 5vw;
+.top{
+  width: 398px; 
+  height: 192px; 
+  left: 720px; 
+  top: 406px; 
+  position: absolute; 
+  background: #FFF5F5;
 }
 
-.artwork-specification table {
-    width: 90%;
-    margin: 5vw;
+.container1{
+  width: 399px; 
+  height: 618px; 
+  left: 720px; 
+  top: 406px; 
+  position: absolute; 
+  background: #D9D9D9;
 }
 
-.artwork-specification table 
-.column1 {
-    width: 30%;
-  }
-  
-  .artwork-specification table .column2 {
-    width: 70%;
-  }
-  
+.container2{
+  width: 113px; 
+  height: 97px; 
+  left: 754px; 
+  top: 448px;
+  position: absolute;
+}
+
+.date{
+  color: black; 
+  font-size: 12px; 
+  font-family: Inter; 
+  font-weight: 400; 
+  word-wrap: break-word;
+}
+
+.information{
+  width: 113px; 
+  height: 97px; 
+  left: 867px; 
+  top: 448px;
+  position: absolute; 
+  color: black; 
+  font-size: 12px; 
+  font-family: Inter; 
+  font-weight: 400; 
+  word-wrap: break-word;
+}
+
+.artwork-title{
+  width: 288px;
+  color: white;  
+  height: 155px; 
+  left: 824px; 
+  top: 214px; 
+  position: absolute
+}
+
+span{
+  color: white; 
+  font-size: 20px; 
+  font-family: Inter; 
+  font-weight: 400; 
+  word-wrap: break-word;
+}
+
+.container3{
+  width: 392px; 
+  height: 413px; 
+  left: 720px; 
+  top: 599px; 
+  position: absolute; 
+  background: #D9D9D9;
+}
+
+.paragraph {
+  width: 368px;
+  height: 366px;
+  left: 732px;
+  top: 625px;
+  position: absolute;
+}
+
+.black-text {
+  color: black;
+  font-size: 15px;
+  font-family: Inter;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.green-text {
+  color: #5F9896;
+  font-size: 15px;
+  font-family: Inter;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.teal-text {
+  color: #519C9C;
+  font-size: 15px;
+  font-family: Inter;
+  font-weight: 600;
+  word-wrap: break-word;
+}
