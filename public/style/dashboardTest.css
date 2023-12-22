@@ -28,10 +28,11 @@
 }
 
 .main-container {
+    position: relative;
     display: flex;
     align-items: start;
     gap: 10rem;
-    margin: 0rem 1.5rem;
+    margin: 5rem 1.5rem;
 }
 
 .hero-container {
@@ -41,7 +42,7 @@
 
 .filter-container {
     width: 20%;
-    padding: 2rem;
+    padding: 0rem 2rem;
 }
 
 .filter-heading {
@@ -88,8 +89,15 @@ i.caretdown {
     letter-spacing: 0.1rem;
 }
 
+.line-split {
+    width: 2px;
+    height: 100vmax;
+    background-color: var(--black);
+}
+
 .gallery-container {
     width: 80%;
+    columns: 3;
     column-gap: 10px;
     column-width: 20rem;
 }
