@@ -43,6 +43,11 @@ app.get('/register/visitor', (req, res) => {
     res.render('registeringpage/registertest');
 })
 
+app.get('/profilepage', (req, res) => {
+    res.render('profilepage/profilepage');
+});
+
+
 app.post('/register/visitor', vistitorRegister, (req,res) => {
     console.log("Register visitor route end")
     res.send('Home')
