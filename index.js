@@ -81,3 +81,9 @@ app.get('/about', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
 });
+
+
+router.get('/profilepage/edit', (req, res) => {
+    res.render('/profilepage/edit-profile');
+});
+
