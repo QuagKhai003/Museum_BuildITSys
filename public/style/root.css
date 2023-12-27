@@ -146,11 +146,12 @@ header {
 .searchbtn {
     opacity: 0;
     color: var(--black);
+    transition-delay: 0.2s; /* Reduce the delay */
 }
 
 .searchbtn.open {
     opacity: 1;
-    transition: opacity 1.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
 }
 
 input.searchInput {
@@ -160,6 +161,7 @@ input.searchInput {
     opacity: 0;
     background: transparent;
     transition: opacity 1.5s ease-in-out;
+    transition-delay: 0.2s; /* Reduce the delay */
 }
 
 input.searchInput.open {
@@ -172,6 +174,7 @@ input.searchInput.open {
 .closebtn.fa-solid.fa-x {
     opacity: 0;
     cursor: pointer;
+    transition-delay: 0.2s; /* Reduce the delay */
 }
 
 .closebtn.fa-solid.fa-x.open {
@@ -194,7 +197,6 @@ input.searchInput.open {
 
 /* style ling footer */
 .footer{
-    margin-top: 20rem;
     font-family: var(--normal-text);
     background-color: black;
     padding: 70px 0;
