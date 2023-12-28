@@ -83,7 +83,3 @@ app.listen(PORT, () => {
 });
 
 
-router.get('/profilepage/edit', (req, res) => {
-    res.render('/profilepage/edit-profile');
-});
-
