@@ -4,9 +4,12 @@ const mongoose = require('mongoose');
 const { vistitorRegister, artistRegister } = require('./functions/authRegister');
 const mongoURL = 'mongodb+srv://s3975831:khai0123456@museumdb.wgffvrk.mongodb.net/?retryWrites=true&w=majority';
 const PORT = 3000;
+const ObjectID = require('mongodb').ObjectID;
+
 
 const session = require('express-session');
 const { authLogin } = require('./functions/authLogin');
+const vistitor = require('./models/vistitor');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -43,9 +46,12 @@ app.get('/register/visitor', (req, res) => {
     res.render('registeringpage/registertest');
 })
 
-app.get('/profilepage', (req, res) => {
-    res.render('profilepage/profilepage');
+app.get('/profilepage', async (req, res) => { 
+        res.render('profilepage/profilepage', { vistitor: visitor });
 });
+
+
+
 
 
 app.post('/register/visitor', vistitorRegister, (req,res) => {
@@ -82,4 +88,7 @@ app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
 });
 
+app.get('/edit-profile', (req, res) => {
+    res.render('profilepage/edit-profile');
+});
 
