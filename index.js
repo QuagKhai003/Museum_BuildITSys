@@ -46,9 +46,19 @@ app.get('/register/visitor', (req, res) => {
     res.render('registeringpage/registertest');
 })
 
-app.get('/profilepage', async (req, res) => { 
-        res.render('profilepage/profilepage', { vistitor: visitor });
-});
+app.get('/profilepage', async (req, res) => {
+    try {
+      const currentVisitorId = req.session.visitorId; 
+  
+      const currentVisitor = await vistitor.findById(currentVisitorId);
+  
+      res.render('profilepage/profilepage', { vistitor: currentVisitor });
+    } catch (error) {
+      console.error('Error fetching visitor data:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+  
 
 
 
@@ -92,3 +102,20 @@ app.get('/edit-profile', (req, res) => {
     res.render('profilepage/edit-profile');
 });
 
+app.post('/edit-profile', async (req, res) => {
+    try {
+      // Assuming you have a form with fields like username, email, etc.
+      const { username, email } = req.body;
+  
+      // Assuming you have a visitor's ID (replace 'visitorId' with the actual field name)
+      const vistitorId = req.body.visitorId;
+  
+      // Update the visitor's data in the database
+      const updatedVisitor = await vistitor.findByIdAndUpdate(vistitorId, { username, email }, { new: true });
+  
+      res.redirect('/profilepage');
+    } catch (error) {
+      console.error('Error updating visitor profile:', error);
+      res.status(500).json({ success: false, message: 'Error updating profile' });
+    }
+});
