@@ -4,41 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Image Page</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/public/css/style.css">
 </head>
 <body>
   <h1>PUBLISH YOUR ARTWORKS</h1>
   <div class="form-container">
-    <form class="form" id="upload-form" action="#" method="POST" enctype="multipart/form-data">
+    <form class="form" id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
       <div class="form-item">
-        <label for="artwork_name">
+        <label for="artworkName">
           Name
         </label>
-        <input type="text" id="artwork_name" placeholder=" Name your artwork" required>
+        <input type="text" id="artworkName" name="artworkName" placeholder=" Name your artwork" required>
       </div>
       <div class="form-item">
-        <label for="artwork_artist">
+        <label for="artworkArtist">
           Artist
         </label>
-        <input type="text" id="artwork_artist" placeholder=" Artist name" required>
+        <input type="text" id="artworkArtist" name="artworkArtist" placeholder=" Artist name" required>
       </div>
       <div class="form-item">
         <label for="date">
           Release date
         </label>
-        <input type="date" id="date" required>
+        <input type="date" id="date" name='date' required>
       </div>
       <div class="form-item">
-        <label for="artwork_themes">
+        <label for="artworkThemes">
           Artworks themes
         </label>
-        <input type="text" id="artwork_themes" placeholder=" Artwork themes" required>
+        <input type="text" id="artworkThemes" name="artworkThemes" placeholder=" Artwork themes" required>
       </div>
       <div class="form-item">
-        <label for="artwork_description">
+        <label for="artworkDescription">
           Artwork description
         </label>
-        <textarea name="artwork_description" id="artwork_description" cols="60" rows="10" placeholder=" Description..." required></textarea>
+        <textarea name="artworkDescription" id="artworkDescription" cols="60" rows="10" placeholder=" Description..." required></textarea>
       </div>
       <div class="form-item">
         <label for="upload-input">
@@ -46,7 +46,7 @@
         </label>
         <input type="file" id="upload-input" name="image" accept="image/*" required>
       </div>
-      <button type="submit" id="publish-button" class="pl_btn">Publish</button>
+      <button type="submit" id="upload-button" class="pl_btn">PUBLISH</button>
     </form>
   </div>
 </body>
