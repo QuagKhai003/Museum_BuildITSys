@@ -4,7 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const app = express();
 const port = 3000;
-const { Upload } = require('./model/Upload');
+const { Upload } = require('../models/Upload');
 
 app.set('view engine', 'ejs');
 
@@ -27,11 +27,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage});
 
-app.get("/upload", (req, res) => {
-    res.render("Upload")
-});
-
-app.post("/upload", upload.single('image'), (req, res) => {
+// Function to handle artwork upload
+function uploadArtworks(req, res) {
     // Create a new Upload document using the model
     const artworkUpload = new Upload({
         artworkName: req.body.artworkName,
@@ -39,11 +36,12 @@ app.post("/upload", upload.single('image'), (req, res) => {
         date: req.body.date,
         artworkThemes: req.body.artworkThemes,
         artworkDescription: req.body.artworkDescription,
-        image: req.file.filename, 
+        image: req.file.filename,
     });
-  
+
     // Save the document to MongoDB
-    artworkUpload.save()
+    artworkUpload
+        .save()
         .then(() => {
             res.send('Artwork Uploaded');
         })
@@ -51,10 +49,6 @@ app.post("/upload", upload.single('image'), (req, res) => {
             console.error(error);
             res.status(500).send('Internal Server Error');
         });
-});
-
-app.listen(port, () => {
-    console.log(`Web server is listening to the port ${port}`)
-});
+}
 
 module.exports = { uploadArtworks };
