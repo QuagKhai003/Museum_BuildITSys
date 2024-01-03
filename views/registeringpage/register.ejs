@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login/Register</title>
+  <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/style/register.css">
+
+</head>
+<body>
+  <div class="container" id="container">
+
+    <div class="form-container register-container">
+      <form action="/register/artist" method="post" >
+        <h1>Register as Artist</h1>
+        <input type="email" name="email" placeholder="Email">
+        <input type="text" name="firstName" placeholder="First name">
+        <input type="text" name="lastName" placeholder="Last name">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit">Register</button>
+      </form>
+    </div>
+
+    <div class="form-container login-container">
+      <form action="/register/visitor" method="post" >
+        <h1>Register as Visistor</h1>
+        <input type="email" name="email" placeholder="Email">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <div class="content">
+        </div>
+        <button type="submit">Register</button>
+        <span>or register with</span>
+        <div class="social-container">
+          <a href="#" class="social"><i class="lni lni-facebook-fill"></i></a>
+          <a href="#" class="social"><i class="lni lni-google"></i></a>
+          <a href="#" class="social"><i class="lni lni-linkedin-original"></i></a>
+        </div>
+      </form>
+    </div>
+
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1 class="title">Start <br> your job</h1>
+          <p class="Login">Find Masterpiece?</p>
+          <button class="ghost" id="login">Visistor
+            <i class="lni lni-arrow-left login"></i>
+          </button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1 class="title">Welcome to<br> our museum</h1>
+          <p>want to get a job?</p>
+          <button class="ghost" id="register">Artist
+            <i class="lni lni-arrow-right register"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="/js/login.js"></script>
+
+</body>
+</html>
