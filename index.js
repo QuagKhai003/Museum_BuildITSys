@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const { vistitorRegister, artistRegister } = require('./functions/authRegister');
+const { visitorRegister, artistRegister } = require('./functions/authRegister');
 const mongoURL = 'mongodb+srv://s3975831:khai0123456@museumdb.wgffvrk.mongodb.net/?retryWrites=true&w=majority';
 const PORT = 3000;
 
@@ -43,7 +43,7 @@ app.get('/register/visitor', (req, res) => {
     res.render('registeringpage/registertest');
 })
 
-app.post('/register/visitor', vistitorRegister, (req,res) => {
+app.post('/register/visitor', visitorRegister, (req,res) => {
     console.log("Register visitor route end")
     res.redirect('/')
 })
@@ -60,8 +60,10 @@ app.post('/login', async (req, res) => {
     if(user) {
         console.log('Route Login end with user: ')
         console.log(user)
+        res.redirect('/')
     } else {
         console.log('Route Login end with no user')
+        res.status(404).json({error: "Incorrect password or username"})
     }
 })
 

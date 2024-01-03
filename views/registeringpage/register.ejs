@@ -13,25 +13,26 @@
   <div class="container" id="container">
 
     <div class="form-container register-container">
-      <form action="#">
+      <form action="/register/artist" method="post" >
         <h1>Register as Artist</h1>
-        <input type="email" placeholder="Email">
-        <input type="text" placeholder="First name">
-        <input type="text" placeholder="Last name">
-        <input type="password" placeholder="Password">
-        <button>Register</button>
+        <input type="email" name="email" placeholder="Email">
+        <input type="text" name="firstName" placeholder="First name">
+        <input type="text" name="lastName" placeholder="Last name">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit">Register</button>
       </form>
     </div>
 
     <div class="form-container login-container">
-      <form action="#">
+      <form action="/register/visitor" method="post" >
         <h1>Register as Visistor</h1>
-        <input type="email" placeholder="Email">
-        <input type="text" placeholder="name">
-        <input type="password" placeholder="Password">
+        <input type="email" name="email" placeholder="Email">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
         <div class="content">
         </div>
-        <button>Register</button>
+        <button type="submit">Register</button>
         <span>or register with</span>
         <div class="social-container">
           <a href="#" class="social"><i class="lni lni-facebook-fill"></i></a>
