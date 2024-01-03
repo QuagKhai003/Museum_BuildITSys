@@ -75,6 +75,23 @@ app.get('/about', (req, res) => {
     res.render('aboutuspage/aboutus');
 })
 
+app.get('/dashUser', (req, res) => {
+    res.render('dashboardpage/user');
+})
+
+app.get('/dashArtist', (req, res) => {
+    res.render('dashboardpage/artist');
+})
+
+app.get('/dashAdmin', (req, res) => {
+    res.render('dashboardpage/admin');
+})
+
+app.get('/dashboard', (req, res) => {
+    res.render('dashboardpage/adminTest.ejs')
+})
+
+
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
 });
