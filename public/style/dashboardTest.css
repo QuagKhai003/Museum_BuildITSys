@@ -89,17 +89,19 @@ i.caretdown {
     letter-spacing: 0.1rem;
 }
 
-.line-split {
+/* .line-split {
     width: 2px;
     height: 100vmax;
     background-color: var(--black);
-}
+} */
 
 .gallery-container {
     width: 80%;
     columns: 3;
     column-gap: 10px;
     column-width: 20rem;
+    padding-left: 10rem;
+    border-left: 2px solid black;
 }
 
 .card-pin {
