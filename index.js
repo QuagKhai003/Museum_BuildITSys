@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const { vistitorRegister, artistRegister } = require('./functions/authRegister');
+const { visitorRegister, artistRegister } = require('./functions/authRegister');
 const mongoURL = 'mongodb+srv://s3975831:khai0123456@museumdb.wgffvrk.mongodb.net/?retryWrites=true&w=majority';
 const PORT = 3000;
 const ObjectID = require('mongodb').ObjectID;
@@ -57,14 +57,9 @@ app.get('/profilepage', async (req, res) => {
       console.error('Error fetching visitor data:', error);
       res.status(500).send('Internal Server Error');
     }
-  });
+});
   
-
-
-
-
-
-app.post('/register/visitor', vistitorRegister, (req,res) => {
+app.post('/register/visitor', visitorRegister, (req,res) => {
     console.log("Register visitor route end")
     res.send('Home')
 })
@@ -81,8 +76,10 @@ app.post('/login', async (req, res) => {
     if(user) {
         console.log('Route Login end with user: ')
         console.log(user)
+        res.redirect('/')
     } else {
         console.log('Route Login end with no user')
+        res.status(404).json({error: "Incorrect password or username"})
     }
 })
 
@@ -93,6 +90,23 @@ app.get('/all', (req, res) => {
 app.get('/about', (req, res) => {
     res.render('aboutuspage/aboutus');
 })
+
+app.get('/dashUser', (req, res) => {
+    res.render('dashboardpage/user');
+})
+
+app.get('/dashArtist', (req, res) => {
+    res.render('dashboardpage/artist');
+})
+
+app.get('/dashAdmin', (req, res) => {
+    res.render('dashboardpage/admin');
+})
+
+app.get('/dashboard', (req, res) => {
+    res.render('dashboardpage/adminTest.ejs')
+})
+
 
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
