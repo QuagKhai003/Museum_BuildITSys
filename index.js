@@ -4,9 +4,12 @@ const mongoose = require('mongoose');
 const { visitorRegister, artistRegister } = require('./functions/authRegister');
 const mongoURL = 'mongodb+srv://s3975831:khai0123456@museumdb.wgffvrk.mongodb.net/?retryWrites=true&w=majority';
 const PORT = 3000;
+const ObjectID = require('mongodb').ObjectID;
+
 
 const session = require('express-session');
 const { authLogin } = require('./functions/authLogin');
+const vistitor = require('./models/vistitor');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -43,6 +46,19 @@ app.get('/register/visitor', (req, res) => {
     res.render('registeringpage/registertest');
 })
 
+app.get('/profilepage', async (req, res) => {
+    try {
+      const currentVisitorId = req.session.visitorId; 
+  
+      const currentVisitor = await vistitor.findById(currentVisitorId);
+  
+      res.render('profilepage/profilepage', { vistitor: currentVisitor });
+    } catch (error) {
+      console.error('Error fetching visitor data:', error);
+      res.status(500).send('Internal Server Error');
+    }
+});
+  
 app.post('/register/visitor', visitorRegister, (req,res) => {
     console.log("Register visitor route end")
     res.send('Home')
@@ -94,4 +110,26 @@ app.get('/dashboard', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
+});
+
+app.get('/edit-profile', (req, res) => {
+    res.render('profilepage/edit-profile');
+});
+
+app.post('/edit-profile', async (req, res) => {
+    try {
+      // Assuming you have a form with fields like username, email, etc.
+      const { username, email } = req.body;
+  
+      // Assuming you have a visitor's ID (replace 'visitorId' with the actual field name)
+      const vistitorId = req.body.visitorId;
+  
+      // Update the visitor's data in the database
+      const updatedVisitor = await vistitor.findByIdAndUpdate(vistitorId, { username, email }, { new: true });
+  
+      res.redirect('/profilepage');
+    } catch (error) {
+      console.error('Error updating visitor profile:', error);
+      res.status(500).json({ success: false, message: 'Error updating profile' });
+    }
 });
