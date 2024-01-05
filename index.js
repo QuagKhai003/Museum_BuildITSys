@@ -76,3 +76,6 @@ app.get('/about', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
 });
+app.get('/sidebar', (req, res) => {
+    res.render('allartworkpage/sidebar');
+})
