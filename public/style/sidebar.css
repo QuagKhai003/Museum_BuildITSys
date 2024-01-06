@@ -25,6 +25,9 @@ nav .menu-items {
     height: 50px;
     display: flex;
     align-items: center;
+    border-radius: 8px; /* Add border-radius to each link */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add transition effect */
+
 }
 
 .menu-items li a i {
@@ -34,9 +37,25 @@ nav .menu-items {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: black;
 }
 
 .menu-items li a .link-name {
     font-size: 18px;
-    color: var(--title-text);
+    color: gray;
+    font-family: var(--title-text);
+    border-radius: 8px; /* Add border-radius to each link name */
+
+}
+.menu-items li a:hover {
+    color: white;
+    background-color: rgb(42, 42, 42);
+}
+
+.menu-items li a:hover i {
+    color: white;
+}
+
+.menu-items li:hover .link-name {
+    color: white;
 }
