@@ -1,5 +1,5 @@
 .vh-100 {
-    background-color: #f4f5f7;
+    background-color: var(--bewhite);
 }
 
 .card  {
@@ -8,18 +8,20 @@
 
 .text {
     border-top-left-radius: .5rem;
-    border-bottom-left-radius: 5.rem;
+    border-bottom-left-radius: .5rem;
 }
 img {
     width: 80px;
 }
 
-.dashboard-button {
-    margin-top: 2%;
-    margin-bottom: 2%;
+.profile-display {
+    background-color: var(--bewhite);
 }
 
 .hello-user {
-    font-size: 5rem;
+    font-size: 6.5vw;
 }
   
+.dashboard-content > .card {
+    box-shadow: 5px 5px 10px grey;
+}

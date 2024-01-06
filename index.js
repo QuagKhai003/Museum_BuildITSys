@@ -89,7 +89,7 @@ app.get('/sidebar' ,(req,res) => {
 })
 
 app.get('/dashboard', (req, res) => {
-    res.render('dashboard/dashboardTemplate')
+    res.render('dashboard/profileVisitor')
 })
 
 app.listen(PORT, () => {

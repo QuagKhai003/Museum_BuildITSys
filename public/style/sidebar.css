@@ -76,14 +76,48 @@ nav .menu-items {
     border-radius: 50%;
 }
 
-.dashboard-menu {
-    height: 100%;
+.dashboard-section {
+    margin-top: 2rem;
 }
-/* .dashboard-menu {
-    height: 500px;
-  } */
-  
-  nav {
-    height: 100%;
-  }
 
+.dashboard-button {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: none;
+}
+
+.row-eq-height {
+    align-items: stretch;
+}
+
+.menu-items li {
+    margin: 0.25rem;
+}
+
+.dashboard-button > .btn {
+    background-color: var(--golden);
+    border: none;
+    color: var(--black);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dashboard-button > .btn:hover {
+    background-color: var(--black);
+    border: none;
+    color: var(--bewhite)
+}
+
+.dashboard-button li:hover {
+    background-color: var(--black);
+    color: var(--bewhite);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .dashboard-menu {
+        display: none;
+    }
+    .dashboard-button {
+        display: block;
+    }
+}
