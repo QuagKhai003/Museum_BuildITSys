@@ -1,0 +1,16 @@
+.vh-100 {
+    background-color: #f4f5f7;
+}
+
+.card  {
+    border-radius: .5rem;
+}
+
+.text {
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: 5.rem;
+}
+img {
+    width: 80px;
+}
+

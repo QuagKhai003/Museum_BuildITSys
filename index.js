@@ -7,6 +7,7 @@ const PORT = 3000;
 
 const session = require('express-session');
 const { authLogin } = require('./functions/authLogin');
+const Visitor = require('./models/vistitor'); // Correct the model import
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -73,9 +74,21 @@ app.get('/about', (req, res) => {
     res.render('aboutuspage/aboutus');
 })
 
+app.get('/profilepage', (req, res) => {
+    const vistitor = new Visitor ({
+        username: 'John Doe', 
+        email: 'john@example.com', 
+    });
+
+    // Pass the vistitorData object to the rendering of the sidebar template
+    res.render('profilepage/profilepage', { vistitor});
+});
+
+app.get('/sidebar' ,(req,res) => {
+    res.render('allartworkpage/sidebar')
+})
+
+
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
 });
-app.get('/sidebar', (req, res) => {
-    res.render('allartworkpage/sidebar');
-})

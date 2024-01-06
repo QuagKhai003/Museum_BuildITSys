@@ -6,6 +6,7 @@ nav {
     width: 250px;
     padding: 10px 14px;
     background-color:white ;
+    border-radius: 50px;
 }
 
 nav .menu-items {
@@ -58,4 +59,19 @@ nav .menu-items {
 
 .menu-items li:hover .link-name {
     color: white;
+}
+
+
+
+.profile-info {
+    position: relative;
+}
+
+.profile-info img {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
 }
