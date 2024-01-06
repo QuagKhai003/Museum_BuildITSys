@@ -1,0 +1,71 @@
+/* FILEPATH: /C:/Users/bumdt/OneDrive/Documents/GitHub/Museum_BuildITSys/public/style/errorpage.css */
+
+body {
+    background-color: #f8f8f8;
+    font-family: Arial, sans-serif;
+}
+
+.errorpage_container {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, p {
+    font-family: Merriweather, serif;
+}
+
+h1 {
+    font-size: 72px;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 36px;
+}
+
+.error-image {
+    display: block;
+    margin: 40px auto;
+    max-width: 400px;
+}
+
+button {
+    height: 44px;
+    padding: 12.5px 30px;
+    border: 0;
+    border-radius: 40px;
+    background-color:#cea962;
+    color: #f7f6ec;
+    font-family: Merriweather, serif;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background-color: #f7f6ec;
+    color: #333333;
+    box-shadow: 0 0 20px #ffbc6f50;
+    transform: scale(1.1);
+}
+
+button:active {
+    background-color: #cea962;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    box-shadow: none;
+    transform: scale(0.98);
+}
+
+button:hover a {
+    color: #333333;
+    background-color: transparent;
+}
+
+a {
+    text-decoration: none;
+    color: #f7f6ec;
+}
+  
