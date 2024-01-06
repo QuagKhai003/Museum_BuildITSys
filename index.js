@@ -88,6 +88,9 @@ app.get('/sidebar' ,(req,res) => {
     res.render('allartworkpage/sidebar')
 })
 
+app.get('/dashboard', (req, res) => {
+    res.render('dashboard/dashboardTemplate')
+})
 
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);

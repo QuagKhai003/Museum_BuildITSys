@@ -14,3 +14,12 @@ img {
     width: 80px;
 }
 
+.dashboard-button {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.hello-user {
+    font-size: 5rem;
+}
+  
