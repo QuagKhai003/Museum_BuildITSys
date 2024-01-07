@@ -10,6 +10,7 @@ const ObjectID = require('mongodb').ObjectID;
 const session = require('express-session');
 const { authLogin } = require('./functions/authLogin');
 const vistitor = require('./models/vistitor');
+const artist = require('./models/artist');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -46,18 +47,28 @@ app.get('/register/visitor', (req, res) => {
     res.render('registeringpage/registertest');
 })
 
-app.get('/profilepage', async (req, res) => {
+app.get('/profile/:username', async (req, res) => {
+    const { username } = req.params;
     try {
-      const currentVisitorId = req.session.visitorId; 
-  
-      const currentVisitor = await vistitor.findById(currentVisitorId);
-  
-      res.render('profilepage/profilepage', { vistitor: currentVisitor });
+        
+        const visitor = await visitor.findOne({ username: username });
+
+        
+        if (!visitor) {
+            const artist = await artist.findOne({ username: username });
+            if (!artist) {
+                return res.render('not_found', { errorMessage: 'User not found' });
+            }
+            res.render('profilepage', { user: artist });
+        } else {
+            res.render('profilepage', { user: visitor });
+        }
     } catch (error) {
-      console.error('Error fetching visitor data:', error);
-      res.status(500).send('Internal Server Error');
+        console.error(error);
+        res.send(error.message);
     }
 });
+
   
 app.post('/register/visitor', visitorRegister, (req,res) => {
     console.log("Register visitor route end")
