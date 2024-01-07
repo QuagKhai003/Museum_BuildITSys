@@ -20,18 +20,19 @@ const visitorSchema = mongoose.Schema({
         minLength: 8,
         required: true,
     },
+    avatar: {
+        type: String,
+    },
     role: {
         type: String,
         required: true,
         default: 'visitor',
     },
     bookmarks: [{
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: 'Savelist',
     }],
-    avatar: {
-        type: String, 
-    },
+    
 });
 
 module.exports = mongoose.model('Visitor', visitorSchema);

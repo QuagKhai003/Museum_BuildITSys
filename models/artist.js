@@ -30,6 +30,9 @@ const artistSchema = mongoose.Schema({
         minLength: 8,
         require: true,
     },
+    avatar: {
+        type: String,
+    },
     role: {
         type: String,
         require: true,

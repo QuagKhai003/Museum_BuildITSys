@@ -2,9 +2,11 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const { visitorRegister, artistRegister } = require('./functions/authRegister');
+const multer = require('multer');
+const path = require('path');
 const mongoURL = 'mongodb+srv://s3975831:khai0123456@museumdb.wgffvrk.mongodb.net/?retryWrites=true&w=majority';
 const PORT = 3000;
-const ObjectID = require('mongodb').ObjectID;
+
 
 const session = require('express-session');
 const { authLogin } = require('./functions/authLogin');
@@ -16,6 +18,17 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'public/images/uploads/'); 
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + path.extname(file.originalname));
+    },
+  });
+  
+  const upload = multer({ storage: storage });
+  
 mongoose.connect(mongoURL)
     .then(() => console.log('Database Connection Successful!'))
     .catch((error) => console.log(error.message));
@@ -97,7 +110,7 @@ app.post('/login', async (req, res) => {
 
 // Add this route before the /edit-profile POST route
 app.get('/edit-profile/:id', async (req, res) => {
-    const { id } = req.params; // Change '_id' to 'id'
+    const { id } = req.params; 
 
     try {
         const foundVisitor = await visitor.findById(id);
@@ -117,6 +130,7 @@ app.get('/edit-profile/:id', async (req, res) => {
 
 app.post('/edit-profile/:id', async (req, res) => {
     const { id } = req.params;
+    
 
     try {
         const foundVisitor = await visitor.findById(id);
@@ -142,8 +156,34 @@ app.post('/edit-profile/:id', async (req, res) => {
     }
 });
 
+app.post('/update-avatar/:id', upload.single('avatar'), async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const foundVisitor = await visitor.findById(id);
+        const foundArtist = await artist.findById(id);
+        const user = foundVisitor || foundArtist;
+
+        if (!user) {
+            return res.render('not_found', { errorMessage: 'User not found' });
+        }
+
+        
+        user.avatar = req.file.filename;
+
+        
+        await user.save();
+
+        
+        res.redirect(`/profile/${user._id}`);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
 
 
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
 });
+

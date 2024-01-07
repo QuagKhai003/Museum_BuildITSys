@@ -19,8 +19,25 @@
           <div class="card mb-3" >
             <div class="row g-0">
               <div class="text col-md-4 gradient-custom text-center">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                  alt="Avatar" class="img-fluid my-5"  />
+                <button onclick="toggleUpdateForm()">
+                  <div id="avatar-container">
+                    <% if (user.avatar) { %>
+                      <img src="<%=user.avatar%>"
+                                alt="Avatar" class="img-fluid my-5" height="100px" width="100px" >
+                      <img src="/images/uploads/123.png" alt="overlay" id="overlay" height="100px" width="100px">
+                    <% } %>
+                  </div>
+                </button>
+                
+                <div id="update-form" class="update-form">
+                  
+                  <form action="/update-avatar/<%=user._id%>" method="post" enctype="multipart/form-data">
+                    <label for="avatar">Choose new avatar:</label>
+                    <input type="file" id="avatar" name="avatar">
+                    <br>
+                    <button type="submit">Update Avatar</button>
+                  </form>
+                </div>
                 <h5><%=user.username%></h5>
                 <a href="/edit-profile/<%=user._id%>" class="btn btn-outline-primary">Edit</a>
                 <button type="button" class="btn btn-outline-danger">Logout</button>
@@ -57,5 +74,11 @@
   </section>
   <%- include('../components/footer.ejs'); %>
   <%- include('../components/rootscript.ejs'); %>
+  <script>
+    function toggleUpdateForm() {
+      const updateForm = document.getElementById('update-form');
+      updateForm.classList.toggle('update-form');
+    }
+  </script>
 </body>
 </html>
