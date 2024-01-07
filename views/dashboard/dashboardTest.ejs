@@ -16,16 +16,9 @@
 
 <body>
     <%- include('../components/header.ejs'); %>
-
-
         <!-- Offcanvas trigger -->
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample">
-            <!--Replace this with an icon-->
-            <i class="fab fa-instagram fa-lg" aria-hidden="true"></i>
-        </button>
-        <!-- Offcanvas trigger -->
+
 
         <!-- Offcanvas -->
 
@@ -66,7 +59,18 @@
         </div>
         <!-- Offcanvas -->
 
-        <main class="mt-5 pt-3">
+        <!-- Offcanvas trigger -->
+        <div class="sidebar-toggler">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                aria-controls="offcanvasExample">
+                <!--Replace this with an icon-->
+                <i class="fab fa-instagram fa-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <!-- Offcanvas trigger -->
+
+        <main class="mt-3 pt-3">
+
             <div class="container-fluid">
                 <div class="hello-user">Hello, User</div>
 
@@ -110,6 +114,26 @@
         </main>
         <%- include('../components/rootscript.ejs'); %>
             <!-- <%- include('../components/footer.ejs'); %> -->
+            <script>
+                window.addEventListener('resize', adjustButtonMarginTop);
+
+                // Call the function initially to set the margin-top when the page loads
+                adjustButtonMarginTop();
+
+                function adjustButtonMarginTop() {
+                    // Get the header element
+                    var header = document.querySelector('header');
+
+                    // Get the button element
+                    var button = document.querySelector('.sidebar-toggler');
+
+                    // Get the height of the header
+                    var headerHeight = header.offsetHeight;
+
+                    // Set the margin-top of the button element to the height of the header
+                    button.style.marginTop = (headerHeight + 10) + 'px';
+                }
+            </script>
 
 </body>
 
