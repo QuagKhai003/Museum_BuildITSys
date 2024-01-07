@@ -1,9 +1,9 @@
-const Visitor = require("../models/vistitor");
+const Visitor = require("../models/visitor");
 const Artist = require("../models/artist");
 const bcrypt = require("bcrypt");
 const { checkExisted } = require("./checkExist");
 
-const authLogin = async(req, res, next) => {
+const authLogin = async (req, res, next) => {
     // const existedV = await Visitor.findOne({ username: req.body.username })
     // .then((user) => { return user })
     // .catch((err) => { console.log('Can not find an existed visitor')})
@@ -28,12 +28,12 @@ const authLogin = async(req, res, next) => {
     // }
 
     const existedU = await checkExisted(req)
-    .then((user) => { return user })
-    .catch((err) => {
-        console.log('User doesnt exist')
-    })
+        .then((user) => { return user })
+        .catch((err) => {
+            console.log('User doesnt exist')
+        })
 
-    if(existedU) {
+    if (existedU) {
         if (bcrypt.compareSync(req.body.password, existedU.password)) {
             return existedU
         }

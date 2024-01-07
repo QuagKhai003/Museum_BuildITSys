@@ -6,10 +6,9 @@ const mongoURL = 'mongodb+srv://s3975831:khai0123456@museumdb.wgffvrk.mongodb.ne
 const PORT = 3000;
 const ObjectID = require('mongodb').ObjectID;
 
-
 const session = require('express-session');
 const { authLogin } = require('./functions/authLogin');
-const vistitor = require('./models/vistitor');
+const visitor = require('./models/visitor');
 const artist = require('./models/artist');
 
 app.set('view engine', 'ejs');
@@ -18,16 +17,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 mongoose.connect(mongoURL)
-.then(() => console.log('Database Connection Sucessfull!'))
-.catch((error) => console.log(error.message));
+    .then(() => console.log('Database Connection Successful!'))
+    .catch((error) => console.log(error.message));
 
 app.use(session({
     secret: 'secret-key-team02-BIT',
     resave: false,
     saveUninitialized: true,
-    cookie:{
-        secure: false, // set false to use the cookie on http not https
-        httpOnly: true // for more secure factor
+    cookie: {
+        secure: false,
+        httpOnly: true
     }
 }));
 
@@ -41,27 +40,25 @@ app.get('/login', (req, res) => {
 
 app.get('/register', (req, res) => {
     res.render('registeringpage/register');
-})
+});
 
 app.get('/register/visitor', (req, res) => {
     res.render('registeringpage/registertest');
-})
+});
 
-app.get('/profile/:username', async (req, res) => {
-    const { username } = req.params;
+app.get('/profile/:id', async (req, res) => {
+    const { id } = req.params;
     try {
-        
-        const visitor = await visitor.findOne({ username: username });
+        const foundVisitor = await visitor.findById(id);
 
-        
-        if (!visitor) {
-            const artist = await artist.findOne({ username: username });
-            if (!artist) {
+        if (!foundVisitor) {
+            const foundArtist = await artist.findById(id);
+            if (!foundArtist) {
                 return res.render('not_found', { errorMessage: 'User not found' });
             }
-            res.render('profilepage', { user: artist });
+            res.render('profilepage/profilepage', { user: foundArtist, userId: foundArtist._id });
         } else {
-            res.render('profilepage', { user: visitor });
+            res.render('profilepage/profilepage', { user: foundVisitor, userId: foundVisitor._id });
         }
     } catch (error) {
         console.error(error);
@@ -69,78 +66,84 @@ app.get('/profile/:username', async (req, res) => {
     }
 });
 
-  
-app.post('/register/visitor', visitorRegister, (req,res) => {
-    console.log("Register visitor route end")
-    res.send('Home')
-})
+app.post('/register/visitor', visitorRegister, (req, res) => {
+    console.log("Register visitor route end");
+    res.send('Home');
+});
 
-app.post('/register/artist', artistRegister, (req,res) => {
-    console.log("Register artist route end")
-    res.redirect('/')
-})
+app.post('/register/artist', artistRegister, (req, res) => {
+    console.log("Register artist route end");
+    res.redirect('/');
+});
 
 app.post('/login', async (req, res) => {
-    const user = await authLogin(req)
-    .then((eUser) => { return eUser })
-    .catch((err) => { console.log('Falied to verfication')})
-    if(user) {
-        console.log('Route Login end with user: ')
-        console.log(user)
-        res.redirect('/')
-    } else {
-        console.log('Route Login end with no user')
-        res.status(404).json({error: "Incorrect password or username"})
+    try {
+        const user = await authLogin(req);
+
+        if (user) {
+            console.log('Route Login end with user: ');
+            console.log(user);
+            res.redirect(`/profile/${user._id}`);
+        } else {
+            console.log('Route Login end with no user');
+            res.status(404).json({ error: "Incorrect password or username" });
+        }
+    } catch (err) {
+        console.log('Failed to verify:', err);
+        res.status(500).json({ error: "Internal Server Error" });
     }
-})
+});
 
-app.get('/all', (req, res) => {
-    res.render('allartworkpage/allartwork');
-})
-  
-app.get('/about', (req, res) => {
-    res.render('aboutuspage/aboutus');
-})
 
-app.get('/dashUser', (req, res) => {
-    res.render('dashboardpage/user');
-})
+// Add this route before the /edit-profile POST route
+app.get('/edit-profile/:id', async (req, res) => {
+    const { id } = req.params; // Change '_id' to 'id'
 
-app.get('/dashArtist', (req, res) => {
-    res.render('dashboardpage/artist');
-})
+    try {
+        const foundVisitor = await visitor.findById(id);
+        const foundArtist = await artist.findById(id);
+        const user = foundVisitor || foundArtist;
 
-app.get('/dashAdmin', (req, res) => {
-    res.render('dashboardpage/admin');
-})
+        if (!user) {
+            return res.render('not_found', { errorMessage: 'User not found' });
+        }
 
-app.get('/dashboard', (req, res) => {
-    res.render('dashboardpage/adminTest.ejs')
-})
+        res.render('profilepage/edit-profile', { user });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+app.post('/edit-profile/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const foundVisitor = await visitor.findById(id);
+        const foundArtist = await artist.findById(id);
+        const user = foundVisitor || foundArtist;
+
+        if (!user) {
+            return res.render('not_found', { errorMessage: 'User not found' });
+        }
+
+        // Update the user's profile based on the form data
+        user.username = req.body.username;
+        user.email = req.body.email;
+
+        // Save the updated user profile
+        await user.save();
+
+        // Redirect to the user's profile page
+        res.redirect(`/profile/${user._id}`);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
 
 
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
-});
-
-app.get('/edit-profile', (req, res) => {
-    res.render('profilepage/edit-profile');
-});
-
-app.post('/edit-profile', async (req, res) => {
-    try {
-      // Assuming you have a form with fields like username, email, etc.
-      const { username, email } = req.body;
-  
-      // Assuming you have a visitor's ID (replace 'visitorId' with the actual field name)
-      const vistitorId = req.body.visitorId;
-  
-      // Update the visitor's data in the database
-      const updatedVisitor = await vistitor.findByIdAndUpdate(vistitorId, { username, email }, { new: true });
-  
-      res.redirect('/profilepage');
-    } catch (error) {
-      console.error('Error updating visitor profile:', error);
-      res.status(500).json({ success: false, message: 'Error updating profile' });
-    }
 });

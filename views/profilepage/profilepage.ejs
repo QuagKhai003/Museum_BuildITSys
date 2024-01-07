@@ -21,8 +21,8 @@
               <div class="text col-md-4 gradient-custom text-center">
                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                   alt="Avatar" class="img-fluid my-5"  />
-                <h5><%=vistitor.username%></h5>
-                <a href="/edit-profile" class="btn btn-outline-primary">Edit</a>
+                <h5><%=user.username%></h5>
+                <a href="/edit-profile/<%=user._id%>" class="btn btn-outline-primary">Edit</a>
                 <button type="button" class="btn btn-outline-danger">Logout</button>
             </div>
               <div class="col-md-8">
@@ -32,13 +32,13 @@
                   <div class="row pt-1">
                     <div class="col-6 mb-3">
                         <h6>Username </h6>
-                        <p class="text-muted" id="username"><%=vistitor.username%></p>
+                        <p class="text-muted" id="username"><%=user.username%></p>
                     </div>
                   </div>
                   <div class="row pt-1">
                     <div class="col-6 mb-3">
                         <h6>Email</h6>
-                        <p class="text-muted" id="email"><%=vistitor.email%></p>
+                        <p class="text-muted" id="email"><%=user.email%></p>
                     </div>
                 
                   </div>

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Visitor = require('./vistitor');
+const Visitor = require('./visitor');
 
 const artistSchema = mongoose.Schema({
     firstName: {
@@ -14,7 +14,7 @@ const artistSchema = mongoose.Schema({
     },
     username: {
         type: String,
-        unique:true,
+        unique: true,
         minLength: 6,
         maxLength: 24,
         match: /^[a-zA-Z0-9]+$/,

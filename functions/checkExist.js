@@ -1,5 +1,5 @@
 const Artist = require('../models/artist');
-const Visitor = require('../models/vistitor');
+const Visitor = require('../models/visitor');
 
 const checkExisted = async (req) => {
     const existedV = await Visitor.findOne({ username: req.body.username })
