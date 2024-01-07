@@ -4,10 +4,13 @@
 /* create default styling variables */
 :root{
     --golden: #CEA962;
+    --begolden: #f8cb78;
+    --hovergolden: #fadba0;
     --black: #13130D;
     --greycement: #A1A098;
     --bewhite: #EEEDE0;
     --white: #F7F6EC;
+    --hoverwhite: #f7eac5;
     --title-text: 'Open Sans', sans-serif;
     --normal-text: 'Merriweather', serif;
 }
@@ -374,5 +377,22 @@ input.searchInput.open {
 }
 
 @media only screen and (max-width: 425px) {  
+    footer .container .row {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 2rem;
+    }
+
+    .footer-col {
+        width: 100%;
+    }
     
+
+    .footer-col h4 {
+        font-size: 1rem;
+    }
+
+    .footer-col ul li a {
+        font-size: 0.75rem;
+    }
 } 

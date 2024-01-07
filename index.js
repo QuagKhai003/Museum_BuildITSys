@@ -133,3 +133,7 @@ app.post('/edit-profile', async (req, res) => {
       res.status(500).json({ success: false, message: 'Error updating profile' });
     }
 });
+
+app.get('/browsing/all', async(req, res) => {
+    res.render('allpage/allcategories');
+})
