@@ -11,14 +11,20 @@
 </head>
 <body>
     <%- include('../components/header.ejs'); %>
-    <div class="errorpage_container">
-        <div class="errorpage_content">
-            <h1>404</h1>
-            <h2>Page not found</h2>
-            <p>The page you are looking for might have been removed, or had its name changed, or is temporarily unavailable.</p>
-            <button class="button"><a href="/">Go to homepage</a></button>
-        </div>
-    </div>    
+    <main>
+        <div class="errorpage_container">
+            <div class="errorpage_content">
+                <h1>Page not found</h1>
+                <div>
+                    <img src="/images/error/eror.png" alt=sleep>
+                </div>
+                <p>The page you are looking for might have been removed, or had its name changed, or is temporarily unavailable.</p>
+                <p>Sorry for this inconvenience!</p>
+                <div class="errorpage_button">
+                    <button class="button"><a href="/">Go to homepage</a></button>
+                </div>    
+            </div>
+        </div>    
     </main>
     <%- include('../components/rootscript.ejs'); %>
     <%- include('../components/footer.ejs'); %>
