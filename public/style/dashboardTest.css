@@ -1,0 +1,33 @@
+:root {
+    --offcanvas-width: 400px;
+    --topNavBarHeight: 100px;
+}
+
+.sidebar-nav {
+    --bs-offcanvas-width: var(--offcanvas-width) !important;
+}
+
+/* .offcanvas-backdrop {
+    display: none;
+} */
+
+@media (min-width: 992px) {
+    body {
+        overflow: auto !important;
+    }
+    .offcanvas-backdrop {
+        display:none !important;
+    }
+    .sidebar-nav {
+        transform: none !important;
+        visibility: visible;
+        top: var(--topNavBarHeight) !important;
+        height: calc(100% - var(--topNavBarHeight));
+    }
+    .offcanvas-header > .btn-close {
+        display: none;
+    }
+    main {
+        margin-left: var(--offcanvas-width);
+    }
+}

@@ -25,3 +25,7 @@ img {
 .dashboard-content > .card {
     box-shadow: 5px 5px 10px grey;
 }
+
+main {
+    margin-top: 5rem;
+}
