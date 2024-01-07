@@ -96,6 +96,9 @@ app.get('/dashboardVisitor', (req, res) => {
     res.render('dashboard/profileVisitor')
 })
 
+app.get('/edit' ,(req, res) => {
+res.render('dashboard/edit')
+})
 
 
 app.listen(PORT, () => {

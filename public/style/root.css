@@ -280,6 +280,18 @@ input.searchInput.open {
     margin-right: auto; /* Center the line */
 }
 
+
+@media only screen and (min-width: 1024px) {
+    footer .container .row {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    
+}
+
 /* Make element fit in screen below 1024px */
 @media only screen and (max-width: 1024px) {
     header {
