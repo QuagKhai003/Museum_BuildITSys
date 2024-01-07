@@ -1,0 +1,189 @@
+.anchor-link {
+    position: absolute;
+    top: 120px;
+    left: 192px;
+    box-sizing: border-box;
+    width: 325px;
+    height: 653px;
+  }
+  
+  .sort {
+    position: absolute;
+    top: 798px;
+    left: 193px;
+    box-sizing: border-box;
+    width: 2162px;
+    height: 400px;
+  }
+  
+  .sort div label {
+    cursor: pointer;
+  }
+  
+  .sort div label input[type="checkbox"]{
+    display: none;
+  }
+  
+  .sort div span{
+    position: relative;
+    display: inline-block;
+    background: #424242;
+    padding: 15px 30px;
+    color: #555;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, .5);
+    border-radius: 20px;
+    font-size: 20px;
+    transition: 0.5s;
+    user-select: none;
+    overflow: hidden;
+  }
+  
+  
+  
+  .sort div label input[type="checkbox"]:checked ~ span{
+   background: #fff;
+  
+  }
+  
+  .all-art {
+    position: absolute;
+    top: 120px;
+    left: 555px;
+    border-radius: var(--br-xl);
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid var(--color-white);
+    box-sizing: border-box;
+    width: 1800px;
+    height: 655px;
+  }
+  
+   body {
+    margin: 0;
+    line-height: normal;
+    background-color: black;
+  }
+  
+  :root {
+    /* Colors */
+    --color-white: #fff;
+    --color-gainsboro: rgba(217, 217, 217, 0);
+  
+    /* Border radiuses */
+    --br-xl: 20px;
+  }
+  
+  .fancy {
+    background-color: transparent;
+    border: 2px solid #000;
+    border-radius: 20px;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 1.25em 2em;
+    position: absolute;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    user-select: none;
+    font-size: 13px;
+   }
+   
+   .fancy::before {
+    content: " ";
+    width: 1.5625rem;
+    height: 2px;
+    background: white;
+    top: 50%;
+    left: 1.5em;
+    position: absolute;
+    transform: translateY(-50%);
+    transform-origin: center;
+    transition: 0.3s linear, width 0.3s linear;
+   }
+   
+   .fancy .text {
+    font-size: 1.125em;
+    line-height: 1.33333em;
+    padding-left: 2em;
+    display: block;
+    text-align: left;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    color: white;
+   }
+   
+   .fancy .top-key {
+    height: 2px;
+    width: 1.5625rem;
+    top: -2px;
+    left: 0.625rem;
+    position: absolute;
+    background: #e8e8e8;
+    transition: width 0.5s ease-out, left 0.3s ease-out;
+   }
+   
+   .fancy .bottom-key-1 {
+    height: 2px;
+    width: 1.5625rem;
+    right: 1.875rem;
+    bottom: -2px;
+    position: absolute;
+    background: #e8e8e8;
+    transition: width 0.5s ease-out, right 0.3s ease-out;
+   }
+   
+   .fancy .bottom-key-2 {
+    height: 2px;
+    width: 0.625rem;
+    right: 0.625rem;
+    bottom: -2px;
+    position: absolute;
+    background: #e8e8e8;
+    transition: width 0.5s ease-out, right 0.3s ease-out;
+   }
+   
+   .fancy:hover {
+    color: white;
+    background: white;
+   }
+   
+   .fancy:hover::before {
+    width: 0.9375rem;
+    background: white;
+   }
+   
+   .fancy:hover .text {
+    color: black;
+    padding-left: 1.5em;
+   }
+   
+   .fancy:hover .top-key {
+    left: -2px;
+    width: 0px;
+   }
+   
+   .fancy:hover .bottom-key-1,
+    .fancy:hover .bottom-key-2 {
+    right: 0;
+    width: 0;
+   }
+  
+  #painting{
+    top: 80px;
+    left: 77px;
+  }
+  
+  #sculptrure{
+    top: 280px;
+    left: 77px;
+  }
+  
+  #fresco{
+    top: 480px;
+    left: 77px;
+  }
