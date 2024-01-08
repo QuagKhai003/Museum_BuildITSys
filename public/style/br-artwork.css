@@ -1,6 +1,7 @@
 body {
   margin: 0;
   line-height: normal;
+  background: black;
 }
 
 :root {
@@ -56,8 +57,11 @@ body {
 
 .all-art {
   align-self: stretch;
+  height: 1000px;
   border-radius: var(--br-xl);
   border: 1px solid var(--color-white);
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .browsing {
@@ -100,17 +104,74 @@ body {
     flex-direction: column;
   }
 }
+
+
 /*custom scroll bar*/
 ::-webkit-scrollbar{
   width:5px;
   border-radius: 20px;
 }
+
 ::-webkit-scrollbar-track{
   background-color: #000;
 }
+
 ::-webkit-scrollbar-thumb{
   background: white;
   border-radius: 20px;
   width:5px;
 }
+
+.sort{
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sort div{
+  margin: 10px
+}
+
+.sort div label{
+  cursor: pointer;
+}
+
+.sort div label input[type = "checkbox"]{
+  display: none;
+}
+
+.sort div label span{
+  position: relative;
+  display: inline-block;
+  background: #424242;
+  padding: 15px 30px;
+  color: #555;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .5);
+  border-radius: 30px;
+  font-size: 20px;
+  transition: 0.5s;
+  user-select: none;
+  overflow: hidden;
+}
+
+.sort div label span:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: rgba(255, 255, 255, .1);
+}
+
+.sort div:nth-child(4n + 1) label input[type = "checkbox"]:checked ~ span{
+  background: #fff;
+  color: #000;
+  box-shadow: 0 2px 20px #fff;
+}
+
+
+
+
 
