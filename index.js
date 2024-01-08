@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const { visitorRegister, artistRegister } = require('./functions/authRegister');
 const multer = require('multer');
 const path = require('path');
-const fs = require('fs');
 const mongoURL = 'mongodb+srv://s3975831:khai0123456@museumdb.wgffvrk.mongodb.net/?retryWrites=true&w=majority';
 const PORT = 3000;
 
@@ -21,16 +20,12 @@ app.use(express.json());
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        const dir = 'public/images/uploads';
-        if (!fs.existsSync(dir)) {
-            fs.mkdirSync(dir, { recursive: true });
-        }
-        cb(null, dir);
+      cb(null, 'public/images/uploads/'); 
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname);
+      cb(null, Date.now() + path.extname(file.originalname));
     },
-});
+  });
   
   const upload = multer({ storage: storage });
   
@@ -74,9 +69,9 @@ app.get('/profile/:id', async (req, res) => {
             if (!foundArtist) {
                 return res.render('not_found', { errorMessage: 'User not found' });
             }
-            res.render('profilepage/profilepage', { user: foundArtist, userId: foundArtist._id });
+            res.render('profilepage/profilepage', { user: foundArtist });
         } else {
-            res.render('profilepage/profilepage', { user: foundVisitor, userId: foundVisitor._id });
+            res.render('profilepage/profilepage', { user: foundVisitor });
         }
     } catch (error) {
         console.error(error);
@@ -153,7 +148,7 @@ app.post('/edit-profile/:id', async (req, res) => {
         // Save the updated user profile
         await user.save();
 
-        // Redirect to the user's profile page
+        
         res.redirect(`/profile/${user._id}`);
     } catch (error) {
         console.error(error);
