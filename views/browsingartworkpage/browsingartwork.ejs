@@ -11,73 +11,21 @@
   <body>
     <%- include('../components/header.ejs'); %>
     <main>
-    <div class="container">
-      <div class="anchor-link">
-       
-        <a class="fancy" id ="painting" href="#">
-          <span class="top-key"></span>
-          <span class="text">Painting</span>
-          <span class="bottom-key-1"></span>
-          <span class="bottom-key-2"></span>
-        </a>
-
-        <a class="fancy" id ="sculptrure" href="#">
-          <span class="top-key"></span>
-          <span class="text">Sculptrure</span>
-          <span class="bottom-key-1"></span>
-          <span class="bottom-key-2"></span>
-        </a>
-
-        <a class="fancy" id ="fresco" href="#">
-          <span class="top-key"></span>
-          <span class="text">Fresco</span>
-          <span class="bottom-key-1"></span>
-          <span class="bottom-key-2"></span>
-        </a>
-
-      </div>
-      <div class="sort" >
-          <h1 class="sort-title">Sort: </h1>
-          <div>
-          <label>
-            <input type="checkbox" name="" id="">
-            <span>Portrait paintings</span>
-          </label>
-          <label>
-            <input type="checkbox" name="" id="">
-            <span>Greek</span>
-          </label>
-          <label>
-            <input type="checkbox" name="" id="">
-            <span>Landscape painting</span>
-          </label>
-          <label>
-            <input type="checkbox" name="" id="">
-            <span>Egypt</span>
-          </label>
-          <label>
-            <input type="checkbox" name="" id="">
-            <span>Mythological</span>
-          </label>
-          <label>
-            <input type="checkbox" name="" id="">
-            <span>East Asia</span>
-          </label>
-          <label>
-            <input type="checkbox" name="" id="">
-            <span>Fresco 1</span>
-          </label>
-          <label>
-            <input type="checkbox" name="" id="">
-            <span>Fresco 2</span>
-          </label>
-          <label>
-            <input type="checkbox" name="" id="">
-            <span>Fresco 3</span>
-          </label>
-          
-        </div> 
-      </div>
+        <div class="anchor-link">
+         
+          <a class="art_type" id ="Painting" href="#">
+            <span class="text">Painting</span>
+          </a>
+  
+          <a class="art_type" id ="sculpture" href="#">
+            <span class="text">Sculpture</span>
+          </a>
+  
+          <a class="art_type" id ="fresco" href="#">
+            <span class="text">Fresco</span>
+          </a>
+  
+        </div>
       <div class="all-art" >
         <div class="photo-gallery">
           <div class="column">
@@ -98,12 +46,8 @@
               <div class="photo"><img src="https://artstreet.in/cdn/shop/products/815VtyFjTkL._SL1500_903x700.jpg?v=1587636504" alt=""></div>
           </div>
       </div>
-      </div>
-        </div>
-      </div>
-    </div>
   </main>
     <%- include('../components/rootscript.ejs'); %>
-  
+    <%- include('../components/footer.ejs'); %>
   </body>
 </html>
