@@ -1,19 +1,80 @@
-body{
-  background-color: black;
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* fonts */
+  --font-inter: Inter;
+
+  /* font sizes */
+  --font-size-17xl: 36px;
+
+  /* Colors */
+  --color-white: #fff;
+
+  /* Border radiuses */
+  --br-xl: 20px;
+}
+
+.art_type {
+  text-decoration: none;
+  flex: 1;
+  position: relative;
+  color: inherit;
+}
+
+.art_type::before {
+  content: '';
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #fff;
+  position: absolute;
+  bottom: -.5rem;
+  left: 0;
+  transition: transform .4s, opacity .4s;
+  opacity: 0;
+}
+
+.art_type:hover::before {
+  transform: translateY(-.25rem);
+  opacity: 1;
+}
+
+.anchor-link {
+  align-self: stretch;
+  border-radius: var(--br-xl);
+  border: 1px solid var(--color-white);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 41px 60px;
+  gap: 50px;
 }
 
 .all-art {
-  max-width: 1080px;
-  margin: auto;
-  top: 10px;
-  bottom: px;
-  left: 20px;
+  align-self: stretch;
+  border-radius: var(--br-xl);
+  border: 1px solid var(--color-white);
+}
+
+.browsing {
+  position: relative;
+  background-color: #000;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 49px 111px;
   box-sizing: border-box;
-  width: 90%;
-  height: 520px;
-  overflow: hidden;
-  overflow-y: scroll;
-  padding: 40px 0px; 
+  gap: 49px;
+  text-align: center;
+  font-size: var(--font-size-17xl);
+  color: var(--color-white);
+  font-family: var(--font-inter);
 }
 
 .photo-gallery{
@@ -51,34 +112,5 @@ body{
   background: white;
   border-radius: 20px;
   width:5px;
-}
-
-a{
-  text-decoration: none;
-}
-
-.art_type {
-  color: #fff;
-  line-height: 2;
-  position: relative;
-  margin:20px; 
-}
-
-.art_type::before {
-  content: '';
-  width: 100%;
-  height: 2px;
-  border-radius: 2px;
-  background-color: #fff;
-  position: absolute;
-  bottom: -.5rem;
-  left: 0;
-  transition: transform .4s, opacity .4s;
-  opacity: 0;
-}
-
-.art_type:hover::before {
-  transform: translateY(-.25rem);
-  opacity: 1;
 }
 
