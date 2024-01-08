@@ -107,6 +107,9 @@ app.get('/dashboard', (req, res) => {
     res.render('dashboardpage/adminTest.ejs')
 })
 
+app.get('/detailedpage', (req, res) => {
+    res.render('detailedpage/detailedpage.ejs')
+})
 
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
