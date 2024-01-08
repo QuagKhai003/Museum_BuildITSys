@@ -7,10 +7,11 @@ const PORT = 3000;
 
 const session = require('express-session');
 const { visitorRegister, artistRegister } = require('./functions/authRegister');
-const { visitorTestRegister, artistTestRegister } = require('./functions/authRegisterTest');
 const { authLogin } = require('./functions/authLogin');
 const vistitor = require('./models/vistitor');
 const artworkts = require('./models/artworkts');
+const { checkExistedList } = require('./functions/checkList');
+const { bookmarks } = require('./functions/bookmarks');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -43,10 +44,6 @@ app.get('/register', (req, res) => {
     res.render('registeringpage/register');
 })
 
-app.get('/register/visitor', (req, res) => {
-    res.render('registeringpage/registertest');
-})
-
 app.get('/profilepage', async (req, res) => {
     try {
       const currentVisitorId = req.session.visitorId; 
@@ -59,69 +56,20 @@ app.get('/profilepage', async (req, res) => {
       res.send('Internal Server Error');
     }
 });
-  
-app.post('/register/visitor', visitorRegister, (req,res) => {
-    console.log("Register visitor route end")
-    res.send('Home')
+
+app.post('/register/visitor/', visitorRegister, (req,res) => {
+    console.log(req.session.user)
+    console.log("Visitor register route end")
 })
 
-app.post('/register/artist', artistRegister, (req,res) => {
-    console.log("Register artist route end")
-    res.redirect('/')
+app.post('/register/artist/', artistRegister, async (req,res) => {
+    console.log(req.session.user)
+    console.log("Artist register route end")
 })
 
-app.post('/register/visitor/test', async (req,res) => {
-    try {
-        const result = await visitorTestRegister(req)
-        
-        if (!result.user) {
-            // Handle error response
-            console.log(result.message)
-            res.redirect('/error');
-        } else {
-            // Handle success response
-            console.log(result.message)
-            res.redirect('/');
-        }
-        console.log("Visitor registration route end")
-    } catch (err) {
-        console.error("Error in visitor registration route:", err);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-})
-
-app.post('/register/artist/test', async (req,res) => {
-    try {
-        const result = await artistTestRegister(req)
-        
-        if (!result.user) {
-            // Handle error response
-            console.log(result.message)
-            res.redirect('/error');
-        } else {
-            // Handle success response
-            console.log(result.message)
-            res.redirect('/');
-        }
-        console.log("Artist registration route end")
-    } catch (err) {
-        console.error("Error in artist registration route:", err);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-})
-
-app.post('/login', async (req, res) => {
-    const user = await authLogin(req)
-    .then((eUser) => { return eUser })
-    .catch((err) => { console.log('Falied to verfication')})
-    if(user) {
-        console.log('Route Login end with user: ')
-        console.log(user)
-        res.redirect('/')
-    } else {
-        console.log('Route Login end with no user')
-        res.status(404).json({error: "Incorrect password or username"})
-    }
+app.post('/login', authLogin, (req, res) => {
+    console.log(req.session.user)
+    console.log("Login route end")
 })
 
 app.get('/all', (req, res) => {
@@ -181,14 +129,25 @@ app.get('/browsing/all', async(req, res) => {
 
 app.post('/upload', async (req, res) => {
     const newAW = {
-        artworkName: "Testing 1",
-        categories: "painting",
+        artworkName: req.body.name,
+        categories: req.body.categories,
     }
 
     await artworkts.create(newAW)
+    .then(() => {console.log("Create aw success")})
+    .catch((err) => {console.log("Unable to create aw: ", err)})
+})
+
+app.post('/detail/:id/save', checkExistedList, bookmarks, async(req, res) => {
+    console.log("bookmark route end")
 })
 
 app.get('/allartworktest', async (req, res) => {
     const allAW = await artworkts.find({})
-    res.render('allpage/allartworkpagefortest', {allAW: allAW})
+    res.render('allpage/allartworkpagefortest', {allAW: allAW, user: req.session.user})
+})
+
+app.get('/detail/:id', async (req, res) => {
+    const foundAW = await artworkts.find({ _id: req.params.id })
+    res.render('allpage/detailpage', {foundAW: foundAW , user: req.session.user})
 })

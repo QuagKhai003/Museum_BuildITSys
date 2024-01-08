@@ -6,14 +6,17 @@
     <title>Document</title>
 </head>
 <body>
-    <% allAW.forEach(function(AW) { %>
+    <% foundAW.forEach(function(AW) { %>
         <div class="an-artwork">
-            <a class="artworkname" href="/detail/<%= AW._id %>">
+            <div class="artworkname">
                 <%= AW.artworkName %>
-            </a>
+            </div>
             <div class="artworkCategories">
                 <%= AW.categories %>
             </div>
+            <form action="/detail/<%= AW._id %>/save" method="post">
+                <button type="submit">Save</button>
+            </form>
         </div>
     <% }) %>
 </body>

@@ -40,11 +40,11 @@ const userSchema = mongoose.Schema({
     },
     uploads: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Artwork'
+        ref: 'Artwork',
     }],
     savedLists: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Savelist'
+        ref: 'Savelist',
     }]
 })
 
