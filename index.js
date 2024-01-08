@@ -1,15 +1,16 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const { visitorRegister, artistRegister } = require('./functions/authRegister');
 const mongoURL = 'mongodb+srv://s3975831:khai0123456@museumdb.wgffvrk.mongodb.net/?retryWrites=true&w=majority';
 const PORT = 3000;
-const ObjectID = require('mongodb').ObjectID;
 
 
 const session = require('express-session');
+const { visitorRegister, artistRegister } = require('./functions/authRegister');
+const { visitorTestRegister, artistTestRegister } = require('./functions/authRegisterTest');
 const { authLogin } = require('./functions/authLogin');
 const vistitor = require('./models/vistitor');
+const artworkts = require('./models/artworkts');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -55,7 +56,7 @@ app.get('/profilepage', async (req, res) => {
       res.render('profilepage/profilepage', { vistitor: currentVisitor });
     } catch (error) {
       console.error('Error fetching visitor data:', error);
-      res.status(500).send('Internal Server Error');
+      res.send('Internal Server Error');
     }
 });
   
@@ -67,6 +68,46 @@ app.post('/register/visitor', visitorRegister, (req,res) => {
 app.post('/register/artist', artistRegister, (req,res) => {
     console.log("Register artist route end")
     res.redirect('/')
+})
+
+app.post('/register/visitor/test', async (req,res) => {
+    try {
+        const result = await visitorTestRegister(req)
+        
+        if (!result.user) {
+            // Handle error response
+            console.log(result.message)
+            res.redirect('/error');
+        } else {
+            // Handle success response
+            console.log(result.message)
+            res.redirect('/');
+        }
+        console.log("Visitor registration route end")
+    } catch (err) {
+        console.error("Error in visitor registration route:", err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+})
+
+app.post('/register/artist/test', async (req,res) => {
+    try {
+        const result = await artistTestRegister(req)
+        
+        if (!result.user) {
+            // Handle error response
+            console.log(result.message)
+            res.redirect('/error');
+        } else {
+            // Handle success response
+            console.log(result.message)
+            res.redirect('/');
+        }
+        console.log("Artist registration route end")
+    } catch (err) {
+        console.error("Error in artist registration route:", err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
 })
 
 app.post('/login', async (req, res) => {
@@ -136,4 +177,18 @@ app.post('/edit-profile', async (req, res) => {
 
 app.get('/browsing/all', async(req, res) => {
     res.render('allpage/allcategories');
+})
+
+app.post('/upload', async (req, res) => {
+    const newAW = {
+        artworkName: "Testing 1",
+        categories: "painting",
+    }
+
+    await artworkts.create(newAW)
+})
+
+app.get('/allartworktest', async (req, res) => {
+    const allAW = await artworkts.find({})
+    res.render('allpage/allartworkpagefortest', {allAW: allAW})
 })

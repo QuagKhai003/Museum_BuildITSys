@@ -3,12 +3,8 @@ const mongoose = require('mongoose');
 const savelistSchema = new mongoose.Schema({
     artworks: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Artwork'
+        ref: 'Artwork-Test'
     }],
-    count: {
-        type: Number,
-        require: true
-    },
 })
 
 module.exports = mongoose.model('Savelist', savelistSchema);
