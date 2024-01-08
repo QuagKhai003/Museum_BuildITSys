@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const { visitorRegister, artistRegister } = require('./functions/authRegister');
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 const mongoURL = 'mongodb+srv://s3975831:khai0123456@museumdb.wgffvrk.mongodb.net/?retryWrites=true&w=majority';
 const PORT = 3000;
 
@@ -20,12 +21,16 @@ app.use(express.json());
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, 'public/images/uploads/'); 
+        const dir = 'public/images/uploads';
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+        }
+        cb(null, dir);
     },
     filename: function (req, file, cb) {
-      cb(null, Date.now() + path.extname(file.originalname));
+        cb(null, file.originalname);
     },
-  });
+});
   
   const upload = multer({ storage: storage });
   
