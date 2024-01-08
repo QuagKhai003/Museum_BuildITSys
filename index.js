@@ -96,10 +96,43 @@ app.get('/dashboardVisitor', (req, res) => {
     res.render('dashboard/profileVisitor')
 })
 
+app.get('/dashboardArtist', (req, res) => {
+    res.render('dashboard/profileAritst')
+})
+app.get('/dashboardAdmin', (req, res) => {
+    res.render('dashboard/profileAdmin')
+})
+
 app.get('/edit' ,(req, res) => {
 res.render('dashboard/edit')
 })
 
+
+app.get('/editArtist' ,(req, res) => {
+    res.render('dashboard/editArtist')
+})
+
+
+app.get('/editAdmin' ,(req, res) => {
+    res.render('dashboard/editAdmin')
+})
+
+app.get('/editArtist' ,(req,res) => {
+    res.render('dashboard/editArtist')
+})
+
+
+app.get('/password' ,(req, res) => {
+res.render('dashboard/password')
+})
+
+app.get('/passwordArtist' ,(req, res) => {
+    res.render('dashboard/passwordArtist')
+})
+
+app.get('/passwordAdmin' ,(req, res) => {
+    res.render('dashboard/passwordAdmin')
+})
 
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
