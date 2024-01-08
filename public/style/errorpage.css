@@ -1,0 +1,116 @@
+
+
+body {
+    background-color: #f8f8f8;
+    font-family: Merriweather, serif;
+}
+
+.errorpage_container {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.errorpage_container img {
+    margin: 10px 0;
+}
+
+h1, h2, p {
+    font-family: Merriweather, serif;
+}
+
+h1 {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 2.25rem;
+}
+
+p {
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+img {
+    max-width: 400px;
+}
+
+.errorpage_button {
+    height: 70px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    height: 54px;
+    padding: 12.5px 30px;
+    border: 0;
+    border-radius: 40px;
+    background-color:#cea962;
+    color: #f7f6ec;
+    font-family: Merriweather, serif;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    text-transform: uppercase;
+    font-size: 1.15rem;
+}
+
+button:hover {
+    background-color: #a1a098;
+    color: #333333;
+    box-shadow: 0 0 20px #ffbc6f50;
+    transform: scale(1.1);
+}
+
+button:active {
+    background-color: #cea962;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    box-shadow: none;
+    transform: scale(0.98);
+}
+
+button:hover a {
+    color: #333333;
+    background-color: transparent;
+}
+
+a {
+    text-decoration: none;
+    color: #f7f6ec;
+}
+
+/* Responsive font sizes */
+@media screen and (max-width: 1200px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    p {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    h1 {
+        font-size: 2.75rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    p {
+        font-size: 1.15rem;
+    }
+}
+

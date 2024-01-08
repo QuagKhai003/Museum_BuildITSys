@@ -107,6 +107,10 @@ app.get('/dashboard', (req, res) => {
     res.render('dashboardpage/adminTest.ejs')
 })
 
+app.get('/error', (req, res) => {
+    res.render('errorpage/errorpage.ejs')
+})
+
 
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
