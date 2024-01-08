@@ -111,6 +111,10 @@ app.get('/detailedpage', (req, res) => {
     res.render('detailedpage/detailedpage.ejs')
 })
 
+app.get('/detailedpage2', (req, res) => {
+    res.render('detailedpage/detailedpage2.ejs')
+})
+
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
 });

@@ -1,10 +1,13 @@
-body{
-  width: 1440px;
+.main-detail-page{
+  width: 100%;
   height: 1024px;
-  position: relative;
-  background: #5F9896
+  /* position: relative; */
+  /* background: #5F9896 */
 }
 
+.container-detail {
+  /* position: relative; */
+}
 
 .artwork{
   width: 550px;

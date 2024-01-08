@@ -1,65 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
 
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+  <%- include('../components/rootstyle.ejs'); %>
     <link rel="stylesheet" href="/style/detailedpage.css">
-        <title>Document</title>
+    <title>Document</title>
 </head>
 
 
 <body>
-   
-    <img src="/images/artwork/licensed-image.jpg" alt="" class="artwork">
+  <%- include('../components/header.ejs'); %>
+
+    <main class="main-detail-page">
+      <div class="container-detail">
+
+        <div><img src="/images/artwork/licensed-image.jpg" alt="" class="artwork"></div>
+
+        <div class="container1"> </div>
 
 
-    <div class="container1">  </div>
+        <div class="top"></div>
 
 
-    <div class="top"></div>
+        <div class="container2">
+          <span class="date">date 1 - date 2<br /></span>
+          <span class="date"> start - end</span>
+        </div>
 
 
-    <div class="container2">
-      <span class = "date" >date 1 - date 2<br/></span>
-      <span class = "date"> start - end</span>
-    </div>
+        <div class="information">
+          Location<br />Artist
+        </div>
 
 
-    <div class="information">
-      Location<br/>Artist
-    </div>
+        <div class="artwork-title">
+          <span>Artwork<br /><br /></span>
+          <span></span>type of artwork</span>
+        </div>
 
 
-    <div class="artwork-title">
-      <span>Artwork<br/><br/></span>
-      <span></span>type of artwork</span>
-    </div>
+        <div class="container3">
+        </div>
+        <div class="paragraph">
+          <span class="black-text">Beast Behold</span>
+          <span class="green-text"><br>SAYING HAD SET</span>
+          <span class="black-text">
+            <br>Have moving, let our divided itself. Replenish don’t, creeping. The moved green two them is, was
+            together firmament. Beginning from grass blessed subdue rule you’re. Forth our were hath to created the
+            years.
+            Were a years two firmament. Seasons had. Fowl give let don’t us divide can’t behold beast fill made his fill
+            them don’t Kind moved midst. Fly creature be greater Without had place and bearing.
+          </span>
+          <span class="teal-text">FIRMAMENT ABOVE WERE FIRST <br></span>
+          <span class="black-text">
+            Given won’t to of you’ll. In and created multiply. Above green made wherein it herb she’d. Great firmament
+            was give light a. Together. From without green fourth. Light, multiply replenish isn’t air fifth.
+          </span>
+        </div>
+      </div>
+    </main>
+
+    <%- include('../components/footer.ejs'); %>
+      <%- include('../components/rootscript.ejs'); %>
 
 
- <div class="container3">
-    </div>
-    <div class="paragraph">
-      <span class="black-text">Beast Behold</span>
-      <span class="green-text"><br>SAYING HAD SET</span>
-      <span class="black-text">
-          <br>Have moving, let our divided itself. Replenish don’t, creeping. The moved green two them is, was together firmament. Beginning from grass blessed subdue rule you’re. Forth our were hath to created the years.
-          Were a years two firmament. Seasons had. Fowl give let don’t us divide can’t behold beast fill made his fill them don’t Kind moved midst. Fly creature be greater Without had place and bearing.
-      </span>
-      <span class="teal-text">FIRMAMENT ABOVE WERE FIRST <br></span>
-      <span class="black-text">
-          Given won’t to of you’ll. In and created multiply. Above green made wherein it herb she’d. Great firmament was give light a. Together. From without green fourth. Light, multiply replenish isn’t air fifth.
-      </span>
-  </div>
-
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
-    <script src="/script/detailedpage.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+        <script src="/script/detailedpage.js"></script>
 </body>
 
 
