@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const path = require('path');
 const mongoURL = 'mongodb+srv://s3975831:khai0123456@museumdb.wgffvrk.mongodb.net/?retryWrites=true&w=majority';
 const PORT = 3000;
 const multer = require('multer');
@@ -250,7 +251,12 @@ app.post('/edit-profile/:id', upload.single('avatar'), async (req, res) => {
         // Update the user's profile based on the form data
         foundUser.username = req.body.username;
         foundUser.email = req.body.email;
-        foundUser.avatar = req.file.filename;
+        if (req.file) {
+            
+            user.avatar = req.file.filename;
+            
+            await user.save();
+        }
 
         // Save the updated user profile
         await foundUser.save();
