@@ -5,12 +5,9 @@ const path = require('path');
 const mongoURL = 'mongodb+srv://s3975831:khai0123456@museumdb.wgffvrk.mongodb.net/?retryWrites=true&w=majority';
 const PORT = 3000;
 const multer = require('multer');
-
 const session = require('express-session');
 const { visitorRegister, artistRegister } = require('./functions/authRegister');
 const { authLogin } = require('./functions/authLogin');
-const User = require('./models/user'); 
-
 const artworkts = require('./models/artworkts');
 const { checkExistedList } = require('./functions/checkList');
 const { bookmarks } = require('./functions/bookmarks');
@@ -250,13 +247,13 @@ app.post('/edit-profile/:id', upload.single('avatar'), async (req, res) => {
 
         // Update the user's profile based on the form data
         foundUser.username = req.body.username;
-        foundUser.email = req.body.email;
+        foundUser.email = req.body.email;   
+        
+            
         if (req.file) {
-            
-            user.avatar = req.file.filename;
-            
-            await user.save();
+            foundUser.avatar = req.file.filename;
         }
+        
 
         // Save the updated user profile
         await foundUser.save();
@@ -269,3 +266,52 @@ app.post('/edit-profile/:id', upload.single('avatar'), async (req, res) => {
     }
 });
 
+app.get('/change-password/:id', async (req, res) => {
+    const { id } = req.params; 
+
+    try {
+        const foundUser = await user.findById(id)
+        
+
+        if (!user) {
+            res.status(500).json({ error: "User not found" });
+        }
+
+        res.render('dashboard/password', { user: foundUser });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+// Add a POST route to handle password change
+app.post('/change-password/:id', async (req, res) => {
+    const { id } = req.params;
+    const { currentPassword, newPassword, confirmPassword } = req.body;
+    const foundUser = await user.findById(id);
+    try {
+        // Retrieve the user from the database
+        
+
+        // Check if the current password matches the one stored in the database
+        if (foundUser && await foundUser.comparePassword(currentPassword)) {
+            // Check if the new passwords match
+            if (newPassword === confirmPassword) {
+                // Update the password if the current password is correct and new passwords match
+                foundUser.password = newPassword;
+                await currentUser.save();
+
+                // Redirect to the profile page or any other appropriate page
+                res.redirect(`/profile/${foundUser._id}`);
+            } else {
+                // New passwords don't match, handle accordingly
+                res.render('dashboard/password', { error: 'New passwords do not match' });
+            }
+        } else {
+            // Incorrect current password, handle accordingly
+            res.render('dashboard/password', { error: 'Incorrect current password' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
