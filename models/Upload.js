@@ -10,13 +10,21 @@ mongoose.connect('mongodb+srv://s3975831:khai0123456@museumdb.wgffvrk.mongodb.ne
 const uploadSchema = new mongoose.Schema ({
     artworkName: {type: String, required: true},
     artworkArtist: {type: String, required: true},
-    date: {type: Date, required: true},
-    artworkThemes: {type: String, required: true},
+    category: {type: String, required: true},
     artworkDescription: {type: String, required: true},
     image: {
         type: String,
         required: true
     },
+    createAt: {
+        type: Date,
+        default: Date.now
+    },
+    status: {
+        type: String,
+        default: "pending",
+        enum: ["approve", "decline", "pending"]
+    }
 });
 
 const Upload = mongoose.model('Upload', uploadSchema);

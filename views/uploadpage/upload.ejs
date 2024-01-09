@@ -23,16 +23,15 @@
         <input type="text" id="artworkArtist" name="artworkArtist" placeholder=" Artist name" required>
       </div>
       <div class="form-item">
-        <label for="date">
-          Release date
+        <label for="category">
+          Category
         </label>
-        <input type="date" id="date" name='date' required>
-      </div>
-      <div class="form-item">
-        <label for="artworkThemes">
-          Artworks themes
-        </label>
-        <input type="text" id="artworkThemes" name="artworkThemes" placeholder=" Artwork themes" required>
+        <select id="category" name="category" class="category_option">
+          <option value="">Your artwork's category</option>
+          <option value="Painting">Painting</option>
+          <option value="Scuplture">Scuplture</option>
+          <option value="Fresco">Fresco</option>
+        </select>
       </div>
       <div class="form-item">
         <label for="artworkDescription">

@@ -33,10 +33,10 @@ function uploadArtworks(req, res) {
     const artworkUpload = new Upload({
         artworkName: req.body.artworkName,
         artworkArtist: req.body.artworkArtist,
-        date: req.body.date,
-        artworkThemes: req.body.artworkThemes,
+        category: req.body.category,
         artworkDescription: req.body.artworkDescription,
         image: req.file.filename,
+        createAt: new Date(),
     });
 
     // Save the document to MongoDB
