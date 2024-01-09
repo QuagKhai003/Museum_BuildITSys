@@ -11,6 +11,7 @@ const { authLogin } = require('./functions/authLogin');
 const artworkts = require('./models/artworkts');
 const { checkExistedList } = require('./functions/checkList');
 const { bookmarks } = require('./functions/bookmarks');
+const bcrypt = require('bcrypt');
 const user = require('./models/user');
 
 app.set('view engine', 'ejs');
@@ -160,9 +161,6 @@ app.get('/error', (req, res) => {
     res.render('errorpage/errorpage.ejs')
 })
 
-app.listen(PORT, () => {
-    console.log(`Listening to port: ${PORT}`);
-});
 
 app.get('/edit-profile', (req, res) => {
     res.render('profilepage/edit-profile');
@@ -267,13 +265,12 @@ app.post('/edit-profile/:id', upload.single('avatar'), async (req, res) => {
 });
 
 app.get('/change-password/:id', async (req, res) => {
-    const { id } = req.params; 
+    const { id } = req.params;
 
     try {
-        const foundUser = await user.findById(id)
-        
+        const foundUser = await user.findById(id);
 
-        if (!user) {
+        if (!foundUser) {
             res.status(500).json({ error: "User not found" });
         }
 
@@ -283,35 +280,45 @@ app.get('/change-password/:id', async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
+
 // Add a POST route to handle password change
 app.post('/change-password/:id', async (req, res) => {
     const { id } = req.params;
-    const { currentPassword, newPassword, confirmPassword } = req.body;
-    const foundUser = await user.findById(id);
+    const { currentPassword, newPassword, confirmNewPassword } = req.body;
+
     try {
-        // Retrieve the user from the database
-        
+        const foundUser = await user.findById(id);
 
-        // Check if the current password matches the one stored in the database
-        if (foundUser && await foundUser.comparePassword(currentPassword)) {
-            // Check if the new passwords match
-            if (newPassword === confirmPassword) {
-                // Update the password if the current password is correct and new passwords match
-                foundUser.password = newPassword;
-                await currentUser.save();
-
-                // Redirect to the profile page or any other appropriate page
-                res.redirect(`/profile/${foundUser._id}`);
-            } else {
-                // New passwords don't match, handle accordingly
-                res.render('dashboard/password', { error: 'New passwords do not match' });
-            }
-        } else {
-            // Incorrect current password, handle accordingly
-            res.render('dashboard/password', { error: 'Incorrect current password' });
+        if (!foundUser) {
+            res.status(500).json({ error: "User not found" });
         }
+
+        // Compare the current encrypted password with the input
+        const isPasswordMatch = await bcrypt.compare(currentPassword, foundUser.password);
+
+        if (!isPasswordMatch) {
+            return res.status(400).json({ error: "Current password is incorrect" });
+        }
+
+        // Check if the new password and confirm new password match
+        if (newPassword !== confirmNewPassword) {
+            return res.status(400).json({ error: "New password and confirm password do not match" });
+        }
+
+        // Hash the new password before updating
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        foundUser.password = hashedPassword;
+
+        // Save the updated user
+        await foundUser.save();
+
+        res.redirect(`/profile/${foundUser._id}`);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: "Internal Server Error" });
     }
+});
+
+app.listen(PORT, () => {
+    console.log(`Listening to port: ${PORT}`);
 });
