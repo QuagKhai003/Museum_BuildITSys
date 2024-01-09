@@ -34,7 +34,9 @@ app.use(session({
 }));
 
 app.get('/', (req, res) => {
-    res.render('homepage/homepage');
+    req.session.user
+    console.log(req.session.user)
+    res.render('homepage/homepage', {user: req.session.user});
 });
 
 app.get('/login', (req, res) => {
@@ -72,10 +74,6 @@ app.post('/login', authLogin, (req, res) => {
     console.log(req.session.user)
     console.log("Login route end")
 })
-
-app.get('/all', (req, res) => {
-    res.render('allartworkpage/allartwork');
-})
   
 app.get('/about', (req, res) => {
     res.render('aboutuspage/aboutus');
@@ -100,14 +98,14 @@ app.get('/dashboardTest', (req, res) => {
 })
 
 app.get('/dashboardVisitor', (req, res) => {
-    res.render('dashboard/profileVisitor')
+    res.render('dashboard/profileVisitor', {user: req.session.user})
 })
 
 app.get('/dashboardArtist', (req, res) => {
-    res.render('dashboard/profileAritst')
+    res.render('dashboard/profileArtist', {user: req.session.user})
 })
 app.get('/dashboardAdmin', (req, res) => {
-    res.render('dashboard/profileAdmin')
+    res.render('dashboard/profileAdmin', {user: req.session.user})
 })
 
 app.get('/edit' ,(req, res) => {
@@ -187,7 +185,7 @@ app.post('/edit-profile', async (req, res) => {
     }
 });
 
-app.get('/browsing/all', async(req, res) => {
+app.get('/all', async(req, res) => {
     res.render('allpage/allcategories');
 })
 
@@ -214,4 +212,15 @@ app.get('/allartworktest', async (req, res) => {
 app.get('/detail/:id', async (req, res) => {
     const foundAW = await artworkts.find({ _id: req.params.id })
     res.render('allpage/detailpage', {foundAW: foundAW , user: req.session.user})
+})
+
+app.get('/logout', async(req, res) => {
+    req.session.destroy((err) =>{
+        if(err) {
+           console.log(err);
+        } else{
+            console.log(session.email);
+            res.redirect('/');
+        }
+     });
 })
