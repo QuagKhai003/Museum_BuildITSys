@@ -3,22 +3,32 @@ const app = express();
 const mongoose = require('mongoose');
 const mongoURL = 'mongodb+srv://s3975831:khai0123456@museumdb.wgffvrk.mongodb.net/?retryWrites=true&w=majority';
 const PORT = 3000;
-
+const multer = require('multer');
 
 const session = require('express-session');
 const { visitorRegister, artistRegister } = require('./functions/authRegister');
 const { authLogin } = require('./functions/authLogin');
-const Visitor = require('./models/vistitor'); // Correct the model import
-const vistitor = require('./models/vistitor');
+const User = require('./models/user'); 
+
 const artworkts = require('./models/artworkts');
 const { checkExistedList } = require('./functions/checkList');
 const { bookmarks } = require('./functions/bookmarks');
+const user = require('./models/user');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'public/images/uploads/'); 
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + path.extname(file.originalname));
+    },
+});
 
+const upload = multer({ storage: storage });
 mongoose.connect(mongoURL)
 .then(() => console.log('Database Connection Sucessfull!'))
 .catch((error) => console.log(error.message));
@@ -81,15 +91,7 @@ app.get('/about', (req, res) => {
     res.render('aboutuspage/aboutus');
 })
 
-app.get('/profilepage', (req, res) => {
-    const vistitor = new Visitor ({
-        username: 'John Doe', 
-        email: 'john@example.com', 
-    });
 
-    // Pass the vistitorData object to the rendering of the sidebar template
-    res.render('profilepage/profilepage', { vistitor});
-});
 
 app.get('/sidebar' ,(req,res) => {
     res.render('allartworkpage/sidebar')
@@ -140,7 +142,6 @@ app.get('/passwordArtist' ,(req, res) => {
 app.get('/passwordAdmin' ,(req, res) => {
     res.render('dashboard/passwordAdmin')
 })
-=======
 app.get('/dashUser', (req, res) => {
     res.render('dashboardpage/user');
 })
@@ -169,23 +170,7 @@ app.get('/edit-profile', (req, res) => {
     res.render('profilepage/edit-profile');
 });
 
-app.post('/edit-profile', async (req, res) => {
-    try {
-      // Assuming you have a form with fields like username, email, etc.
-      const { username, email } = req.body;
-  
-      // Assuming you have a visitor's ID (replace 'visitorId' with the actual field name)
-      const vistitorId = req.body.visitorId;
-  
-      // Update the visitor's data in the database
-      const updatedVisitor = await vistitor.findByIdAndUpdate(vistitorId, { username, email }, { new: true });
-  
-      res.redirect('/profilepage');
-    } catch (error) {
-      console.error('Error updating visitor profile:', error);
-      res.status(500).json({ success: false, message: 'Error updating profile' });
-    }
-});
+
 
 app.get('/browsing/all', async(req, res) => {
     res.render('allpage/allcategories');
@@ -215,3 +200,66 @@ app.get('/detail/:id', async (req, res) => {
     const foundAW = await artworkts.find({ _id: req.params.id })
     res.render('allpage/detailpage', {foundAW: foundAW , user: req.session.user})
 })
+
+app.get('/profile/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const foundUser = await user.findById(id);
+        if (!foundUser) {
+            res.status(500).json({ error: "User not found" });
+        }
+        
+        res.render('dashboard/profileVisitor', { user: foundUser });
+        
+    } catch (error) {
+        console.error(error);
+        res.send(error.message);
+    }
+});
+// Add this route before the /edit-profile POST route
+app.get('/edit-profile/:id', async (req, res) => {
+    const { id } = req.params; 
+
+    try {
+        const foundUser = await user.findById(id)
+        
+
+        if (!user) {
+            res.status(500).json({ error: "User not found" });
+        }
+
+        res.render('dashboard/edit', { user: foundUser });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+app.post('/edit-profile/:id', upload.single('avatar'), async (req, res) => {
+    const { id } = req.params;
+    
+
+    try {
+        const foundUser = await user.findById(id);
+        
+
+        if (!user) {
+            res.status(500).json({ error: "User not found" });
+        }
+
+        // Update the user's profile based on the form data
+        foundUser.username = req.body.username;
+        foundUser.email = req.body.email;
+        foundUser.avatar = req.file.filename;
+
+        // Save the updated user profile
+        await foundUser.save();
+
+        
+        res.redirect(`/profile/${foundUser._id}`);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
