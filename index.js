@@ -140,6 +140,10 @@ app.get('/error', (req, res) => {
     res.render('errorpage/errorpage.ejs', {user: req.session.user})
 })
 
+app.get('/artistArtwork', (req, res) => {
+    res.render('dashboard/artworkArtist')
+})
+
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
 });
