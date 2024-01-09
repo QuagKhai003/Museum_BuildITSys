@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Image Page</title>
+    <%- include('../components/rootstyle.ejs'); %>
     <link rel="stylesheet" href="/style/upload.css">
 </head>
 <body>
+  <%- include('../components/header.ejs'); %>
   <h1>PUBLISH YOUR ARTWORKS</h1>
   <div class="form-container">
     <form class="form" id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
@@ -48,5 +50,7 @@
       <button type="submit" id="upload-button" class="pl_btn">PUBLISH</button>
     </form>
   </div>
+  <%- include('../components/footer.ejs'); %>
+  <%- include('../components/rootscript.ejs'); %>
 </body>
 </html>

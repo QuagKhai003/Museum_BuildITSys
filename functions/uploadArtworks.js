@@ -1,24 +1,18 @@
-const express = require('express');
-const mongoose = require('mongoose');
 const multer = require('multer');
 const path = require('path');
-const app = express();
-const port = 3000;
-const { Upload } = require('../models/Upload');
-
-app.set('view engine', 'ejs');
-
-// Serving static files from the 'public' directory
-app.use('/public', express.static(path.join(__dirname, 'public')));
-
-// Use the `express.urlencoded` middle ware to pass incoming form data
-app.use(express.urlencoded({ extended: true}));
+const artwork = require('../models/artwork');
+const user = require('../models/user');
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'Artworks')
+    destination : (req, file, cb) => { //Cheking file type jpg, png, jpeg
+        if( file.mimetype === 'image/jpg'||
+            file.mimetype === 'image/png'||
+            file.mimetype === 'image/jpeg') {
+                cb(null, 'public/images/artwork');
+        } else{
+            cb(new Error('not image', false))
+        }
     },
-
     filename: (req, file, cb) => {
         console.log(file)
         cb(null, Date.now() + path.extname(file.originalname))
@@ -28,27 +22,36 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 // Function to handle artwork upload
-function uploadArtworks(req, res) {
-    // Create a new Upload document using the model
-    const artworkUpload = new Upload({
-        artworkName: req.body.artworkName,
-        artworkArtist: req.body.artworkArtist,
-        category: req.body.category,
-        artworkDescription: req.body.artworkDescription,
-        image: req.file.filename,
-        createAt: new Date(),
-    });
+const uploadArtworks = async (req, res, next) => {
+    try {
+        const artworkData = {
+            artworkName: req.body.artworkName,
+            artworkArtist: req.body.artworkArtist,
+            category: req.body.category,
+            artworkDescription: req.body.artworkDescription,
+            image: req.file.filename,
+        };
+    
+        const newAW = await artwork.create(artworkData)
+        // Save the document to MongoDB
+        const userLogged = await user.findOne({_id : req.session.user.id})
 
-    // Save the document to MongoDB
-    artworkUpload
-        .save()
-        .then(() => {
-            res.send('Artwork Uploaded');
-        })
-        .catch((error) => {
-            console.error(error);
-            res.status(500).send('Internal Server Error');
-        });
+        userLogged.uploads.push(newAW._id)
+
+        await userLogged.save()
+
+        console.log("Upload complete")
+
+        res.status(200).redirect("/upload")
+
+    } catch (err) {
+        console.log("Error while upload a new artwork:", err)
+        res.status(401).redirect("/error")
+    }
+    
 }
 
-module.exports = { uploadArtworks };
+module.exports = { 
+    uploadArtworks, 
+    upload,
+};

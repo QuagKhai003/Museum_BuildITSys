@@ -7,35 +7,41 @@
             <li><a href="/">Home</a></li>
             <li><a href="/all">Artworks</a></li>
             <li><a href="/about">About Us</a></li>
-            <li><a href="/upload">Upload</a></li>
-            <li>
-                <% if(!user) { %>
+            <% if(!user) { %>
+                <li>
                     <div class="button-container">
                         <a href="/login" class="button-login">Login</a>
                         <a href="/register" class="button-register">Register</a>
                     </div>
-                <% } %>
-                <% if (user) { %>
-                    <% if (user.role == 'visitor') { %>
+                </li>
+            <% } %>
+            <% if (user) { %>
+                <% if (user.role == 'visitor') { %>
+                    <li>
                         <div class="button-container">
                             <a href="/dashboardVisitor" class="button-login">PROFILE</a>
                             <a href="/logout" class="button-register">LOGOUT</a>
                         </div>
-                    <% } %>
-                    <% if (user.role == 'artist') { %>
+                    </li>   
+                <% } %>
+                <% if (user.role == 'artist') { %>
+                    <li><a href="/upload">Upload</a></li>
+                    <li>
                         <div class="button-container">
                             <a href="/dashboardArtist" class="button-login">PROFILE</a>
                             <a href="/logout" class="button-register">LOGOUT</a>
                         </div>
-                    <% } %>
-                    <% if (user.role == 'admin') { %>
+                    </li>
+                <% } %>
+                <% if (user.role == 'admin') { %>
+                    <li>
                         <div class="button-container">
                             <a href="/dashboardAdmin" class="button-login">PROFILE</a>
                             <a href="/logout" class="button-register">LOGOUT</a>
                         </div>
-                    <% } %>
-                <% } %> 
-            </li>
+                    </li>
+                <% } %>
+            <% } %> 
             <li><i class="staticSearchBtn fa-solid fa-magnifying-glass"></i></li>
         </ul>
         <div class="search">
@@ -55,11 +61,33 @@
             <a href="/">Home</a>
             <a href="/all">Artworks</a>
             <a href="/about">About Us</a>
-            <a href="/upload">Upload</a>
-            <div class="button-container">
-                <a href="/login" class="button-login">Login</a>
-                <a href="/register" class="button-register">Register</a>
-            </div>
+            <% if(!user) { %>
+                <div class="button-container">
+                    <a href="/login" class="button-login">Login</a>
+                    <a href="/register" class="button-register">Register</a>
+                </div>
+            <% } %>
+            <% if (user) { %>
+                <% if (user.role == 'visitor') { %>
+                    <div class="button-container">
+                        <a href="/dashboardVisitor" class="button-login">PROFILE</a>
+                        <a href="/logout" class="button-register">LOGOUT</a>
+                    </div>   
+                <% } %>
+                <% if (user.role == 'artist') { %>
+                    <a href="/upload">Upload</a>
+                    <div class="button-container">
+                        <a href="/dashboardArtist" class="button-login">PROFILE</a>
+                        <a href="/logout" class="button-register">LOGOUT</a>
+                    </div>
+                <% } %>
+                <% if (user.role == 'admin') { %>
+                    <div class="button-container">
+                        <a href="/dashboardAdmin" class="button-login">PROFILE</a>
+                        <a href="/logout" class="button-register">LOGOUT</a>
+                    </div>
+                <% } %>
+            <% } %>
         </div>
     <!-- </div> -->
 </header>
