@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const multer = require('multer');
+const path = require('path');
 const mongoose = require('mongoose');
 const mongoURL = 'mongodb+srv://s3975831:khai0123456@museumdb.wgffvrk.mongodb.net/?retryWrites=true&w=majority';
 const PORT = 3000;
@@ -12,6 +14,7 @@ const vistitor = require('./models/vistitor');
 const artworkts = require('./models/artworkts');
 const { checkExistedList } = require('./functions/checkList');
 const { bookmarks } = require('./functions/bookmarks');
+const { uploadArtworks } = require('./functions/uploadArtworks');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -155,3 +158,23 @@ app.get('/detail/:id', async (req, res) => {
     const foundAW = await artworkts.find({ _id: req.params.id })
     res.render('allpage/detailpage', {foundAW: foundAW , user: req.session.user})
 })
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'Artworks')
+    },
+
+    filename: (req, file, cb) => {
+        console.log(file)
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+
+const upload = multer({storage: storage});
+
+app.get('/upload', (req, res) => {
+    res.render('uploadpage/upload');
+})
+
+app.post('/upload', upload.single('image'), uploadArtworks);
+
