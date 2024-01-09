@@ -1,0 +1,376 @@
+/* import font */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&display=swap');
+
+/* create default styling variables */
+:root{
+    --golden: #CEA962;
+    --black: #13130D;
+    --greycement: #A1A098;
+    --bewhite: #EEEDE0;
+    --white: #F7F6EC;
+    --title-text: 'Open Sans', sans-serif;
+    --normal-text: 'Merriweather', serif;
+}
+
+body {
+    background-color: var(--bewhite);
+    margin: 0;
+}
+
+header {
+    background: var(--black);
+    font-family: var(--normal-text);
+    padding: 20px 40px;
+    justify-content: space-between;
+}
+
+.logo-container {
+    height: 60px !important;
+}
+
+.Homepage-logo {
+    width: 100% !important; 
+    object-fit: cover !important;
+}
+
+/* styling header */
+.Header-list {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.Header-list ul {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+.Header-list ul li {
+    position: relative;
+    list-style: none;
+}
+
+.Header-list ul li a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: var(--white);
+    text-transform: uppercase;
+}
+
+/* creating hovering underline effect for different section */
+.Header-list ul li a:not(.button-login):not(.button-register)::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: var(--white);
+    bottom: -2px;
+    transform: scaleX(0);
+    transition: transform  0.2s ease-in-out;
+    transform-origin: center;
+}
+
+.Header-list ul li a:hover:not(.button-login):not(.button-register)::before {
+    transform: scaleX(1);
+    transform-origin: center;
+}
+
+/* make login and register button has same width */
+.button-container {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0rem 0.5rem;
+}
+
+/* Style for Login and Register button */
+.button-login,
+.button-register {
+    text-align: center;
+    border: none;
+    text-decoration: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 40px; /* Border radius for the button */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-login {
+    color: var(--black);
+    background-color: var(--greycement);
+}
+
+.button-register {
+    color: var(--white);
+    background-color: var(--golden);
+}
+
+.staticSearchBtn {
+    font-size: 1.6rem;
+    color: var(--white);
+    cursor: pointer;
+}
+
+/* style search box and hide it on the right side to create transition from right to left */
+.search {
+    opacity: 0;
+    position: fixed;
+    height: 100px;
+    width: 0%;
+    right: -300rem;
+    gap: 20px;
+    padding: 20px 40px;
+}
+
+.search.open {
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    background-color: var(--bewhite);
+    width: 100%;
+    top: 0px;
+    right: 0px;
+    transition: right 0.75s ease-in-out, width 0.75s ease-in-out;
+}
+
+.searchbtn,
+.closebtn {
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+/* Add opacity effect search button, search input, close button after clicking */
+.searchbtn {
+    opacity: 0;
+    color: var(--black);
+}
+
+.searchbtn.open {
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+}
+
+input.searchInput {
+    font-size: 1.5rem;
+    border: none;
+    outline: none;
+    opacity: 0;
+    background: transparent;
+    transition: opacity 1.5s ease-in-out;
+}
+
+input.searchInput.open {
+    flex-grow: 1;
+    opacity: 1;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--black);
+}
+
+.closebtn.fa-solid.fa-x {
+    opacity: 0;
+    cursor: pointer;
+}
+
+.closebtn.fa-solid.fa-x.open {
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+    color: var(--black);
+}
+
+/* hide hamburger menu and menu section for devices' screen above 768 */
+.menutoggle.fa-solid.fa-bars {
+    display: none;
+    position: relative;
+}
+
+.menu-container {
+    position: fixed;
+    opacity: 0;
+    top: -10rem;
+}
+
+/* style ling footer */
+.footer{
+    margin-top: 20rem;
+    font-family: var(--normal-text);
+    background-color: black;
+    padding: 70px 0;
+}
+.footer-col{
+    width: 33%;
+    padding: 0 15px;
+}
+
+.footer-col h4{
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-transform: capitalize;
+    margin-bottom: 35px;
+    font-weight: 500;
+    position: relative;
+}
+
+.footer-col h4::before{
+    content: '';
+    position: absolute;
+    left:0;
+    bottom: -10px;
+    background-color: yellow;
+    height: 2px;
+    box-sizing: border-box;
+    width: 50px;
+}
+
+.footer-col ul li:not(:last-child){
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a{
+    font-size: 1rem;
+    text-transform: capitalize;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 300;
+    color: #bbbbbb;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.footer-col ul li a:hover{
+    color: #ffffff;
+    padding-left: 8px;
+}
+
+.footer-col .social-links a{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-color: rgba(255,255,255,0.2);
+    margin:0 10px 10px 0;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    color: #ffffff;
+    transition: all 0.5s ease;
+}
+
+.footer-col .social-links a:hover{
+    color: #24262b;
+    background-color: #ffffff;
+}
+
+.footer-img {
+    text-align: center; 
+    margin-top: 20px; 
+}
+
+.footer-img img {
+    display: inline-block; 
+}
+
+.footer-line {
+    width: 80%; /* Adjust the width as needed */
+    height: 1px; /* Line height */
+    background-color: #ffffff; /* Line color */
+    margin-top: 20px; /* Adjust the top margin based on your preference */
+    margin-left: auto; /* Center the line */
+    margin-right: auto; /* Center the line */
+}
+
+/* Make element fit in screen below 1024px */
+@media only screen and (max-width: 1024px) {
+    header {
+        padding: 20px 20px;
+    }
+    
+    .Header-list ul {
+        gap: 10px;
+    }
+    
+
+    footer .container .row {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 2rem;
+    }
+
+    .footer-col {
+        width: 100%;
+    }
+    
+
+    .footer-col h4 {
+        font-size: 2rem;
+    }
+
+    .footer-col ul li a {
+        font-size: 1.5rem;
+    }
+}
+
+/* style for hamburger menu and menu section for screen below 768px */
+@media only screen and (max-width: 768px) {  
+    .Header-list ul,
+    .search {
+        display: none;
+    }
+
+    .menu-container.open {
+        opacity: 1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        transition: top 0.5s ease-in-out;
+        transform: top;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        gap: 2rem;
+        padding: 32px;
+        width: 100%;
+        height: max-content;
+        background-color: var(--bewhite);
+        z-index: 4;
+    }
+
+    .search-menu {
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 1.5rem;
+        color: var(--black);
+    }
+
+    .searchMenuInput {
+        border: none;
+        outline: none;
+        flex-grow: 1;
+        background-color: transparent;
+        padding-bottom: 2px;
+        border-bottom: 2px solid var(--black);
+    }
+
+    .menu-container a {
+        color: var(--black);
+        text-decoration: none;
+    }
+
+    .menu-container a.button-register {
+        color: var(--white);
+    }
+
+    .menutoggle.fa-solid.fa-bars {
+        display: block;
+        color: var(--bewhite);
+        font-size: 1.6rem;
+        cursor: pointer;
+    }
+}
+
+@media only screen and (max-width: 425px) {  
+    
+} 
