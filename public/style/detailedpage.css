@@ -1,0 +1,58 @@
+.image-container {
+    position: relative;
+    width: 50%;
+    margin-top: 5vw;
+    margin-bottom: 5vw;
+}
+
+.hover-image {
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+    display: block; /* This removes the bottom space under the image */
+}
+
+.artwork-detail-section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.hover-image:hover {
+    transform: scale(1.1); /* Adjust scale factor as needed */
+}
+
+.image-info {
+    background-color: rgba(255,255,255,0.8); /* Adjust color and opacity as needed */
+    padding: 10px; 
+    margin-top: 10px; /* Add space between the image and the text */
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Add a shadow for depth */
+    position: relative; /* Make the image-info a relative container */
+}
+
+.artwork-title {
+    font-size: 4vw; /* Responsive font size */
+    margin-bottom: 10px;
+}
+
+.author, .description, .category {
+    font-size: 1.5vw; /* Responsive font size */
+    margin-bottom: 10px;
+}
+
+.author, .category {
+    font-style: italic;
+}
+
+.bookmark-container {
+    position: absolute; /* Position the container absolutely */
+    bottom: 10px; 
+    right: 10px; /* Position from the right */
+}
+
+.bookmark-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+}

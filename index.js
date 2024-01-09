@@ -158,6 +158,10 @@ app.get('/dashboard', (req, res) => {
     res.render('dashboardpage/adminTest.ejs')
 })
 
+app.get('/detailedpage', (req, res) => {
+    res.render('detailedpage/detailedpage.ejs')
+})
+
 app.get('/error', (req, res) => {
     res.render('errorpage/errorpage.ejs')
 })
