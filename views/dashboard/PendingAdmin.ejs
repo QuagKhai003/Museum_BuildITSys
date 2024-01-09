@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../components/rootstyle.ejs'); %>
+    <link rel="stylesheet" href="/style/sidebar.css">
+    <link rel="stylesheet" href="/style/profilepage.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('../components/header.ejs'); %>
+    <main>
+        <div class="container-fluid dashboard-section">
+            <!-- Button to display the dashboard responsive -->
+            <div class="dropdown dashboard-button">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Dashboard
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="#">Pending Artwork</a></li>
+                    <!-- <li><a class="dropdown-item" href="#">Bookmark</a></li> -->
+                </ul>
+            </div>
+
+            <!-- SECTION TO DISPLAY THE DASHBOARD SECTION -->
+            <div class="row row-eq-height h-100">
+                <!-- SIDEBAR MENU -->
+                <div class="dashboard-menu col-lg-4 col-md-4">
+                    <nav>
+                        <div class="menu-items">
+                            <ul class="nav-link"></ul>
+                            <li>
+                                <a href="" class="bg-dark text-light p-2 rounded">
+                                    <i class="fa-solid fa-user"></i>
+                                    <span class="link-name">Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" class="p-2">
+                                    <i class="fa-solid fa-palette"></i>
+                                    <span class="link-name">Pending Artwork</span>
+                                </a>
+                            </li>
+                        </div>
+                    </nav>
+                </div>
+
+                <!-- CONTENT SECTION -->
+                <section class="col-lg-8 col-md-8" > <!-- Change 'yourcolor' to the desired color -->
+                    <div class="container py-5">
+                        <!-- Your existing content goes here -->
+                        <section > <!-- Change 'yourcolor' to the desired color -->
+                            <div class="container py-5">
+                                <div class="row justify-content-center mb-3">
+                                    <div class="col-12">
+                                        <div class="d-flex flex-wrap justify-content-around">
+                                            <!-- Add more similar card sections if needed -->
+                                            <div class="card shadow-0 border rounded-3 mb-4" style="width: 25rem;">
+                                                <div class="card-body text-center">
+                                                    <div class="mb-4">
+                                                        <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                                            <img
+                                                                src="\images\artwork\1704796510893.jpg"
+                                                                class="w-100" />
+                                                            <a href="#!">
+                                                                <div class="hover-overlay">
+                                                                    <div
+                                                                        class="mask"
+                                                                        style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <h5 class="mb-0">Mona Lisa</h5>
+                                                    <div class="d-flex flex-row align-items-center mb-1 justify-content-center">
+                                                    </div>
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <button class="btn btn-outline-success btn-sm mb-2" type="button">
+                                                            Approve
+                                                        </button>
+                                                        <button class="btn btn-outline-danger btn-sm"
+                                                            type="button">
+                                                            Decline
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Repeat the card structure for additional items -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <%- include('../components/rootscript.ejs'); %>
+    <%- include('../components/footer.ejs'); %>
+</body>
+
+</html>

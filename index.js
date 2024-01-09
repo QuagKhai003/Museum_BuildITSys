@@ -89,6 +89,9 @@ app.get('/edit' ,(req, res) => {
 res.render('dashboard/edit')
 })
 
+app.get('/pending', (req, res) => {
+    res.render('dashboard/PendingAdmin', {user: req.session.user})
+})
 
 app.get('/editArtist' ,(req, res) => {
     res.render('dashboard/editArtist')
