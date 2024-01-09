@@ -1,7 +1,5 @@
 const express = require('express');
 const app = express();
-const multer = require('multer');
-const path = require('path');
 const mongoose = require('mongoose');
 const mongoURL = 'mongodb+srv://s3975831:khai0123456@museumdb.wgffvrk.mongodb.net/?retryWrites=true&w=majority';
 const PORT = 3000;
@@ -10,12 +8,11 @@ const PORT = 3000;
 const session = require('express-session');
 const { visitorRegister, artistRegister } = require('./functions/authRegister');
 const { authLogin } = require('./functions/authLogin');
-const Visitor = require('./models/vistitor'); // Correct the model import
-const vistitor = require('./models/vistitor');
 const artworkts = require('./models/artworkts');
 const { checkExistedList } = require('./functions/checkList');
 const { bookmarks } = require('./functions/bookmarks');
-const { uploadArtworks } = require('./functions/uploadArtworks');
+const { uploadArtworks, upload } = require('./functions/uploadArtworks');
+const user = require('./models/user');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -50,19 +47,6 @@ app.get('/register', (req, res) => {
     res.render('registeringpage/register');
 })
 
-app.get('/profilepage', async (req, res) => {
-    try {
-      const currentVisitorId = req.session.visitorId; 
-  
-      const currentVisitor = await vistitor.findById(currentVisitorId);
-  
-      res.render('profilepage/profilepage', { vistitor: currentVisitor });
-    } catch (error) {
-      console.error('Error fetching visitor data:', error);
-      res.send('Internal Server Error');
-    }
-});
-
 app.post('/register/visitor/', visitorRegister, (req,res) => {
     console.log(req.session.user)
     console.log("Visitor register route end")
@@ -81,16 +65,6 @@ app.post('/login', authLogin, (req, res) => {
 app.get('/about', (req, res) => {
     res.render('aboutuspage/aboutus');
 })
-
-app.get('/profilepage', (req, res) => {
-    const vistitor = new Visitor ({
-        username: 'John Doe', 
-        email: 'john@example.com', 
-    });
-
-    // Pass the vistitorData object to the rendering of the sidebar template
-    res.render('profilepage/profilepage', { vistitor});
-});
 
 app.get('/sidebar' ,(req,res) => {
     res.render('allartworkpage/sidebar')
@@ -163,32 +137,28 @@ app.get('/detailedpage', (req, res) => {
 })
 
 app.get('/error', (req, res) => {
-    res.render('errorpage/errorpage.ejs')
+    res.render('errorpage/errorpage.ejs', {user: req.session.user})
 })
 
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
 });
 
-app.get('/edit-profile', (req, res) => {
-    res.render('profilepage/edit-profile');
-});
-
 app.post('/edit-profile', async (req, res) => {
     try {
       // Assuming you have a form with fields like username, email, etc.
-      const { username, email } = req.body;
+      const { firstName, lastName, username, email } = req.body;
   
       // Assuming you have a visitor's ID (replace 'visitorId' with the actual field name)
-      const vistitorId = req.body.visitorId;
+      const userID = req.session.user.id;
   
       // Update the visitor's data in the database
-      const updatedVisitor = await vistitor.findByIdAndUpdate(vistitorId, { username, email }, { new: true });
+      const updatedVisitor = await user.findByIdAndUpdate(userID, { firstName, lastName, username, email }, { new: true });
   
-      res.redirect('/profilepage');
+      res.status(200).redirect('/');
     } catch (error) {
-      console.error('Error updating visitor profile:', error);
-      res.status(500).json({ success: false, message: 'Error updating profile' });
+      console.error('Error while updating profile:', error);
+      res.status(401).redirect("/error")
     }
 });
 
@@ -196,46 +166,33 @@ app.get('/all', async(req, res) => {
     res.render('allpage/allcategories');
 })
 
-app.post('/upload', async (req, res) => {
-    const newAW = {
-        artworkName: req.body.name,
-        categories: req.body.categories,
-    }
+// app.post('/upload', async (req, res) => {
+//     const newAW = {
+//         artworkName: req.body.name,
+//         categories: req.body.categories,
+//     }
 
-    await artworkts.create(newAW)
-    .then(() => {console.log("Create aw success")})
-    .catch((err) => {console.log("Unable to create aw: ", err)})
-})
+//     await artworkts.create(newAW)
+//     .then(() => {console.log("Create aw success")})
+//     .catch((err) => {console.log("Unable to create aw: ", err)})
+// })
 
-app.post('/detail/:id/save', checkExistedList, bookmarks, async(req, res) => {
-    console.log("bookmark route end")
-})
+// app.post('/detail/:id/save', checkExistedList, bookmarks, async(req, res) => {
+//     console.log("bookmark route end")
+// })
 
-app.get('/allartworktest', async (req, res) => {
-    const allAW = await artworkts.find({})
-    res.render('allpage/allartworkpagefortest', {allAW: allAW, user: req.session.user})
-})
+// app.get('/allartworktest', async (req, res) => {
+//     const allAW = await artworkts.find({})
+//     res.render('allpage/allartworkpagefortest', {allAW: allAW, user: req.session.user})
+// })
 
 app.get('/detail/:id', async (req, res) => {
     const foundAW = await artworkts.find({ _id: req.params.id })
     res.render('allpage/detailpage', {foundAW: foundAW , user: req.session.user})
 })
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'Artworks')
-    },
-
-    filename: (req, file, cb) => {
-        console.log(file)
-        cb(null, Date.now() + path.extname(file.originalname))
-    }
-})
-
-const upload = multer({storage: storage});
-
 app.get('/upload', (req, res) => {
-    res.render('uploadpage/upload');
+    res.render('uploadpage/upload', {user: req.session.user});
 })
 
 app.post('/upload', upload.single('image'), uploadArtworks);
