@@ -15,3 +15,9 @@
     border-radius: 5px;
     object-fit: cover;
 }
+
+@media (max-width: 768px) {
+    .photo-gallery {
+        flex-direction: column;
+    }
+}
