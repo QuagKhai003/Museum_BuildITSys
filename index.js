@@ -8,6 +8,7 @@ const PORT = 3000;
 const session = require('express-session');
 const { visitorRegister, artistRegister } = require('./functions/authRegister');
 const { authLogin } = require('./functions/authLogin');
+const Visitor = require('./models/vistitor'); // Correct the model import
 const vistitor = require('./models/vistitor');
 const artworkts = require('./models/artworkts');
 const { checkExistedList } = require('./functions/checkList');
@@ -80,6 +81,66 @@ app.get('/about', (req, res) => {
     res.render('aboutuspage/aboutus');
 })
 
+app.get('/profilepage', (req, res) => {
+    const vistitor = new Visitor ({
+        username: 'John Doe', 
+        email: 'john@example.com', 
+    });
+
+    // Pass the vistitorData object to the rendering of the sidebar template
+    res.render('profilepage/profilepage', { vistitor});
+});
+
+app.get('/sidebar' ,(req,res) => {
+    res.render('allartworkpage/sidebar')
+})
+
+app.get('/dashboardTest', (req, res) => {
+    res.render('dashboard/dashboardTest')
+})
+
+app.get('/dashboardVisitor', (req, res) => {
+    res.render('dashboard/profileVisitor')
+})
+
+app.get('/dashboardArtist', (req, res) => {
+    res.render('dashboard/profileAritst')
+})
+app.get('/dashboardAdmin', (req, res) => {
+    res.render('dashboard/profileAdmin')
+})
+
+app.get('/edit' ,(req, res) => {
+res.render('dashboard/edit')
+})
+
+
+app.get('/editArtist' ,(req, res) => {
+    res.render('dashboard/editArtist')
+})
+
+
+app.get('/editAdmin' ,(req, res) => {
+    res.render('dashboard/editAdmin')
+})
+
+app.get('/editArtist' ,(req,res) => {
+    res.render('dashboard/editArtist')
+})
+
+
+app.get('/password' ,(req, res) => {
+res.render('dashboard/password')
+})
+
+app.get('/passwordArtist' ,(req, res) => {
+    res.render('dashboard/passwordArtist')
+})
+
+app.get('/passwordAdmin' ,(req, res) => {
+    res.render('dashboard/passwordAdmin')
+})
+=======
 app.get('/dashUser', (req, res) => {
     res.render('dashboardpage/user');
 })
@@ -99,7 +160,6 @@ app.get('/dashboard', (req, res) => {
 app.get('/error', (req, res) => {
     res.render('errorpage/errorpage.ejs')
 })
-
 
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
