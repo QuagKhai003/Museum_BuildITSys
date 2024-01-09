@@ -17,7 +17,7 @@ body {
 
 h1 {
     font-size: 128px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--title-text);
     font-style: strong;
     text-align: center;
     margin-top: 0px;
@@ -25,7 +25,7 @@ h1 {
 .description {
     color: #FFF;
     font-size: 36px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:  var(--normal-text);
     margin: 0 auto;
 }
 
@@ -44,7 +44,7 @@ h1 {
 h2 {
     color: #FFF;
     font-size: 64px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--title-text);
     font-style: strong;
     margin: 0 auto;
 }
@@ -301,17 +301,20 @@ h2 {
 .Art-message {
     background-color: white;
     text-align: center;
-    padding: 20px;
+    padding: 50px 0 50px 0;
     color: black;
 }
 
 .Art-message h2 {
    color: black;
+   font-family: var(--title-text);
 }
 .art-para {
+    font-family: var(--normal-text);
     font-size: 18px;
     color: black;
     margin-bottom: 10px;
+    font-style: italic;
 }
 
 .art-mess-button {
@@ -322,10 +325,10 @@ h2 {
     padding: 15px 32px; /* Vertical and horizontal padding */
     text-align: center; /* Center the text */
     text-decoration: none; /* Removes underline */
-    font-size: 24px;
+    font-size: 20px;
     margin: 4px 2px;
     cursor: pointer; /* Changes the cursor when you hover over the button */
-    
+    font-family: var(--normal-text);
 }
 
 .art-mess-button:hover {
@@ -347,10 +350,53 @@ h2 {
   }
 
 
+@media only screen and (max-width: 1200px) {
+    .museum-name-main h1{
+        font-size: 120px;
+    }
+
+.description {
+    text-align: center;
+}
+    h2 {
+        text-align: center;
+    }
+    .museum-name-right h2 {
+        margin-right: 0;
+    }
+    .museum-name h2 {
+        margin-left: 0;
+        
+    }
+
+.first-content .explore-button {
+    margin-top: 100px;
+}
+
+    .scupture-content  .explore-button {
+        margin-right: 0;
+    }
+    .fresco-content .explore-button, .painting-content .explore-button {
+        margin-left: 0;
+    }
+    .fresco-content, .painting-content {
+        text-align: center;
+    }
+    .scupture-content {
+        text-align: center;
+    }
  
+}
 
 @media only screen and (max-width: 800px) {
-  
+    .museum-name-main h1{
+        font-size: 100px;
+    }
+    .description {
+        font-size: 40px;
+        text-align: center;
+    }
+
 h2 {
     text-align: center;
 }
@@ -359,7 +405,9 @@ h2 {
 }
 .museum-name h2 {
     margin-left: 0;
-    
+}
+.first-content .explore-button {
+    margin-top: 50px;
 }
 .scupture-content  .explore-button {
     margin-right: 0;
@@ -378,10 +426,10 @@ h2 {
 
 @media only screen and (max-width: 576px) {
     .museum-name-main h1{
-        font-size: 60px;
+        font-size: 80px;
     }
     .description {
-        font-size: 20px;
+        font-size: 30px;
         text-align: center;
     }
     h2 {

@@ -4,10 +4,13 @@
 /* create default styling variables */
 :root{
     --golden: #CEA962;
+    --begolden: #f8cb78;
+    --hovergolden: #fadba0;
     --black: #13130D;
     --greycement: #A1A098;
     --bewhite: #EEEDE0;
     --white: #F7F6EC;
+    --hoverwhite: #f7eac5;
     --title-text: 'Open Sans', sans-serif;
     --normal-text: 'Merriweather', serif;
 }
@@ -146,11 +149,12 @@ header {
 .searchbtn {
     opacity: 0;
     color: var(--black);
+    transition-delay: 0.2s; /* Reduce the delay */
 }
 
 .searchbtn.open {
     opacity: 1;
-    transition: opacity 1.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
 }
 
 input.searchInput {
@@ -160,6 +164,7 @@ input.searchInput {
     opacity: 0;
     background: transparent;
     transition: opacity 1.5s ease-in-out;
+    transition-delay: 0.2s; /* Reduce the delay */
 }
 
 input.searchInput.open {
@@ -172,6 +177,7 @@ input.searchInput.open {
 .closebtn.fa-solid.fa-x {
     opacity: 0;
     cursor: pointer;
+    transition-delay: 0.2s; /* Reduce the delay */
 }
 
 .closebtn.fa-solid.fa-x.open {
@@ -384,5 +390,22 @@ input.searchInput.open {
 }
 
 @media only screen and (max-width: 425px) {  
+    footer .container .row {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 2rem;
+    }
+
+    .footer-col {
+        width: 100%;
+    }
     
+
+    .footer-col h4 {
+        font-size: 1rem;
+    }
+
+    .footer-col ul li a {
+        font-size: 0.75rem;
+    }
 } 

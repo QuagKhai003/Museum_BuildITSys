@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('../components/rootstyle.ejs'); %>
+    <link rel="stylesheet" href="/style/dashboard/profile.css">
+</head>
+<body>
+    <%- include('../components/header.ejs'); %>
+
+    <div class="all-section">
+        <div class="all-hero">
+            <img src="/images/background/background7.jpg" alt="hero background for all categories in art">
+            <div class="all-herocontent">
+                <h1 class="hero-title">
+                    Find Your Mind
+                </h1>
+                <h3 class="hero-description">
+                    Feel the Freedom: Unleash Your Artistic Mind and Immerse Yourself in this creative space. Here, every painting, sculpture, and fresco is a pathway to self-discovery. Explore and find your favorites, for in this boundless realm of art, your soul is free to dance with the limitless hues of creativity.
+                </h3>
+            </div>
+        </div>
+        <div class="all-category">
+            <div class="category-title">
+                <h1>Our Most Popular</h1>
+            </div>
+            <div class="category-content">
+                <div class="content-slider">
+                    <a class="slide" href="#">
+                        <img src="/images/background/scroll1.jpg" alt="test slide effect picture">
+                    </a>
+                    <a class="slide" href="#">
+                        <img src="/images/background/scroll1.jpg" alt="test slide effect picture">
+                    </a>
+                    <a class="slide" href="#">
+                        <img src="/images/background/scroll1.jpg" alt="test slide effect picture">
+                    </a>
+                    <a class="slide" href="#">
+                        <img src="/images/background/scroll1.jpg" alt="test slide effect picture">
+                    </a>
+                    <a class="slide" href="#">
+                        <img src="/images/background/scroll1.jpg" alt="test slide effect picture">
+                    </a>
+                    <a class="slide" href="#">
+                        <img src="/images/background/background1.jpg" alt="test slide effect picture">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="all-categories">
+            <div class="categories-titles">
+                <p class="title 1 active">
+                    Painting
+                </p>
+                <p class="title 2">
+                    Sculpture
+                </p>
+                <p class="title 3">
+                    Fresco
+                </p> 
+            </div>
+            <div class="layer">
+                <div class="categories-content active">
+                    <div class="categories-summary">
+                        <div class="background">
+                            <img src="/images/background/background11.jpg" alt="painting category thumbnail">
+                        </div>
+                        <div class="description">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam placeat totam, nesciunt repudiandae obcaecati fugiat nemo. Nesciunt suscipit illum harum, quis, quo ratione veritatis dolore natus architecto saepe, ipsam fuga.
+                        </div>
+                        <div class="link">
+                            <a href="#" class="view-link">
+                                <p>View all painting</p>
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="categories-content">
+                    <div class="categories-summary">
+                        <div class="background">
+                            <img src="/images/background/background9.jpg" alt="painting category thumbnail">
+                        </div>
+                        <div class="description">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam placeat totam, nesciunt repudiandae obcaecati fugiat nemo. Nesciunt suscipit illum harum, quis, quo ratione veritatis dolore natus architecto saepe, ipsam fuga.
+                        </div>
+                        <div class="link">
+                            <a href="#" class="view-link">
+                                <p>View all sculptures</p>
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="categories-content">
+                    <div class="categories-summary">
+                        <div class="background">
+                            <img src="/images/background/background10.jpg" alt="painting category thumbnail">
+                        </div>
+                        <div class="description">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam placeat totam, nesciunt repudiandae obcaecati fugiat nemo. Nesciunt suscipit illum harum, quis, quo ratione veritatis dolore natus architecto saepe, ipsam fuga.
+                        </div>
+                        <div class="link">
+                            <a href="#" class="view-link">
+                                <p>View all fresco</p>
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../components/footer.ejs'); %>
+    <%- include('../components/rootscript.ejs'); %>
+    <script src="/js/allcategories/clickcategory.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -25,6 +25,7 @@
 
 .background-title {
     background-color: var(--white);
+    margin-bottom: 5rem;
 }
 
 .core-value{

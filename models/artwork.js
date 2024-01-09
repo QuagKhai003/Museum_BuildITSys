@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const artworkSchema = mongoose.Schema({
-    name: {
+    artworkName: {
+        type: String,
+        require: true,
+    },
+    artworkDescription: {
         type: String,
         require: true,
     },
@@ -9,13 +13,17 @@ const artworkSchema = mongoose.Schema({
         type: String,
         require: true
     },
-    info: {
-        type: String,
-        require: true,
-    },
     img: {
         type: String,
         require: true
+    },
+    status: {
+        type: String,
+        default: 'Pending'
+    },
+    categories: {
+        type: String,
+        enum: ['painting', 'fresco', 'sculpture']
     },
     createAt: {
         type: Date,
