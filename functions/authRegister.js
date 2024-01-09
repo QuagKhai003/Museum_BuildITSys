@@ -1,78 +1,73 @@
-const Artist = require('../models/artist');
-const Visitor = require('../models/vistitor');
+const user = require('../models/user');
 const bcrypt = require('bcrypt');
-const { checkExisted } = require('./checkExist');
 
 const visitorRegister = async (req, res, next) => {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10)
-    .then((hash) => { return hash })
-    .catch(((err) => { console.log('Cannot hash password') })); //Encrypted the password
+    try {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10)
 
-    const existedU = await checkExisted(req)
-
-    if (!existedU) {
         const data = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             username: req.body.username,
             password: hashedPassword,
             email: req.body.email,
+            role: 'visitor',
         }
-        
-        console.log(data)
 
-        await Visitor.create(data)                                    //Create a new visitor
-        .then(() => {
-            console.log("Create a visitor successfully")
-            next()
-        })
-        .catch((e) => {
-            console.log("Error while creating a new visitor")
-            throw e
-        })
+        const newUser = await user.create(data)
+        console.log("Visitor created successfully:", newUser);
+        
+        req.session.user = {        //Attach user info with found data
+            id: newUser._id.toString(),
+            name: newUser.username,
+            role: newUser.role
+        }
+
+        res.status(200).redirect('/')
+        next()
+
+    } catch (err) {
+        console.log("Error while creating a new visitor", err);
+        res.status(400).redirect("/register")
+        next()
     }
-    else {
-        console.log('Please register with another account')
-        return null
-    }      
 }
 
 const artistRegister = async (req, res, next) => {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10)
-    .then((hash) => { return hash })
-    .catch(((err) => { console.log('Cannot hash password') })); //Encrypted the password
+    try {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10)
 
-    const existedU = await checkExisted(req)
-    .then((user) => { return user })
-    .catch((err) => {
-        console.log('User doesnt exist')
-    })
-    
-    if(!existedU) {
         const data = {
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             username: req.body.username,
             password: hashedPassword,
             email: req.body.email,
+            role: 'artist',
         }
 
-        console.log(data)
+        const newUser = await user.create(data)
 
-        await Artist.create(data)
-        .then(() => {
-            console.log("Create a artist successfully")
-            next()
-        })
-        .catch((e) => {
-            console.log("Error while creating a new artist")
-            throw e
-        }) 
-    } else {
-        console.log('Please register with another account')
-        return null
+        console.log("Artist created successfully:", newUser);
+        
+        req.session.user = {        //Attach user info with found data
+            id: newUser._id.toString(),
+            name: newUser.username,
+            role: newUser.role
+        }
+
+        res.status(200).redirect('/')
+        next()
+
+    } catch (err) {
+        console.log("Error while creating a new artist", err);
+        res.status(400).redirect("/register")
+        next()
     }
 }
 
+
 module.exports = {
     visitorRegister,
-    artistRegister,
+    artistRegister
 }

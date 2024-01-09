@@ -1,49 +1,27 @@
-const Visitor = require("../models/vistitor");
-const Artist = require("../models/artist");
+const user = require("../models/user")
 const bcrypt = require("bcrypt");
-const { checkExisted } = require("./checkExist");
 
 const authLogin = async(req, res, next) => {
-    // const existedV = await Visitor.findOne({ username: req.body.username })
-    // .then((user) => { return user })
-    // .catch((err) => { console.log('Can not find an existed visitor')})
+    try {
+        const ExistedUser = await user.findOne({username: req.body.username})
 
-    // const existedA = await Artist.findOne({ username: req.body.username })
-    // .then((user) => { return user })
-    // .catch((err) => { console.log('Can not find an existed Artist')})
-
-    // if (existedA || existedV) {
-    //     const user = existedA || existedV;
-    //     console.log(req.body.password)
-    //     console.log(user.password)
-    //     if (bcrypt.compareSync(req.body.password, user.password)) {
-    //         return user
-    //     } else {
-    //         console.log('Wrong username or password')
-    //         return null
-    //     }
-    // } else {
-    //     console.log('The user is not existed')
-    //     return null
-    // }
-
-    const existedU = await checkExisted(req)
-    .then((user) => { return user })
-    .catch((err) => {
-        console.log('User doesnt exist')
-    })
-
-    if(existedU) {
-        if (bcrypt.compareSync(req.body.password, existedU.password)) {
-            return existedU
+        if (bcrypt.compareSync(req.body.password, ExistedUser.password)) {
+            req.session.user = {        
+                id: ExistedUser._id.toString(),
+                name: ExistedUser.username,
+                role: ExistedUser.role
+            }
+            console.log('Login success')
+            res.status(200).redirect('/')
         }
         else {
             console.log('Wrong username or password')
-            return null
+            res.status(401).redirect('/login')
         }
-    } else {
-        console.log('User not found')
-        return null
+        next()  
+    } catch (err) {
+        console.log("Error while verfication: ", err);
+        res.status(500).redirect('/error')
     }
 }
 
