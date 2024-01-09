@@ -12,7 +12,7 @@ const authLogin = async(req, res, next) => {
                 role: ExistedUser.role
             }
             console.log('Login success')
-            res.status(200).redirect('/')
+            res.status(200).render('homepage/homepage', {user: req.session.user})
         }
         else {
             console.log('Wrong username or password')

@@ -10,6 +10,7 @@ const PORT = 3000;
 const session = require('express-session');
 const { visitorRegister, artistRegister } = require('./functions/authRegister');
 const { authLogin } = require('./functions/authLogin');
+const Visitor = require('./models/vistitor'); // Correct the model import
 const vistitor = require('./models/vistitor');
 const artworkts = require('./models/artworkts');
 const { checkExistedList } = require('./functions/checkList');
@@ -36,7 +37,9 @@ app.use(session({
 }));
 
 app.get('/', (req, res) => {
-    res.render('homepage/homepage');
+    req.session.user
+    console.log(req.session.user)
+    res.render('homepage/homepage', {user: req.session.user});
 });
 
 app.get('/login', (req, res) => {
@@ -74,13 +77,69 @@ app.post('/login', authLogin, (req, res) => {
     console.log(req.session.user)
     console.log("Login route end")
 })
-
-app.get('/all', (req, res) => {
-    res.render('allartworkpage/allartwork');
-})
   
 app.get('/about', (req, res) => {
     res.render('aboutuspage/aboutus');
+})
+
+app.get('/profilepage', (req, res) => {
+    const vistitor = new Visitor ({
+        username: 'John Doe', 
+        email: 'john@example.com', 
+    });
+
+    // Pass the vistitorData object to the rendering of the sidebar template
+    res.render('profilepage/profilepage', { vistitor});
+});
+
+app.get('/sidebar' ,(req,res) => {
+    res.render('allartworkpage/sidebar')
+})
+
+app.get('/dashboardTest', (req, res) => {
+    res.render('dashboard/dashboardTest')
+})
+
+app.get('/dashboardVisitor', (req, res) => {
+    res.render('dashboard/profileVisitor', {user: req.session.user})
+})
+
+app.get('/dashboardArtist', (req, res) => {
+    res.render('dashboard/profileArtist', {user: req.session.user})
+})
+app.get('/dashboardAdmin', (req, res) => {
+    res.render('dashboard/profileAdmin', {user: req.session.user})
+})
+
+app.get('/edit' ,(req, res) => {
+res.render('dashboard/edit')
+})
+
+
+app.get('/editArtist' ,(req, res) => {
+    res.render('dashboard/editArtist')
+})
+
+
+app.get('/editAdmin' ,(req, res) => {
+    res.render('dashboard/editAdmin')
+})
+
+app.get('/editArtist' ,(req,res) => {
+    res.render('dashboard/editArtist')
+})
+
+
+app.get('/password' ,(req, res) => {
+res.render('dashboard/password')
+})
+
+app.get('/passwordArtist' ,(req, res) => {
+    res.render('dashboard/passwordArtist')
+})
+
+app.get('/passwordAdmin' ,(req, res) => {
+    res.render('dashboard/passwordAdmin')
 })
 
 app.get('/dashUser', (req, res) => {
@@ -102,7 +161,6 @@ app.get('/dashboard', (req, res) => {
 app.get('/error', (req, res) => {
     res.render('errorpage/errorpage.ejs')
 })
-
 
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
@@ -130,7 +188,7 @@ app.post('/edit-profile', async (req, res) => {
     }
 });
 
-app.get('/browsing/all', async(req, res) => {
+app.get('/all', async(req, res) => {
     res.render('allpage/allcategories');
 })
 
@@ -178,3 +236,12 @@ app.get('/upload', (req, res) => {
 
 app.post('/upload', upload.single('image'), uploadArtworks);
 
+app.get('/logout', async(req, res) => {
+    req.session.destroy((err) =>{
+        if(err) {
+           console.log(err);
+        } else{
+            res.redirect('/');
+        }
+     });
+})
