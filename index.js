@@ -140,7 +140,7 @@ app.get('/passwordArtist' ,(req, res) => {
 app.get('/passwordAdmin' ,(req, res) => {
     res.render('dashboard/passwordAdmin')
 })
-=======
+
 app.get('/dashUser', (req, res) => {
     res.render('dashboardpage/user');
 })
