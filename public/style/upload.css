@@ -98,6 +98,22 @@ textarea {
     transform: scale(0.98);
 }
 
+/* Desktop resolution */
+@media screen and (max-width: 2560px) {
+    .form-container {
+        width: 70%;
+    }
+
+}
+
+/* Desktop resolution */
+@media screen and (max-width: 1440px) {
+    .form-container {
+        width: 90%;
+    }
+
+}
+
 /* Ipad resolution */
 @media screen and (max-width: 1024px) {
     .form-container {
