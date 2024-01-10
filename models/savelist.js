@@ -7,7 +7,7 @@ const savelistSchema = new mongoose.Schema({
     },
     artworks: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Artwork-Test'
+        ref: 'Artwork'
     }],
 })
 

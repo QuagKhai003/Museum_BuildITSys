@@ -1,34 +1,39 @@
-const mongoose = require('mongoose');
-
-const artworkSchema = mongoose.Schema({
+const mongoose = require('mongoose')
+// Define Schema
+const artworkSchema = new mongoose.Schema ({
     artworkName: {
-        type: String,
-        require: true,
+        type: String, 
+        required: true
+    },
+    artworkArtist: {
+        type: String, 
+        required: true
+    },
+    artworkAuthor: {
+        type: String, 
+        required: true
+    },
+    category: {
+        type: String, 
+        required: true
     },
     artworkDescription: {
-        type: String,
-        require: true,
+        type: String, 
+        required: true
     },
-    author: {
+    image: {
         type: String,
-        require: true
-    },
-    img: {
-        type: String,
-        require: true
-    },
-    status: {
-        type: String,
-        default: 'Pending'
-    },
-    categories: {
-        type: String,
-        enum: ['painting', 'fresco', 'sculpture']
+        required: true
     },
     createAt: {
         type: Date,
-        default: Date.now
+        default: Date.now()
+    },
+    status: {
+        type: String,
+        default: "pending",
+        enum: ["approve", "decline", "pending"]
     }
-})
+});
 
 module.exports = mongoose.model('Artwork', artworkSchema);
