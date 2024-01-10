@@ -12,7 +12,7 @@
 </head>
 
 <body>
-
+    <%- include('../components/header.ejs'); %>
     <main class="mt-10">
 
 
@@ -26,8 +26,8 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="/dashboardVisitor">Profile</a></li>
-                    <li><a class="dropdown-item" href="#">Artwork</a></li>
-                    <li><a class="dropdown-item" href="#">Bookmark</a></li>
+                    <li><a class="dropdown-item" href="/artworkArtist">Artworks</a></li>
+                    <!-- <li><a class="dropdown-item" href="#">Bookmark</a></li> -->
                 </ul>
             </div>
 
@@ -41,22 +41,22 @@
                         <div class="menu-items">
                             <ul class="nav-link"></ul>
                             <li>
-                                <a href="" style="background-color: #13130D;">
-                                    <i class="fa-solid fa-user" style="color: #F7F6EC;"></i>
-                                    <span class="link-name" style="color: #F7F6EC;">Profile</span>
+                                <a href="" >
+                                    <i class="fa-solid fa-user" ></i>
+                                    <span class="link-name">Profile</span>
                                 </a>
                             </li>
 
-                            <li>
+                            <!-- <li>
                                 <a href="">
                                     <i class="fa-solid fa-palette"></i>
                                     <span class="link-name">Artwork</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li>
-                                <a href="">
-                                    <i class="fa-solid fa-bookmark"></i>
-                                    <span class="link-name">Bookmark</span>
+                                <a href="/artworkArtist" style="background-color: #13130D;">
+                                    <i class="fa-solid fa-bookmark" style="color: #F7F6EC;"></i>
+                                    <span class="link-name" style="color: #F7F6EC;">Artworks</span>
                                 </a>
                             </li>
                         </div>
@@ -65,69 +65,38 @@
 
                 <!-- CONTENT SECTION -->
                 <div class="col-lg-8 dashboard-content col-md-8">
+                    <div class="status-sort">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Sort
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="/artworkArtist/pending">Pending</a></li>
+                              <li><a class="dropdown-item" href="/artworkArtist/approved">Approve</a></li>
+                              <li><a class="dropdown-item" href="/artworkArtist/declined">Declined</a></li>
+                            </ul>
+                          </div>
+                    </div>
                     
                     <div class="photo-gallery">
-                        <div class="image-column">
-                            <a href="#" class="photo">
-                                <img src="/images/artwork/iam.jpg" alt="iam">
-                                <div class="overlay">
-                                    <div class="text">iam asdfas asfa sfasfa Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque, dolorem harum quia corrupti placeat a explicabo et aspernatur repudiandae quisquam?</div>
-                                </div>
-                            </a>
-                            <a href="#" class="photo">
-                                <img src="/images/artwork/1704796510893.jpg" alt="1704796510893">
-                                <div class="overlay">
-                                    <div class="text">1704796510893</div>
-                                </div>
-                            </a>
-                            <a href="#" class="photo">
-                                <img src="/images/artwork/licensed-image.jpg" alt="licensed-image">
-                                <div class="overlay">
-                                    <div class="text">licensed-image</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="image-column">
-                            <a href="#" class="photo">
-                                <img src="/images/artwork/vincent-van-goghs-starry-night-symbolism-and-iconography-part-1.jpg" alt="vincent-van-goghs-starry-night-symbolism-and-iconography-part-1">
-                                <div class="overlay">
-                                    <div class="text">vincent-van-goghs-starry-night-symbolism-and-iconography-part-1</div>
-                                </div>
-                            </a>
-                            <a href="#" class="photo">
-                                <img src="/images/artwork/iam.jpg" alt="iam">
-                                <div class="overlay">
-                                    <div class="text">iam</div>
-                                </div>
-                            </a>
-                            <a href="#" class="photo">
-                                <img src="/images/artwork/iam.jpg" alt="iam">
-                                <div class="overlay">
-                                    <div class="text">iam</div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="image-column">
-                            <a href="#" class="photo">
-                                <img src="/images/artwork/iam.jpg" alt="iam">
-                                <div class="overlay">
-                                    <div class="text">iam</div>
-                                </div>
-                            </a>
-                            <a href="#" class="photo">
-                                <img src="/images/artwork/iam.jpg" alt="iam">
-                                <div class="overlay">
-                                    <div class="text">iam</div>
-                                </div>
-                            </a>
-                            <a href="#" class="photo">
-                                <img src="/images/artwork/iam.jpg" alt="iam">
-                                <div class="overlay">
-                                    <div class="text">iam</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                        <% let imagesPerColumn = Math.ceil(images.length / 3); %>
+                        <% for(let i = 0; i < 3; i++) { %>
+                          <div class="image-column">
+                            <% for(let j = 0; j < imagesPerColumn; j++) { %>
+                              <% let image = images[i * imagesPerColumn + j]; %>
+                              <% if(image) { %>
+                                <a href="#" class="photo">
+                                  <img src="/images/artwork/<%= image.image %>" alt="<%= image.artworkName %>">
+                                  <div class="overlay">
+                                    <div class="text"><%= image.artworkName %></div>
+                                  </div>
+                                </a>
+                              <% } %>
+                            <% } %>
+                          </div>
+                        <% } %>
+                      </div>
+                      
                     
 
                 </div>
