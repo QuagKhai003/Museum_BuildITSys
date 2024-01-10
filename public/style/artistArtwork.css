@@ -6,7 +6,8 @@
 .image-column {
     display: flex;
     flex-direction: column;
-    gap: 2rem
+    gap: 2rem;
+    width: 30%
 }
 
 .photo img {
@@ -19,5 +20,9 @@
 @media (max-width: 768px) {
     .photo-gallery {
         flex-direction: column;
+        align-items: center;
+    }
+    .image-column {
+        width: 70%;
     }
 }
