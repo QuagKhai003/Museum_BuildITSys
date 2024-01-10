@@ -8,33 +8,21 @@ const multer = require('multer');
 const session = require('express-session');
 const { visitorRegister, artistRegister } = require('./functions/authRegister');
 const { authLogin } = require('./functions/authLogin');
-const artworkts = require('./models/artworkts');
 const { checkExistedList } = require('./functions/checkList');
 const { bookmarks } = require('./functions/bookmarks');
-const bcrypt = require('bcrypt');
-const user = require('./models/user');
 const { userController } = require('./functions/userEdit');
 const { uploadArtworks, upload } = require('./functions/uploadArtworks');
-const user = require('./models/user');
 const { changePw } = require('./functions/changePw');
 const { visitorDashboard, artistDashboard, adminDashboard, artworkArtist } = require('./functions/getDashboard');
-const { sortPending, sortApproved, sortDeclined } = require('./functions/sort')
+const { sortPending, sortApproved, sortDeclined } = require('./functions/sort');
+const user = require('./models/user');
 const artwork = require('./models/artwork');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'public/images/uploads/'); 
-    },
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + path.extname(file.originalname));
-    },
-});
 
-const upload = multer({ storage: storage });
 mongoose.connect(mongoURL)
     .then(() => console.log('Database Connection Sucessfull!'))
     .catch((error) => console.log(error.message));
@@ -287,10 +275,6 @@ app.get('/edit-profile/:id', userController.getEditProfile);
 app.post('/edit-profile/:id', upload.single('avatar'), userController.postEditProfile);
 app.get('/change-password/:id', userController.getChangePassword);
 app.post('/change-password/:id', userController.postChangePassword);
-
-app.listen(PORT, () => {
-    console.log(`Listening to port: ${PORT}`);
-});
       
 app.post('/upload', upload.single('image'), uploadArtworks);
 
