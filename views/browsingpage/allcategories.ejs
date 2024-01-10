@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <%- include('../components/rootstyle.ejs'); %>
-    <link rel="stylesheet" href="/style/dashboard/profile.css">
+    <link rel="stylesheet" href="/style/browsing/allcategories.css">
 </head>
 <body>
     <%- include('../components/header.ejs'); %>
@@ -20,6 +20,9 @@
                 <h3 class="hero-description">
                     Feel the Freedom: Unleash Your Artistic Mind and Immerse Yourself in this creative space. Here, every painting, sculpture, and fresco is a pathway to self-discovery. Explore and find your favorites, for in this boundless realm of art, your soul is free to dance with the limitless hues of creativity.
                 </h3>
+                <a href="/browsing/all" class="explore-all">
+                    <p>Explore all<i class="fa-solid fa-arrow-right-long"></i></p>
+                </a>
             </div>
         </div>
         <div class="all-category">
@@ -28,24 +31,47 @@
             </div>
             <div class="category-content">
                 <div class="content-slider">
-                    <a class="slide" href="#">
-                        <img src="/images/background/scroll1.jpg" alt="test slide effect picture">
-                    </a>
-                    <a class="slide" href="#">
-                        <img src="/images/background/scroll1.jpg" alt="test slide effect picture">
-                    </a>
-                    <a class="slide" href="#">
-                        <img src="/images/background/scroll1.jpg" alt="test slide effect picture">
-                    </a>
-                    <a class="slide" href="#">
-                        <img src="/images/background/scroll1.jpg" alt="test slide effect picture">
-                    </a>
-                    <a class="slide" href="#">
-                        <img src="/images/background/scroll1.jpg" alt="test slide effect picture">
-                    </a>
-                    <a class="slide" href="#">
-                        <img src="/images/background/background1.jpg" alt="test slide effect picture">
-                    </a>
+                    <% if( !foundAW ) { %>
+                        <a class="slide" href="#">
+                            <img src="/images/background/scroll1.jpg" alt="test slide effect picture">
+                        </a>
+                        <a class="slide" href="#">
+                            <img src="/images/background/scroll1.jpg" alt="test slide effect picture">
+                        </a>
+                        <a class="slide" href="#">
+                            <img src="/images/background/scroll1.jpg" alt="test slide effect picture">
+                        </a>
+                        <a class="slide" href="#">
+                            <img src="/images/background/scroll1.jpg" alt="test slide effect picture">
+                        </a>
+                        <a class="slide" href="#">
+                            <img src="/images/background/scroll1.jpg" alt="test slide effect picture">
+                        </a>
+                        <a class="slide" href="#">
+                            <img src="/images/background/background1.jpg" alt="test slide effect picture">
+                        </a>
+                    <% } %>
+                    <% if( foundAW ) { %>
+                        <% for ( var i = 0 ; i < 7 && i < foundAW.length ; i++) { %>
+                            <% if ( foundAW[i].status == "approve" ) { %>
+                                <% if ( foundAW[i].category == "painting" ) { %>
+                                    <a class="slide" href="/browsing/painting/<%= foundAW[i]._id %>">
+                                        <img src="/images/artwork/<%= foundAW[i].image %>" alt="test slide effect picture">
+                                    </a>
+                                <% } %>
+                                <% if ( foundAW[i].category == "sculpture" ) { %>
+                                    <a class="slide" href="/browsing/sculpture/<%= foundAW[i]._id %>">
+                                        <img src="/images/artwork/<%= foundAW[i].image %>" alt="test slide effect picture">
+                                    </a>
+                                <% } %>
+                                <% if ( foundAW[i].category == "fresco" ) { %>
+                                    <a class="slide" href="/browsing/fresco/<%= foundAW[i]._id %>">
+                                        <img src="/images/artwork/<%= foundAW[i].image %>" alt="test slide effect picture">
+                                    </a>
+                                <% } %>
+                            <% } %>    
+                        <% } %>
+                    <% } %>
                 </div>
             </div>
         </div>
@@ -71,8 +97,8 @@
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam placeat totam, nesciunt repudiandae obcaecati fugiat nemo. Nesciunt suscipit illum harum, quis, quo ratione veritatis dolore natus architecto saepe, ipsam fuga.
                         </div>
                         <div class="link">
-                            <a href="#" class="view-link">
-                                <p>View all painting</p>
+                            <a href="/browsing/painting" class="view-link">
+                                <p>View all paintings</p>
                                 <i class="fa-solid fa-arrow-right-long"></i>
                             </a>
                         </div>
@@ -87,7 +113,7 @@
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam placeat totam, nesciunt repudiandae obcaecati fugiat nemo. Nesciunt suscipit illum harum, quis, quo ratione veritatis dolore natus architecto saepe, ipsam fuga.
                         </div>
                         <div class="link">
-                            <a href="#" class="view-link">
+                            <a href="/browsing/sculpture" class="view-link">
                                 <p>View all sculptures</p>
                                 <i class="fa-solid fa-arrow-right-long"></i>
                             </a>
@@ -103,8 +129,8 @@
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam placeat totam, nesciunt repudiandae obcaecati fugiat nemo. Nesciunt suscipit illum harum, quis, quo ratione veritatis dolore natus architecto saepe, ipsam fuga.
                         </div>
                         <div class="link">
-                            <a href="#" class="view-link">
-                                <p>View all fresco</p>
+                            <a href="/browsing/fresco" class="view-link">
+                                <p>View all frescos</p>
                                 <i class="fa-solid fa-arrow-right-long"></i>
                             </a>
                         </div>

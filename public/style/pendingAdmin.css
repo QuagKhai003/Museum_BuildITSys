@@ -1,0 +1,81 @@
+.pending-section {
+    display: flex;
+    align-items: start;
+    gap: 2rem;
+    width: 100%;
+}
+
+.dashboard-menu {
+    width: 25%;
+}
+
+.dashboard-pending {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-gap: 1rem 1rem;
+}
+
+.pending-post {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--white);
+    gap: 0.5rem;
+    height: 15rem;
+    padding: 16px;
+}
+
+.post-image {
+    width: 30%;
+    height: 100%;
+}
+
+.post-title {
+    font-size: 2rem;
+    font-family: var(--title-text);
+    font-weight: bold;
+    text-align: center;
+    color: var(--black);
+    text-decoration: none;
+}
+
+.post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post-button {
+    gap: 0.25rem
+}
+
+@media only screen and (max-width: 768px) {
+    .post-image {
+        width: 50%;
+        height: 100%;
+    }
+    
+    .post-title {
+        font-size: 1rem;
+    }
+
+    .post-button {
+        flex-direction: column !important;
+
+    }
+
+    .post-button button{
+        font-size: 0.5rem;
+    }
+    
+    .dashboard-pending {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+} 
+
+@media only screen and (max-width: 320px) {
+    .container-fluid {
+        padding: 0rem !important;
+    }
+} 

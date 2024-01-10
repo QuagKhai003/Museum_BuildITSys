@@ -13,6 +13,7 @@ const { checkExistedList } = require('./functions/checkList');
 const { bookmarks } = require('./functions/bookmarks');
 const { uploadArtworks, upload } = require('./functions/uploadArtworks');
 const user = require('./models/user');
+const artwork = require('./models/artwork');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -63,7 +64,7 @@ app.post('/login', authLogin, (req, res) => {
 })
   
 app.get('/about', (req, res) => {
-    res.render('aboutuspage/aboutus');
+    res.render('aboutuspage/aboutus', {user: req.session.user});
 })
 
 app.get('/sidebar' ,(req,res) => {
@@ -89,8 +90,9 @@ app.get('/edit' ,(req, res) => {
 res.render('dashboard/edit')
 })
 
-app.get('/pending', (req, res) => {
-    res.render('dashboard/PendingAdmin', {user: req.session.user})
+app.get('/pending', async (req, res) => {
+    const foundAW = await artwork.find({})
+    res.render('dashboard/PendingAdmin', {foundAW: foundAW, user: req.session.user})
 })
 
 app.get('/editArtist' ,(req, res) => {
@@ -99,7 +101,7 @@ app.get('/editArtist' ,(req, res) => {
 
 
 app.get('/editAdmin' ,(req, res) => {
-    res.render('dashboard/editAdmin')
+    res.render('dashboard/editAdmin', {user: req.session.user})
 })
 
 app.get('/editArtist' ,(req,res) => {
@@ -136,7 +138,7 @@ app.get('/dashboard', (req, res) => {
 })
 
 app.get('/detailedpage', (req, res) => {
-    res.render('detailedpage/detailedpage.ejs')
+    res.render('detailedpage/detailedpage.ejs', {user: req.session.user})
 })
 
 app.get('/error', (req, res) => {
@@ -165,8 +167,44 @@ app.post('/edit-profile', async (req, res) => {
     }
 });
 
-app.get('/all', async(req, res) => {
-    res.render('allpage/allcategories');
+app.get('/browsing', async(req, res) => {
+    const foundAW = await artwork.find({});
+    res.render('browsingpage/allcategories', {foundAW: foundAW, user: req.session.user});
+})
+
+app.get('/browsing/all', async(req, res) => {
+    const foundAW = await artwork.find({});
+    res.render('browsingpage/allcategories', {foundAW: foundAW, user: req.session.user});
+})
+
+app.get('/browsing/painting', async(req, res) => {
+    const foundAW = await artwork.find({categories: 'painting'});
+    res.render('browsingpage/allcategories', {foundAW: foundAW, user: req.session.user});
+})
+
+app.get('/browsing/painting/:id', async(req, res) => {
+    const foundAW = await artwork.findOne({_id: req.params.id});
+    res.render('detailedpage/detailedpage.ejs', {foundAW: foundAW, user: req.session.user});
+})
+
+app.get('/browsing/sculpture', async(req, res) => {
+    const foundAW = await artwork.find({categories: 'sculpture'});
+    res.render('browsingpage/allcategories', {foundAW: foundAW, user: req.session.user});
+})
+
+app.get('/browsing/sculpture/:id', async(req, res) => {
+    const foundAW = await artwork.findOne({_id: req.params.id});
+    res.render('browsingpage/allcategories', {foundAW: foundAW, user: req.session.user});
+})
+
+app.get('/browsing/fresco', async(req, res) => {
+    const foundAW = await artwork.find({categories: 'fresco'});
+    res.render('browsingpage/allcategories', {foundAW: foundAW, user: req.session.user});
+})
+
+app.get('/browsing/fresco/:id', async(req, res) => {
+    const foundAW = await artwork.findOne({_id: req.params.id});
+    res.render('browsingpage/allcategories', {foundAW: foundAW, user: req.session.user});
 })
 
 // app.post('/upload', async (req, res) => {
@@ -180,18 +218,38 @@ app.get('/all', async(req, res) => {
 //     .catch((err) => {console.log("Unable to create aw: ", err)})
 // })
 
-// app.post('/detail/:id/save', checkExistedList, bookmarks, async(req, res) => {
-//     console.log("bookmark route end")
-// })
+app.post('/bookmark/:id/', checkExistedList, bookmarks, async(req, res) => {
+    console.log("bookmark route end")
+})
 
-// app.get('/allartworktest', async (req, res) => {
-//     const allAW = await artworkts.find({})
-//     res.render('allpage/allartworkpagefortest', {allAW: allAW, user: req.session.user})
-// })
+app.post('/pending/:id/approve', async( req, res) => {
+    try {
+        const foundAW = await artwork.findById(req.params.id)
 
-app.get('/detail/:id', async (req, res) => {
-    const foundAW = await artworkts.find({ _id: req.params.id })
-    res.render('allpage/detailpage', {foundAW: foundAW , user: req.session.user})
+        foundAW.status = 'approve';
+
+        await foundAW.save()
+
+        res.status(200).redirect("/pending")
+    } catch(err) {
+        console.log("Error while approving")
+        res.status(500).redirect('/pending')
+    }
+})
+
+app.post('/pending/:id/decline', async( req, res) => {
+    try {
+        const foundAW = await artwork.findById(req.params.id)
+
+        foundAW.status = 'decline';
+
+        await foundAW.save()
+
+        res.status(200).redirect("/pending")
+    } catch(err) {
+        console.log("Error while declining")
+        res.status(500).redirect('/pending')
+    }
 })
 
 app.get('/upload', (req, res) => {
