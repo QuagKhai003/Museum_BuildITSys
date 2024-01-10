@@ -13,6 +13,7 @@ const { checkExistedList } = require('./functions/checkList');
 const { bookmarks } = require('./functions/bookmarks');
 const bcrypt = require('bcrypt');
 const user = require('./models/user');
+const { userController } = require('./functions/userEdit');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -111,32 +112,14 @@ app.get('/dashboardAdmin', (req, res) => {
     res.render('dashboard/profileAdmin')
 })
 
-app.get('/edit' ,(req, res) => {
-res.render('dashboard/edit')
-})
 
-
-app.get('/editArtist' ,(req, res) => {
-    res.render('dashboard/editArtist')
-})
 
 
 app.get('/editAdmin' ,(req, res) => {
     res.render('dashboard/editAdmin')
 })
 
-app.get('/editArtist' ,(req,res) => {
-    res.render('dashboard/editArtist')
-})
 
-
-app.get('/password' ,(req, res) => {
-res.render('dashboard/password')
-})
-
-app.get('/passwordArtist' ,(req, res) => {
-    res.render('dashboard/passwordArtist')
-})
 
 app.get('/passwordAdmin' ,(req, res) => {
     res.render('dashboard/passwordAdmin')
@@ -162,9 +145,7 @@ app.get('/error', (req, res) => {
 })
 
 
-app.get('/edit-profile', (req, res) => {
-    res.render('profilepage/edit-profile');
-});
+
 
 
 
@@ -197,127 +178,11 @@ app.get('/detail/:id', async (req, res) => {
     res.render('allpage/detailpage', {foundAW: foundAW , user: req.session.user})
 })
 
-app.get('/profile/:id', async (req, res) => {
-    const { id } = req.params;
-    try {
-        const foundUser = await user.findById(id);
-        if (!foundUser) {
-            res.status(500).json({ error: "User not found" });
-        }
-        
-        res.render('dashboard/profileVisitor', { user: foundUser });
-        
-    } catch (error) {
-        console.error(error);
-        res.send(error.message);
-    }
-});
-// Add this route before the /edit-profile POST route
-app.get('/edit-profile/:id', async (req, res) => {
-    const { id } = req.params; 
-
-    try {
-        const foundUser = await user.findById(id)
-        
-
-        if (!user) {
-            res.status(500).json({ error: "User not found" });
-        }
-
-        res.render('dashboard/edit', { user: foundUser });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-});
-
-app.post('/edit-profile/:id', upload.single('avatar'), async (req, res) => {
-    const { id } = req.params;
-    
-
-    try {
-        const foundUser = await user.findById(id);
-        
-
-        if (!user) {
-            res.status(500).json({ error: "User not found" });
-        }
-
-        // Update the user's profile based on the form data
-        foundUser.username = req.body.username;
-        foundUser.email = req.body.email;   
-        
-            
-        if (req.file) {
-            foundUser.avatar = req.file.filename;
-        }
-        
-
-        // Save the updated user profile
-        await foundUser.save();
-
-        
-        res.redirect(`/profile/${foundUser._id}`);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-});
-
-app.get('/change-password/:id', async (req, res) => {
-    const { id } = req.params;
-
-    try {
-        const foundUser = await user.findById(id);
-
-        if (!foundUser) {
-            res.status(500).json({ error: "User not found" });
-        }
-
-        res.render('dashboard/password', { user: foundUser });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-});
-
-// Add a POST route to handle password change
-app.post('/change-password/:id', async (req, res) => {
-    const { id } = req.params;
-    const { currentPassword, newPassword, confirmNewPassword } = req.body;
-
-    try {
-        const foundUser = await user.findById(id);
-
-        if (!foundUser) {
-            res.status(500).json({ error: "User not found" });
-        }
-
-        // Compare the current encrypted password with the input
-        const isPasswordMatch = await bcrypt.compare(currentPassword, foundUser.password);
-
-        if (!isPasswordMatch) {
-            return res.status(400).json({ error: "Current password is incorrect" });
-        }
-
-        // Check if the new password and confirm new password match
-        if (newPassword !== confirmNewPassword) {
-            return res.status(400).json({ error: "New password and confirm password do not match" });
-        }
-
-        // Hash the new password before updating
-        const hashedPassword = await bcrypt.hash(newPassword, 10);
-        foundUser.password = hashedPassword;
-
-        // Save the updated user
-        await foundUser.save();
-
-        res.redirect(`/profile/${foundUser._id}`);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-});
+app.get('/profile/:id', userController.getProfile);
+app.get('/edit-profile/:id', userController.getEditProfile);
+app.post('/edit-profile/:id', upload.single('avatar'), userController.postEditProfile);
+app.get('/change-password/:id', userController.getChangePassword);
+app.post('/change-password/:id', userController.postChangePassword);
 
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
