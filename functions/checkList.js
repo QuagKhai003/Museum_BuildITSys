@@ -1,4 +1,3 @@
-const artworkts = require("../models/artworkts")
 const savelist = require("../models/savelist")
 const user = require("../models/user")
 
