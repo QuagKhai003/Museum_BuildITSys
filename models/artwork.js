@@ -9,6 +9,10 @@ const artworkSchema = new mongoose.Schema ({
         type: String, 
         required: true
     },
+    artworkAuthor: {
+        type: String, 
+        required: true
+    },
     category: {
         type: String, 
         required: true

@@ -16,10 +16,27 @@
 <body>
     <%- include('../components/header.ejs'); %>
 
-    <main>
+    <% if( foundAW ) { %>
         <div class="container-fluid artwork-detail-section">
             <div class="image-container">
-                <img src="/images/artwork/iam.jpg" alt="Your Image" class="hover-image">
+                <div class="hover-image"><img src="/images/artwork/<%= foundAW.image %>" alt="Your Image"></div>
+                <div class="image-info">
+                    <form action="/bookmark/<%= foundAW._id %>" method="post">
+                        <button class="bookmark-btn" type="submit"><i class="far fa-bookmark"></i></button>
+                    </form>
+                    <h2 class="artwork-title"><%= foundAW.artworkName %></h2>
+                    <p class="author">Author: <%= foundAW.artworkAuthor %></p>
+                    <p class="artist">Pubblised by: <%= foundAW.artworkArtist %></p>
+                    <p class="category"><%= foundAW.artworkCategories %></p>
+                    <p class="description"><%= foundAW.artworkDescription %></p>
+                </div>
+            </div>
+        </div>
+    <% } %>
+    <% if( !foundAW ) { %>
+        <div class="container-fluid artwork-detail-section">
+            <div class="image-container">
+                <div class="hover-image"><img src="/images/artwork/iam.jpg" alt="Your Image"></div>
                 <div class="image-info">
                     <div class="bookmark-container">
                         <button class="bookmark-btn"><i class="far fa-bookmark"></i></button>
@@ -28,12 +45,11 @@
                     <p class="author">Author Name</p>
                     <p class="category">Artwork Category</p>
                     <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita unde iste deserunt ut doloribus fugiat labore voluptate ullam dolore numquam vel minima consectetur, ipsum, laborum illo atque delectus dicta. At ex excepturi doloribus eveniet quibusdam qui, iure fugit voluptas saepe, nisi accusamus dolore soluta repellendus.</p>
-                    
                 </div>
             </div>
         </div>
-    </main>
-    
+    <% } %>
+
     <%- include('../components/footer.ejs'); %>
     <%- include('../components/rootscript.ejs'); %>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
