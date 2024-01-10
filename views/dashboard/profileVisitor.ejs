@@ -26,8 +26,8 @@
             </button>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/dashboardVisitor">Profile</a></li>
-                <li><a class="dropdown-item" href="#">Artwork</a></li>
                 <li><a class="dropdown-item" href="#">Bookmark</a></li>
+                <!-- <li><a class="dropdown-item" href="#">Bookmark</a></li> -->
             </ul>
         </div>
 
@@ -50,29 +50,29 @@
                             <li>
                                 <a href="">
                                     <i class="fa-solid fa-palette"></i>
-                                    <span class="link-name">Artwork</span>
+                                    <span class="link-name">Bookmark</span>
                                 </a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="">
                                     <i class="fa-solid fa-bookmark"></i>
                                     <span class="link-name">Bookmark</span>
                                 </a>
-                            </li>
+                            </li> -->
                         </div>
                     </nav>
                 </div>
 
                 <!-- CONTENT SECTION -->
                 <div class="col-lg-8 dashboard-content col-md-8">
-                    <div class="hello-user" >Hello, User</div>
+                    <div class="hello-user" >Hello, <%=userTemplate.name%></div>
 
                     <div class="card mb-3">
                         <div class="row g-0 profile-display">
                             <div class="text col-md-4 gradient-custom text-center">
                                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                                     alt="Avatar" class="img-fluid my-5">
-                                <h5>John Doe</h5>
+                                <h5><%=userTemplate.firstName%> <%=userTemplate.lastName%></h5>
                                 <a href="/edit" class="btn btn-outline-primary">Edit</a>
                                 <a href="/password"class="btn btn-outline-info">Change password</a>
                                 <button type="button" class="btn btn-outline-danger">Logout</button>
@@ -84,13 +84,13 @@
                                     <div class="row pt-1">
                                         <div class="col-6 mb-3">
                                             <h6>Username </h6>
-                                            <p class="text-muted" id="username">John Doe</p>
+                                            <p class="text-muted" id="username"><%=userTemplate.firstName%> <%=userTemplate.lastName%></p>
                                         </div>
                                     </div>
                                     <div class="row pt-1">
                                         <div class="col-6 mb-3">
                                             <h6>Email</h6>
-                                            <p class="text-muted" id="email">john@example.com</p>
+                                            <p class="text-muted" id="email"><%=userTemplate.email%></p>
                                         </div>
 
                                     </div>

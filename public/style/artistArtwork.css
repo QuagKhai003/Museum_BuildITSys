@@ -48,6 +48,10 @@
     text-align: left;
 }
 
+.status-sort {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
 
 @media (max-width: 768px) {
     .photo-gallery {
@@ -56,5 +60,8 @@
     }
     .image-column {
         width: 70%;
+    }
+    .row-eq-height {
+        justify-content: center;
     }
 }
