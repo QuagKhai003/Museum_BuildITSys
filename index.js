@@ -1,16 +1,19 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const path = require('path');
 const mongoURL = 'mongodb+srv://s3975831:khai0123456@museumdb.wgffvrk.mongodb.net/?retryWrites=true&w=majority';
 const PORT = 3000;
-
-
+const multer = require('multer');
 const session = require('express-session');
 const { visitorRegister, artistRegister } = require('./functions/authRegister');
 const { authLogin } = require('./functions/authLogin');
 const artworkts = require('./models/artworkts');
 const { checkExistedList } = require('./functions/checkList');
 const { bookmarks } = require('./functions/bookmarks');
+const bcrypt = require('bcrypt');
+const user = require('./models/user');
+const { userController } = require('./functions/userEdit');
 const { uploadArtworks, upload } = require('./functions/uploadArtworks');
 const user = require('./models/user');
 const { changePw } = require('./functions/changePw');
@@ -22,7 +25,16 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'public/images/uploads/'); 
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + path.extname(file.originalname));
+    },
+});
 
+const upload = multer({ storage: storage });
 mongoose.connect(mongoURL)
     .then(() => console.log('Database Connection Sucessfull!'))
     .catch((error) => console.log(error.message));
@@ -70,6 +82,17 @@ app.get('/about', (req, res) => {
     res.render('aboutuspage/aboutus', {user: req.session.user});
 })
 
+app.get('/sidebar' ,(req,res) => {
+    res.render('allartworkpage/sidebar')
+})
+
+app.get('/dashboardTest', (req, res) => {
+    res.render('dashboard/dashboardTest')
+})
+
+app.get('/dashboardVisitor', (req, res) => {
+    res.render('dashboard/profileVisitor')
+})
 
 app.get('/dashboardVisitor', visitorDashboard)
 app.get('/dashboardArtist', artistDashboard)
@@ -147,8 +170,6 @@ app.get('/error', (req, res) => {
 })
 
 app.get('/artworkArtist', artworkArtist)
-
-
 
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
@@ -246,10 +267,31 @@ app.post('/pending/:id/decline', async( req, res) => {
     try {
         const foundAW = await artwork.findById(req.params.id)
 
+        foundAW.status = 'decline';
+
+        await foundAW.save()
+
+        res.status(200).redirect("/pending")
+    } catch(err) {
+        console.log("Error while declining")
+        res.status(500).redirect('/pending')
+    }
+})
+
 app.get('/upload', (req, res) => {
     res.render('uploadpage/upload', { user: req.session.user });
 })
 
+app.get('/profile/:id', userController.getProfile);
+app.get('/edit-profile/:id', userController.getEditProfile);
+app.post('/edit-profile/:id', upload.single('avatar'), userController.postEditProfile);
+app.get('/change-password/:id', userController.getChangePassword);
+app.post('/change-password/:id', userController.postChangePassword);
+
+app.listen(PORT, () => {
+    console.log(`Listening to port: ${PORT}`);
+});
+      
 app.post('/upload', upload.single('image'), uploadArtworks);
 
 app.get('/logout', async (req, res) => {
