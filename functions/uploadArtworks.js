@@ -24,29 +24,35 @@ const upload = multer({storage: storage});
 // Function to handle artwork upload
 const uploadArtworks = async (req, res, next) => {
     try {
-        const artworkData = {
-            artworkName: req.body.artworkName,
-            artworkArtist: req.body.artworkArtist,
-            category: req.body.category,
-            artworkDescription: req.body.artworkDescription,
-            image: req.file.filename,
-        };
+        if ( req.session.user.role == "artist") {
+            const artworkData = {
+                artworkName: req.body.artworkName,
+                artworkAuthor: req.body.artworkAuthor,
+                artworkArtist: req.session.user.name,
+                category: req.body.category,
+                artworkDescription: req.body.artworkDescription,
+                image: req.file.filename,
+            };
+        
+            const newAW = await artwork.create(artworkData)
+            // Save the document to MongoDB
+            const userLogged = await user.findOne({_id : req.session.user.id})
     
-        const newAW = await artwork.create(artworkData)
-        // Save the document to MongoDB
-        const userLogged = await user.findOne({_id : req.session.user.id})
+            userLogged.uploads.push(newAW._id)
+    
+            await userLogged.save()
+    
+            console.log("Upload complete")
+    
+            res.status(200).redirect("/upload")
+        } else {
+            console.log("You dont have this permission")
+            res.status(401).redirect('/error')
 
-        userLogged.uploads.push(newAW._id)
-
-        await userLogged.save()
-
-        console.log("Upload complete")
-
-        res.status(200).redirect("/upload")
-
+        }
     } catch (err) {
         console.log("Error while upload a new artwork:", err)
-        res.status(401).redirect("/error")
+        res.status(500).redirect("/error")
     }
     
 }

@@ -34,6 +34,9 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1.hero-title {
@@ -41,6 +44,7 @@ h1.hero-title {
     text-align: center;
     font-size: 4rem;
     font-weight: bold;
+    margin: 1.5rem 0rem;
 }
 
 h3.hero-description {
@@ -48,6 +52,28 @@ h3.hero-description {
     text-align: center;
     line-height: 2rem;
     font-size: 1rem;
+}
+
+.explore-all {
+    text-decoration: none;
+}
+
+.explore-all p{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0rem;
+    margin: 0rem;
+    font-family: var(--title-text);
+    color: var(--white);
+    text-align: center;
+    font-size: 2rem;
+    transition: color 0.5s linear, text-shadow 0.5s linear;
+}
+
+.explore-all p:hover{
+    color: var(--begolden);
+    text-shadow: 0px 0px 20px var(--begolden);
 }
 
 .all-category {
