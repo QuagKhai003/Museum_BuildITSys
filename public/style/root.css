@@ -200,7 +200,7 @@ input.searchInput.open {
 
 /* style ling footer */
 .footer{
-    margin-top: 3rem;
+    margin-top: 5vw;
     font-family: var(--normal-text);
     background-color: black;
     padding: 70px 0;
