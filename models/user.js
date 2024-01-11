@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const Visitor = require('./vistitor');
 
-const artistSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     firstName: {
         type: String,
         minLength: 2,
@@ -20,25 +19,33 @@ const artistSchema = mongoose.Schema({
         match: /^[a-zA-Z0-9]+$/,
         require: true,
     },
-    email: {
-        type: String,
-        minLength: 8,
-        require: true
-    },
     password: {
         type: String,
         minLength: 8,
         require: true,
     },
+    email: {
+        type: String,
+        minLength: 8,
+        require: true
+    },
+    avatar: {
+        type: String,
+        default: 'default.jpg'
+    },
     role: {
         type: String,
-        require: true,
-        default: 'artist'
+        enum: ['visitor', 'artist', 'admin'],
+        require: true
     },
-    upload: [{
+    uploads: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Artwork'
+        ref: 'Artwork',
+    }],
+    savedLists: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Savelist',
     }]
 })
 
-module.exports = mongoose.model('Artist', artistSchema);
+module.exports = mongoose.model('User', userSchema);

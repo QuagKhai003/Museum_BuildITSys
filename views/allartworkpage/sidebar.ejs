@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../components/rootstyle.ejs'); %>
+    <link rel="stylesheet" href="/style/sidebar.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="profile-info">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+            alt="Avatar" />
+    </div>
+
+    <nav>
+        <div class="menu-items">
+            <ul class="nav-link"></ul>
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="link-name">Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-palette"></i>                    
+                    <span class="link-name">Artwork</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-bookmark"></i>
+                    <span class="link-name">Bookmark</span>
+                </a>
+            </li>
+        </div>   
+    </nav>
+
+    <%- include('../components/rootscript.ejs'); %>
+</body>
+</html>
+

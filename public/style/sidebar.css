@@ -1,0 +1,123 @@
+/* nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding: 10px 14px;
+    background-color: #f4f5f7 ;
+    border-radius: 50px;
+} */
+
+nav .menu-items {
+    margin-top: 3%;
+    height: calc(100%-90px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-items li {
+    list-style: none;
+}
+
+.menu-items li a {
+    text-decoration: none;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px; /* Add border-radius to each link */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add transition effect */
+
+}
+
+.menu-items li a i {
+    font-size: 24px;
+    min-width: 45px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #13130D;
+}
+
+.menu-items li a .link-name {
+    font-size: 18px;
+    color: #A1A098;
+    font-family: var(--title-text);
+    border-radius: 8px; /* Add border-radius to each link name */
+
+}
+.menu-items li a:hover {
+    color: #F7F6EC;
+    background-color: rgb(42, 42, 42);
+}
+
+.menu-items li a:hover i {
+    color: #F7F6EC;
+}
+
+.menu-items li:hover .link-name {
+    color: #F7F6EC;
+}
+
+
+
+.profile-info {
+    position: relative;
+}
+
+.profile-info img {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.dashboard-section {
+    margin-top: 2rem;
+}
+
+.dashboard-button {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: none;
+}
+
+.row-eq-height {
+    align-items: stretch;
+}
+
+.menu-items li {
+    margin: 0.25rem;
+}
+
+.dashboard-button > .btn {
+    background-color: var(--golden);
+    border: none;
+    color: var(--black);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dashboard-button > .btn:hover {
+    background-color: var(--black);
+    border: none;
+    color: var(--bewhite)
+}
+
+.dashboard-button li:hover {
+    background-color: var(--black);
+    color: var(--bewhite);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .dashboard-menu {
+        display: none;
+    }
+    .dashboard-button {
+        display: block;
+    }
+}
