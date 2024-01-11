@@ -68,16 +68,13 @@ const user = require('../models/user');
 
 const getArtworks = async (req, res, next) => {
     try {
-        const foundUpload = await user.findById(req.session.user.id).populate('uploads');
-        if (!foundUpload) {
+        let foundUser = await user.findById(req.session.user.id).populate('uploads');
+        if (!foundUser) {
             return res.status(404).redirect('/error');
-        } else {
-            res.send("hello")
-            console.log(foundUpload)
-            // res.render('dashboard/artworkArtist', { foundUpload: foundUpload, user: req.session.user });
         }
+        res.render('dashboard/artworkArtist', { images: foundUser.uploads, user: req.session.user });
     } catch (err) {
-        console.log("Error whule get uploaded artwork",err)
+        console.log("Error while get uploaded artwork",err)
         res.status(500).redirect('/error');
     }
 }
@@ -97,7 +94,7 @@ const getBookmarks = async (req, res, next) => {
         if (!foundBookmark) {
             return res.status(404).redirect('/error');
         } else {
-            res.send("hello")
+            // res.send("hello")
             console.log(foundBookmark)
             res.render('dashboard/bookmarkVisitor', { foundBookmark: foundBookmark, user: req.session.user });
         }
