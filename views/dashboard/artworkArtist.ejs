@@ -17,7 +17,7 @@
 
 
         <div class="container-fluid dashboard-section">
-          <%- include('../components/header.ejs'); %>
+          <%- include('../components/sidebar.ejs'); %>
 
                 <!-- CONTENT SECTION -->
                 <div class="col-lg-8 dashboard-content col-md-8">
@@ -35,23 +35,27 @@
                     </div>
                     
                     <div class="photo-gallery">
-                        <% let imagesPerColumn = Math.ceil(foundUpload.length / 3); %>
-                        <% for(let i = 0; i < 3; i++) { %>
+                      <% let columns = [[], [], []]; %>
+                      <% for(let i = 0; i < images.length; i++) { %>
+                          <% columns[i % 3].push(images[i]); %>
+                      <% } %>
+                      <% for(let i = 0; i < 3; i++) { %>
                           <div class="image-column">
-                            <% for(let j = 0; j < imagesPerColumn; j++) { %>
-                              <% let image = images[i * imagesPerColumn + j]; %>
-                              <% if(image) { %>
-                                <a href="#" class="photo">
-                                  <img src="/images/artwork/<%= image.image %>" alt="<%= image.artworkName %>">
-                                  <div class="overlay">
-                                    <div class="text"><%= image.artworkName %></div>
-                                  </div>
-                                </a>
+                              <% for(let j = 0; j < columns[i].length; j++) { %>
+                                  <% let image = columns[i][j]; %>
+                                  <% if(image) { %>
+                                      <a href="/detail/<%=image._id%>" class="photo">
+                                          <img src="/images/artwork/<%= image.image %>" alt="<%= image.artworkName %>">
+                                          <div class="overlay">
+                                              <div class="text"><%= image.artworkName %></div>
+                                          </div>
+                                      </a>
+                                  <% } %>
                               <% } %>
-                            <% } %>
                           </div>
-                        <% } %>
-                      </div>
+                      <% } %>
+                  </div>
+                  
                       
                     
 

@@ -163,6 +163,13 @@ app.get('/browsing/painting/:id', async(req, res) => {
     res.render('detailedpage/detailedpage.ejs', {foundAW: foundAW, user: req.session.user});
 })
 
+
+app.get('/detail/:id', async(req, res) => {
+    const foundAW = await artwork.findOne({_id: req.params.id});
+    res.render('detailedpage/detailedpage', {foundAW, user: req.session.user})
+})
+
+
 app.get('/browsing/sculpture', async(req, res) => {
     const foundAW = await artwork.find({categories: 'sculpture'});
     res.render('browsingpage/browsingartwork', {foundAW: foundAW, user: req.session.user});
