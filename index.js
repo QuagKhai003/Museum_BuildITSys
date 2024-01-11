@@ -90,10 +90,6 @@ app.get('/about', (req, res) => {
 //     res.render('dashboard/editArtist')
 // })
 
-app.get('/browsing', (req, res) => {
-    res.render('browsingartworkpage/browsingartwork.ejs')
-})
-
 // app.get('/password', (req, res) => {
 //     req.session.user
 //     console.log(req.session.user)
@@ -153,12 +149,13 @@ app.get('/browsing', async(req, res) => {
 
 app.get('/browsing/all', async(req, res) => {
     const foundAW = await artwork.find({});
-    res.render('browsingpage/allcategories', {foundAW: foundAW, user: req.session.user});
+    console.log(foundAW)
+    res.render('browsingpage/browsingartwork', {foundAW: foundAW, user: req.session.user});
 })
 
 app.get('/browsing/painting', async(req, res) => {
     const foundAW = await artwork.find({categories: 'painting'});
-    res.render('browsingpage/allcategories', {foundAW: foundAW, user: req.session.user});
+    res.render('browsingpage/browsingartwork', {foundAW: foundAW, user: req.session.user});
 })
 
 app.get('/browsing/painting/:id', async(req, res) => {
@@ -168,29 +165,29 @@ app.get('/browsing/painting/:id', async(req, res) => {
 
 app.get('/browsing/sculpture', async(req, res) => {
     const foundAW = await artwork.find({categories: 'sculpture'});
-    res.render('browsingpage/allcategories', {foundAW: foundAW, user: req.session.user});
+    res.render('browsingpage/browsingartwork', {foundAW: foundAW, user: req.session.user});
 })
 
 app.get('/browsing/sculpture/:id', async(req, res) => {
     const foundAW = await artwork.findOne({_id: req.params.id});
-    res.render('browsingpage/allcategories', {foundAW: foundAW, user: req.session.user});
+    res.render('browsingpage/detailedpage.ejs', {foundAW: foundAW, user: req.session.user});
 })
 
 app.get('/browsing/fresco', async(req, res) => {
     const foundAW = await artwork.find({categories: 'fresco'});
-    res.render('browsingpage/allcategories', {foundAW: foundAW, user: req.session.user});
+    res.render('browsingpage/browsingartwork', {foundAW: foundAW, user: req.session.user});
 })
 
 app.get('/browsing/fresco/:id', async(req, res) => {
     const foundAW = await artwork.findOne({_id: req.params.id});
-    res.render('browsingpage/allcategories', {foundAW: foundAW, user: req.session.user});
+    res.render('browsingpage/detailedpage.ejs', {foundAW: foundAW, user: req.session.user});
 })
 
 app.post('/bookmark/:id/', checkExistedList, bookmarks, async(req, res) => {
     console.log("bookmark route end")
 })
 
-app.post('/pending/:id/approve', async( req, res) => {
+app.post('/profile/pending/:id/approve', async( req, res) => {
     try {
         const foundAW = await artwork.findById(req.params.id)
 
@@ -198,14 +195,14 @@ app.post('/pending/:id/approve', async( req, res) => {
 
         await foundAW.save()
 
-        res.status(200).redirect("/pending")
+        res.status(200).redirect("/profile/pending")
     } catch(err) {
         console.log("Error while approving")
-        res.status(500).redirect('/pending')
+        res.status(500).redirect('/profile/pending')
     }
 })
 
-app.post('/pending/:id/decline', async( req, res) => {
+app.post('/profile/pending/:id/decline', async( req, res) => {
     try {
         const foundAW = await artwork.findById(req.params.id)
 
@@ -213,10 +210,10 @@ app.post('/pending/:id/decline', async( req, res) => {
 
         await foundAW.save()
 
-        res.status(200).redirect("/pending")
+        res.status(200).redirect("/profile/pending")
     } catch(err) {
         console.log("Error while declining")
-        res.status(500).redirect('/pending')
+        res.status(500).redirect('/profile/pending')
     }
 })
 
