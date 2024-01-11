@@ -13,9 +13,9 @@
     <main>
     <div class="browsing">
       <div class="anchor-link" id="anchor_link">
-        <a class="art_type" id="painting" href="#">Painting</a>
-        <a class="art_type" id="sculpture" href="#">Sculpture</a>
-        <a class="art_type" id="fresco" href="#">Fresco</a>
+        <a class="art_type" id="painting" href="/browsing/painting">Painting</a>
+        <a class="art_type" id="sculpture" href="/browsing/sculpture">Sculpture</a>
+        <a class="art_type" id="fresco" href="/browsing/fresco">Fresco</a>
       </div>
       <div class="browsing" id="sort">
         <div class="sort">
@@ -42,7 +42,30 @@
       </div>
       <div class="all-art" >
         <div class="photo-gallery">
-          <div class="column">
+          <% let imagesPerColumn = Math.ceil(foundAW.length / 3); %>
+          <% for(let i = 0; i < 3; i++) { %>
+            <div class="column">
+              <% for(let j = 0; j < imagesPerColumn; j++) { %>
+                <% let index = i * imagesPerColumn + j; %>
+                <% if(index < foundAW.length) { %>
+                  <% let AW = foundAW[index]; %>
+                  <% if(AW.status == "approve") { %>
+                    <div class="photo">
+                      <a href="/browsing/<%= AW.category %>/<%= AW.id %>">
+                        <img src="/images/artwork/<%= AW.image %>" alt="<%= AW.artowrkName %>">
+                        <div class="overlay">
+                          <div class="overlay-text">More</div>
+                          <div class="overlay-arrow">&#9654;</div>
+                        </div>
+                      </a>
+                    </div>
+                  <% } %>
+                <% } %>
+              <% } %>
+            </div>
+          <% } %>
+          <!-- <div class="column">
+            
               <div class="photo">
                 <a href=""><img src="https://fydn.imgix.net/m/x1000/1269846e-fb2b-4cb2-8544-e1480be6c178.jpg?q=75&auto=format,compress&dpr=1" alt="">
                   <div class="overlay">
@@ -148,7 +171,7 @@
 
       </div>
       </div>
-    </div>
+    </div> -->
   </main>
   <%- include('../components/rootscript.ejs'); %>
   <%- include('../components/footer.ejs'); %>

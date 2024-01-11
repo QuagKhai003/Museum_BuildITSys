@@ -74,7 +74,7 @@ const getArtworks = async (req, res, next) => {
         } else {
             res.send("hello")
             console.log(foundUpload)
-            // res.render('dashboard/artworkArtist', { foundUpload: foundUpload, user: req.session.user });
+            res.render('dashboard/artworkArtist', { foundUpload: foundUpload, user: req.session.user });
         }
     } catch (err) {
         console.log("Error whule get uploaded artwork",err)
