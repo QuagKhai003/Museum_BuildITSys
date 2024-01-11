@@ -19,7 +19,25 @@ const storage = multer.diskStorage({
     }
 })
 
+const storageAva = multer.diskStorage({
+    destination : (req, file, cb) => { //Cheking file type jpg, png, jpeg
+        if( file.mimetype === 'image/jpg'||
+            file.mimetype === 'image/png'||
+            file.mimetype === 'image/jpeg') {
+                cb(null, 'public/images/avatar');
+        } else{
+            cb(new Error('not image', false))
+        }
+    },
+    filename: (req, file, cb) => {
+        console.log(file)
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+
 const upload = multer({storage: storage});
+
+const uploadAva = multer({storage: storageAva})
 
 // Function to handle artwork upload
 const uploadArtworks = async (req, res, next) => {
@@ -60,4 +78,5 @@ const uploadArtworks = async (req, res, next) => {
 module.exports = { 
     uploadArtworks, 
     upload,
+    uploadAva,
 };

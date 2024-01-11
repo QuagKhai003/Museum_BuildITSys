@@ -1,0 +1,62 @@
+<!-- Button to display the dashboard responsive -->
+<div class="dropdown dashboard-button">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Dashboard
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="/profile">Profile</a></li>
+        <% if ( user.role == 'visitor') { %>
+            <li><a class="dropdown-item" href="/profile/bookmark">Bookmarks</a></li> 
+        <% } %>
+        <% if ( user.role == 'artist') { %>
+            <li><a class="dropdown-item" href="/profile/artwork">Artworks</a></li> 
+        <% } %>
+        <% if ( user.role == 'admin') { %>
+            <li><a class="dropdown-item" href="/profile/pending">Pending Posts</a></li> 
+        <% } %>
+    </ul>
+</div>
+
+    <!-- SECTION TO DISPLAY THE DASHBOARD SECTION -->
+
+    <div class="row row-eq-height h-100">
+
+        <!-- SIDEBAR MENU -->
+        <div class="dashboard-menu col-lg-4 col-md-4">
+            <nav>
+                <div class="menu-items">
+                    <ul class="nav-link"></ul>
+                    <li>
+                        <a href="/profile" style="background-color: #13130D;">
+                            <i class="fa-solid fa-user" style="color: #F7F6EC;"></i>
+                            <span class="link-name" style="color: #F7F6EC;">Profile</span>
+                        </a>
+                    </li>
+                    <% if ( user.role == 'visitor') { %>
+                        <li>
+                            <a href="/profile/bookmark">
+                                <i class="fa-solid fa-bookmark"></i>
+                                <span class="link-name">Bookmarks</span>
+                            </a>
+                        </li>
+                    <% } %>
+                    <% if ( user.role == 'artist') { %>
+                        <li>
+                            <a href="/profile/artwork">
+                                <i class="fa-solid fa-palette"></i>
+                                <span class="link-name">Artworks</span>
+                            </a>
+                        </li>
+                    <% } %>
+                    <% if ( user.role == 'admin') { %>
+                        <li>
+                            <a href="/profile/pending">
+                                <i class="fa-solid fa-palette"></i>
+                                <span class="link-name">Pending Posts</span>
+                            </a>
+                        </li>
+                    <% } %>                   
+                </div>
+            </nav>
+        </div>

@@ -10,10 +10,10 @@ const { visitorRegister, artistRegister } = require('./functions/authRegister');
 const { authLogin } = require('./functions/authLogin');
 const { checkExistedList } = require('./functions/checkList');
 const { bookmarks } = require('./functions/bookmarks');
-const { userController } = require('./functions/userEdit');
-const { uploadArtworks, upload } = require('./functions/uploadArtworks');
+const { getProfile, getEditProfile, getChangePassword, postEditProfile, postChangePassword } = require('./functions/userEdit');
+const { uploadArtworks, upload, uploadAva } = require('./functions/uploadArtworks');
 const { changePw } = require('./functions/changePw');
-const { visitorDashboard, artistDashboard, adminDashboard, artworkArtist } = require('./functions/getDashboard');
+const { getArtworks, getBookmarks } = require('./functions/getDashboard');
 const { sortPending, sortApproved, sortDeclined } = require('./functions/sort');
 const user = require('./models/user');
 const artwork = require('./models/artwork');
@@ -38,7 +38,6 @@ app.use(session({
 }));
 
 app.get('/', (req, res) => {
-    req.session.user
     console.log(req.session.user)
     res.render('homepage/homepage', { user: req.session.user });
 });
@@ -70,67 +69,50 @@ app.get('/about', (req, res) => {
     res.render('aboutuspage/aboutus', {user: req.session.user});
 })
 
-app.get('/sidebar' ,(req,res) => {
-    res.render('allartworkpage/sidebar')
-})
+// app.get('/dashboardVisitor', visitorDashboard)
+// app.get('/dashboardArtist', artistDashboard)
+// app.get('/dashboardAdmin', adminDashboard)
 
-app.get('/dashboardTest', (req, res) => {
-    res.render('dashboard/dashboardTest')
-})
+// app.get('/edit', (req, res) => {
+//     res.render('dashboard/edit', { user: req.session.user })
+// })
 
-app.get('/dashboardVisitor', (req, res) => {
-    res.render('dashboard/profileVisitor')
-})
-
-app.get('/dashboardVisitor', visitorDashboard)
-app.get('/dashboardArtist', artistDashboard)
-app.get('/dashboardAdmin', adminDashboard)
-
-app.get('/edit', (req, res) => {
-    res.render('dashboard/edit', { user: req.session.user })
-})
-
-app.get('/pending', async (req, res) => {
-    const foundAW = await artwork.find({})
-    res.render('dashboard/PendingAdmin', {foundAW: foundAW, user: req.session.user})
-})
-
-app.get('/editArtist', (req, res) => {
-    res.render('dashboard/editArtist')
-})
+// app.get('/editArtist', (req, res) => {
+//     res.render('dashboard/editArtist')
+// })
 
 
-app.get('/editAdmin' ,(req, res) => {
-    res.render('dashboard/editAdmin', {user: req.session.user})
-})
+// app.get('/editAdmin' ,(req, res) => {
+//     res.render('dashboard/editAdmin', {user: req.session.user})
+// })
 
-app.get('/editArtist', (req, res) => {
-    res.render('dashboard/editArtist')
-})
+// app.get('/editArtist', (req, res) => {
+//     res.render('dashboard/editArtist')
+// })
 
 app.get('/browsing', (req, res) => {
     res.render('browsingartworkpage/browsingartwork.ejs')
 })
 
-app.get('/password', (req, res) => {
-    req.session.user
-    console.log(req.session.user)
-    if (req.session.user) {
-        res.render('dashboard/password', { user: req.session.user });
-    } else {
-        res.redirect('/error')
-    }
-})
+// app.get('/password', (req, res) => {
+//     req.session.user
+//     console.log(req.session.user)
+//     if (req.session.user) {
+//         res.render('dashboard/password', { user: req.session.user });
+//     } else {
+//         res.redirect('/error')
+//     }
+// })
 
-app.post('/changePassword', changePw);
+// app.post('/changePassword', changePw);
 
-app.get('/passwordArtist', (req, res) => {
-    res.render('dashboard/passwordArtist')
-})
+// app.get('/passwordArtist', (req, res) => {
+//     res.render('dashboard/passwordArtist')
+// })
 
-app.get('/passwordAdmin', (req, res) => {
-    res.render('dashboard/passwordAdmin')
-})
+// app.get('/passwordAdmin', (req, res) => {
+//     res.render('dashboard/passwordAdmin')
+// })
 
 // app.get('/dashUser', (req, res) => {
 //     res.render('dashboardpage/user');
@@ -160,28 +142,8 @@ app.get('/error', (req, res) => {
     res.render('errorpage/errorpage.ejs', { user: req.session.user })
 })
 
-app.get('/artworkArtist', artworkArtist)
-
 app.listen(PORT, () => {
     console.log(`Listening to port: ${PORT}`);
-});
-
-app.post('/edit-profile', async (req, res) => {
-    try {
-        // Assuming you have a form with fields like username, email, etc.
-        const { firstName, lastName, username, email } = req.body;
-
-        // Assuming you have a visitor's ID (replace 'visitorId' with the actual field name)
-        const userID = req.session.user.id;
-
-        // Update the visitor's data in the database
-        const updatedVisitor = await user.findByIdAndUpdate(userID, { firstName, lastName, username, email }, { new: true });
-
-        res.status(200).redirect('/');
-    } catch (error) {
-        console.error('Error while updating profile:', error);
-        res.status(401).redirect("/error")
-    }
 });
 
 app.get('/browsing', async(req, res) => {
@@ -224,17 +186,6 @@ app.get('/browsing/fresco/:id', async(req, res) => {
     res.render('browsingpage/allcategories', {foundAW: foundAW, user: req.session.user});
 })
 
-// app.post('/upload', async (req, res) => {
-//     const newAW = {
-//         artworkName: req.body.name,
-//         categories: req.body.categories,
-//     }
-
-//     await artworkts.create(newAW)
-//     .then(() => {console.log("Create aw success")})
-//     .catch((err) => {console.log("Unable to create aw: ", err)})
-// })
-
 app.post('/bookmark/:id/', checkExistedList, bookmarks, async(req, res) => {
     console.log("bookmark route end")
 })
@@ -273,11 +224,24 @@ app.get('/upload', (req, res) => {
     res.render('uploadpage/upload', { user: req.session.user });
 })
 
-app.get('/profile/:id', userController.getProfile);
-app.get('/edit-profile/:id', userController.getEditProfile);
-app.post('/edit-profile/:id', upload.single('avatar'), userController.postEditProfile);
-app.get('/change-password/:id', userController.getChangePassword);
-app.post('/change-password/:id', userController.postChangePassword);
+app.get('/profile', getProfile);
+
+app.get('/profile/edit', getEditProfile);
+
+app.post('/profile/edit', uploadAva.single('avatar'), postEditProfile);
+
+app.get('/profile/password', getChangePassword);
+
+app.post('/profile/password', postChangePassword);
+
+app.get('/profile/artwork', getArtworks)
+
+app.get('/profile/bookmark', getBookmarks)
+
+app.get('/profile/pending', async (req, res) => {
+    const foundAW = await artwork.find({})
+    res.render('dashboard/PendingAdmin', {foundAW: foundAW, user: req.session.user})
+})
       
 app.post('/upload', upload.single('image'), uploadArtworks);
 
