@@ -35,13 +35,16 @@
                     </div>
                     
                     <div class="photo-gallery">
-                        <% let imagesPerColumn = Math.ceil(foundBookmark.length / 3); %>
+                        <% let columns = [[], [], []]; %>
+                        <% for(let i = 0; i < foundBookmark.length; i++) { %>
+                            <% columns[i % 3].push(foundBookmark[i]); %>
+                        <% } %>
                         <% for(let i = 0; i < 3; i++) { %>
                             <div class="image-column">
-                                <% for(let j = 0; j < imagesPerColumn; j++) { %>
-                                    <% let image = foundBookmark[i * imagesPerColumn + j]; %>
+                                <% for(let j = 0; j < columns[i].length; j++) { %>
+                                    <% let image = columns[i][j]; %>
                                     <% if(image) { %>
-                                        <a href="#" class="photo">
+                                        <a href="/detail/<%=image._id%>" class="photo">
                                             <img src="/images/artwork/<%= image.image %>" alt="<%= image.artworkName %>">
                                             <div class="overlay">
                                                 <div class="text"><%= image.artworkName %></div>
@@ -52,6 +55,7 @@
                             </div>
                         <% } %>
                     </div>
+                    
                     
                       
                     
