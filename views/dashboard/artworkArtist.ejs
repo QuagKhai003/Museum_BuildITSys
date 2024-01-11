@@ -17,7 +17,29 @@
 
 
         <div class="container-fluid dashboard-section">
-          <%- include('../components/sidebar.ejs'); %>
+            <div class="row row-eq-height h-100">
+                <div class="dashboard-menu col-lg-4 col-md-4">
+                    <nav>
+                        <div class="menu-items">
+                            <ul class="nav-link">
+                                <li>
+                                    <a href="/profile" class="p-2 rounded">
+                                        <i class="fa-solid fa-user"></i>
+                                        <span class="link-name">Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/profile/artwork" class="bg-dark p-2">
+                                        <i class="fa-solid fa-palette" style="color: white;"></i>
+                                        <span class="link-name" style="color: white;">Artwork</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            
+            
 
                 <!-- CONTENT SECTION -->
                 <div class="col-lg-8 dashboard-content col-md-8">
@@ -36,18 +58,18 @@
                     
                     <div class="photo-gallery">
                       <% let columns = [[], [], []]; %>
-                      <% for(let i = 0; i < images.length; i++) { %>
-                          <% columns[i % 3].push(images[i]); %>
+                      <% for(let i = 0; i < foundUpload.length; i++) { %>
+                          <% columns[i % 3].push(foundUpload[i]); %>
                       <% } %>
                       <% for(let i = 0; i < 3; i++) { %>
                           <div class="image-column">
                               <% for(let j = 0; j < columns[i].length; j++) { %>
-                                  <% let image = columns[i][j]; %>
-                                  <% if(image) { %>
-                                      <a href="/detail/<%=image._id%>" class="photo">
-                                          <img src="/images/artwork/<%= image.image %>" alt="<%= image.artworkName %>">
+                                  <% let Upload = columns[i][j]; %>
+                                  <% if(Upload) { %>
+                                      <a href="/browsing/<%= Upload.category %>/<%= Upload._id %>" class="photo">
+                                          <img src="/images/artwork/<%= Upload.image %>" alt="<%= Upload.artworkName %>">
                                           <div class="overlay">
-                                              <div class="text"><%= image.artworkName %></div>
+                                              <div class="text"><%= Upload.artworkName %></div>
                                           </div>
                                       </a>
                                   <% } %>
@@ -60,7 +82,7 @@
                     
 
                 </div>
-                
+            </div>    
         </div>
     </main>
     <%- include('../components/rootscript.ejs'); %>

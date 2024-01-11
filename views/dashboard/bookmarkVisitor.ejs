@@ -15,24 +15,32 @@
     <%- include('../components/header.ejs'); %>
     <main class="mt-10">
 
-
         <div class="container-fluid dashboard-section">
-          <%- include('../components/sidebar.ejs'); %>
+            <div class="row row-eq-height h-100">
+                <div class="dashboard-menu col-lg-4 col-md-4">
+                    <nav>
+                        <div class="menu-items">
+                            <ul class="nav-link">
+                                <li>
+                                    <a href="/profile" class="p-2 rounded">
+                                        <i class="fa-solid fa-user"></i>
+                                        <span class="link-name">Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/profile/bookmark" class="bg-dark p-2">
+                                        <i class="fa-solid fa-bookmark" style="color: white;"></i>
+                                        <span class="link-name" style="color: white;">Bookmark</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            
 
                 <!-- CONTENT SECTION -->
                 <div class="col-lg-8 dashboard-content col-md-8">
-                    <div class="status-sort">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Sort
-                            </button>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="/artworkArtist/pending">Pending</a></li>
-                              <li><a class="dropdown-item" href="/artworkArtist/approved">Approve</a></li>
-                              <li><a class="dropdown-item" href="/artworkArtist/declined">Declined</a></li>
-                            </ul>
-                          </div>
-                    </div>
                     
                     <div class="photo-gallery">
                         <% let columns = [[], [], []]; %>
@@ -44,7 +52,7 @@
                                 <% for(let j = 0; j < columns[i].length; j++) { %>
                                     <% let image = columns[i][j]; %>
                                     <% if(image) { %>
-                                        <a href="/detail/<%=image._id%>" class="photo">
+                                        <a href="/browsing/<%= image.category %>/<%=image._id%>" class="photo">
                                             <img src="/images/artwork/<%= image.image %>" alt="<%= image.artworkName %>">
                                             <div class="overlay">
                                                 <div class="text"><%= image.artworkName %></div>
@@ -55,13 +63,8 @@
                             </div>
                         <% } %>
                     </div>
-                    
-                    
-                      
-                    
-
                 </div>
-                
+            </div>     
         </div>
     </main>
     <%- include('../components/rootscript.ejs'); %>

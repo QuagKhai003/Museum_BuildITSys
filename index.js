@@ -154,7 +154,7 @@ app.get('/browsing/all', async(req, res) => {
 })
 
 app.get('/browsing/painting', async(req, res) => {
-    const foundAW = await artwork.find({categories: 'painting'});
+    const foundAW = await artwork.find({category: 'painting'});
     res.render('browsingpage/browsingartwork', {foundAW: foundAW, user: req.session.user});
 })
 
@@ -171,7 +171,7 @@ app.get('/detail/:id', async(req, res) => {
 
 
 app.get('/browsing/sculpture', async(req, res) => {
-    const foundAW = await artwork.find({categories: 'sculpture'});
+    const foundAW = await artwork.find({category: 'sculpture'});
     res.render('browsingpage/browsingartwork', {foundAW: foundAW, user: req.session.user});
 })
 
@@ -181,7 +181,7 @@ app.get('/browsing/sculpture/:id', async(req, res) => {
 })
 
 app.get('/browsing/fresco', async(req, res) => {
-    const foundAW = await artwork.find({categories: 'fresco'});
+    const foundAW = await artwork.find({category: 'fresco'});
     res.render('browsingpage/browsingartwork', {foundAW: foundAW, user: req.session.user});
 })
 

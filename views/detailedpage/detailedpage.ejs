@@ -21,9 +21,11 @@
             <div class="image-container">
                 <div class="hover-image"><img src="/images/artwork/<%= foundAW.image %>" alt="Your Image"></div>
                 <div class="image-info">
-                    <form action="/bookmark/<%= foundAW._id %>" method="post">
-                        <button class="bookmark-btn" type="submit"><i class="far fa-bookmark"></i></button>
-                    </form>
+                    <% if ( user.role == 'visitor') { %>
+                        <form action="/bookmark/<%= foundAW._id %>" method="post">
+                            <button class="bookmark-btn" type="submit"><i class="far fa-bookmark"></i></button>
+                        </form>
+                    <% } %>
                     <h2 class="artwork-title"><%= foundAW.artworkName %></h2>
                     <p class="author">Author: <%= foundAW.artworkAuthor %></p>
                     <p class="artist">Pubblised by: <%= foundAW.artworkArtist %></p>
