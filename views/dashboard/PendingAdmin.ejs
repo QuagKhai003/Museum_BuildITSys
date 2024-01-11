@@ -52,12 +52,12 @@
                                 </a>
                                 <a href="/browsing/<%= AW.category %>/<%= AW._id %>" class="post-title"><%= AW.artworkName %></a>
                                 <div class="post-button d-flex flex-row align-items-center">
-                                    <form action="/pending/<%= AW._id %>/approve" method="post">
+                                    <form action="/profile/pending/<%= AW._id %>/approve" method="post">
                                         <button class="btn btn-outline-success" type="submit">
                                             Approve
                                         </button>
                                     </form>
-                                    <form action="/pending/<%= AW._id %>/decline" method="post">
+                                    <form action="/profile/pending/<%= AW._id %>/decline" method="post">
                                         <button class="btn btn-outline-danger" type="submit">
                                             Decline
                                         </button>
