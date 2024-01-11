@@ -1,0 +1,266 @@
+body {
+  margin: 0;
+  line-height: normal;
+  background: black;
+}
+
+:root {
+  /* fonts */
+  --font-inter: Inter;
+
+  /* font sizes */
+  --font-size-17xl: 36px;
+
+  /* Colors */
+  --color-white: #fff;
+
+  /* Border radiuses */
+  --br-xl: 20px;
+
+}
+
+@media (min-width: 50em) {
+  :root{
+    /* Font size*/
+  --fs-xl: 7rem;
+  --fs-400: 3rem;
+  }
+  
+}
+
+@media (max-width: 900px) {
+  .photo-gallery {
+    flex-direction: column;
+  }
+
+  .art_type {
+    font-size: 1.5rem;
+  }
+
+  .sort {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sort div {
+    margin: 10px;
+    text-align: center;
+  }
+
+  .sort div label {
+    margin: 10px 0;
+    font-size: 30px;
+  }
+}
+
+.art_type {
+  text-decoration: none;
+  flex: 1;
+  position: relative;
+  color: inherit;
+  font-size: var(--fs-400);
+}
+
+.art_type::before {
+  content: '';
+  width: 100%;
+  height: 2px;
+  border-radius: 20px;
+  background-color: #ccac64;
+  position: absolute;
+  bottom: -.5rem;
+  left: 0;
+  transition: transform .4s, opacity .4s;
+  opacity: 0;
+}
+
+.art_type:hover::before {
+  transform: translateY(-.25rem);
+  opacity: 1;
+}
+
+.anchor-link {
+  align-self: stretch;
+  border-radius: var(--br-xl);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 60px;
+  gap: 50px;
+}
+
+.all-art {
+  align-self: stretch;
+  height: 1000px;
+  border-radius: var(--br-xl);
+  border: 1px solid var(--color-white);
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.browsing {
+  position: relative;
+  background-color: #000;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 49px 111px;
+  box-sizing: border-box;
+  gap: 49px;
+  text-align: center;
+  font-size: var(--font-size-17xl);
+  color: var(--color-white);
+  font-family: var(--font-inter);
+}
+
+.photo-gallery{
+  display: flex;
+  gap: 15px;
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+} 
+
+.photo img{
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.photo-gallery {
+  display: flex;
+  gap: 15px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.photo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+  transition: filter 0.5s ease;
+}
+
+.photo a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.photo:hover img {
+  filter: blur(5px) brightness(0.8); 
+}
+
+
+/*custom scroll bar*/
+::-webkit-scrollbar{
+  width:5px;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-track{
+  background-color: #000;
+}
+
+::-webkit-scrollbar-thumb{
+  background: white;
+  border-radius: 20px;
+  width:5px;
+}
+
+.sort{
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sort div{
+  margin: 10px
+}
+
+.sort div label{
+  cursor: pointer;
+}
+
+.sort div label input[type = "checkbox"]{
+  display: none;
+}
+
+.sort div label span{
+  position: relative;
+  display: inline-block;
+  background: #424242;
+  padding: 15px 30px;
+  color: #555;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .5);
+  border-radius: 30px;
+  font-size: 20px;
+  transition: 0.5s;
+  user-select: none;
+  overflow: hidden;
+}
+
+.sort div label span:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: rgba(255, 255, 255, .1);
+}
+
+.sort div:nth-child(4n + 1) label input[type = "checkbox"]:checked ~ span{
+  background: #ccac64;
+  color: #fff;
+  box-shadow: 0 2px 20px #ccac64;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.photo:hover .overlay {
+  opacity: 1;
+}
+
+.overlay-text {
+  color: white;
+  font-size: 24px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.overlay-arrow {
+  color: white;
+  font-size: 24px;
+  display: inline-block;
+}

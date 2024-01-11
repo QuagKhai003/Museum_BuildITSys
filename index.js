@@ -108,6 +108,9 @@ app.get('/editArtist', (req, res) => {
     res.render('dashboard/editArtist')
 })
 
+app.get('/browsing', (req, res) => {
+    res.render('browsingartworkpage/browsingartwork.ejs')
+})
 
 app.get('/password', (req, res) => {
     req.session.user
