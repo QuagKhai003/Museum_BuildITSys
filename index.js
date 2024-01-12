@@ -177,7 +177,7 @@ app.get('/browsing/sculpture', async(req, res) => {
 
 app.get('/browsing/sculpture/:id', async(req, res) => {
     const foundAW = await artwork.findOne({_id: req.params.id});
-    res.render('browsingpage/detailedpage.ejs', {foundAW: foundAW, user: req.session.user});
+    res.render('detailedpage/detailedpage.ejs', {foundAW: foundAW, user: req.session.user});
 })
 
 app.get('/browsing/fresco', async(req, res) => {
@@ -187,7 +187,7 @@ app.get('/browsing/fresco', async(req, res) => {
 
 app.get('/browsing/fresco/:id', async(req, res) => {
     const foundAW = await artwork.findOne({_id: req.params.id});
-    res.render('browsingpage/detailedpage.ejs', {foundAW: foundAW, user: req.session.user});
+    res.render('detailedpage/detailedpage.ejs', {foundAW: foundAW, user: req.session.user});
 })
 
 app.post('/bookmark/:id/', checkExistedList, bookmarks, async(req, res) => {
