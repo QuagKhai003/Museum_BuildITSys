@@ -198,6 +198,10 @@ input.searchInput.open {
     top: -10rem;
 }
 
+.openmenubtn {
+    cursor: pointer;
+}
+
 /* style ling footer */
 .footer{
     margin-top: 5vw;

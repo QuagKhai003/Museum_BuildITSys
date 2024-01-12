@@ -25,6 +25,7 @@ closebtn.addEventListener('click', () => {
 
 // Select element for 768px screen size
 let menutoggle = document.querySelector('.menutoggle');
+let openmenubtn = document.querySelector('.openmenubtn')
 let closemenubtn = document.querySelector('.closemenubtn');
 let menucontainer = document.querySelector('.menu-container');
 
@@ -46,3 +47,11 @@ window.addEventListener('resize', () => {
         searchBox.classList.remove('open');
     }
 });
+
+searchbtn.addEventListener('click', () => {
+    document.getElementById("searchForm").submit();
+})
+
+openmenubtn.addEventListener('click', () => {
+    document.getElementById("searchMenuForm").submit();
+})
