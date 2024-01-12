@@ -36,20 +36,20 @@
             <% } %> 
             <li><i class="staticSearchBtn fa-solid fa-magnifying-glass"></i></li>
         </ul>
-        <div class="search">
+        <form class="search" action="/browsing/all" method="post" id="searchForm">
             <i class="searchbtn fa-solid fa-magnifying-glass"></i>
-            <input class="searchInput" type="text" placeholder="Search...">
+            <input class="searchInput" type="text" name="awName" placeholder="Search...">
             <i class="closebtn fa-solid fa-x"></i>
-        </div>
+        </form>
     </div>
     <i class="menutoggle fa-solid fa-bars"></i>
     <!-- <div class="menu-bg"> -->
         <div class="menu-container">
-            <div class="search-menu">
+            <form class="search-menu" action="/browsing/all" method="post" id="searchMenuForm">
                 <i class="openmenubtn fa-solid fa-magnifying-glass"></i>
-                <input class="searchMenuInput" type="text" placeholder="Search...">
+                <input class="searchMenuInput" type="text" name="awName" placeholder="Search...">
                 <i class="closemenubtn fa-solid fa-x"></i>
-            </div>
+            </form>
             <a href="/">Home</a>
             <a href="/browsing">Artworks</a>
             <a href="/about">About Us</a>
