@@ -149,7 +149,7 @@ app.get('/browsing', async(req, res) => {
 
 app.post('/browsing/all', async(req, res) => {
     const foundAW = await artwork.find({});
-    const foundSearch = foundAW.filter((fAW) => fAW.artworkName.includes(req.body.awName))
+    const foundSearch = foundAW.filter((fAW) => fAW.artworkName.toLowerCase().includes(req.body.awName.toLowerCase()))
     res.render('browsingpage/browsingartwork', {foundAW: foundSearch, user: req.session.user})
 })
 
