@@ -12,7 +12,7 @@
     width: 70%;
     height: 100%;
     transition: transform 0.3s ease-in-out;
-    display: block; /* This removes the bottom space under the image */
+    display: block; 
 }
 
 .hover-image img{
@@ -28,27 +28,27 @@
 }
 
 .hover-image:hover {
-    transform: scale(1.05); /* Adjust scale factor as needed */
+    transform: scale(1.05); 
     box-shadow: 10px 10px 5px grey
 }
 
 .image-info {
-    background-color: rgba(255,255,255,0.8); /* Adjust color and opacity as needed */
+    background-color: rgba(255,255,255,0.8); 
     padding: 10px; 
-    margin-top: 10px; /* Add space between the image and the text */
-    border-radius: 10px; /* Add rounded corners */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Add a shadow for depth */
-    position: relative; /* Make the image-info a relative container */
+    margin-top: 10px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    position: relative; 
     width: 70%
 }
 
 .artwork-title {
-    font-size: 4vw; /* Responsive font size */
+    font-size: 4vw; 
     margin-bottom: 10px;
 }
 
 .author, .description, .category {
-    font-size: 1.5vw; /* Responsive font size */
+    font-size: 1.5vw; 
     margin-bottom: 10px;
 }
 
@@ -57,9 +57,9 @@
 }
 
 .bookmark-container {
-    position: absolute; /* Position the container absolutely */
+    position: absolute; 
     bottom: 10px; 
-    right: 10px; /* Position from the right */
+    right: 10px; 
 }
 
 .bookmark-btn {
@@ -74,7 +74,7 @@
         width: 80%;
         height: 100%;
         transition: transform 0.3s ease-in-out;
-        display: block; /* This removes the bottom space under the image */
+        display: block; 
     }
 }
 
@@ -90,7 +90,7 @@
     .hover-image {
         flex-grow: 1;
         transition: transform 0.3s ease-in-out;
-        display: block; /* This removes the bottom space under the image */
+        display: block; 
     }
     
 }
