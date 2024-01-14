@@ -13,16 +13,17 @@ const bookmarks = async (req, res, next) => {
         const existedList = await savelist.findOne({_id: userLogged.savedLists[0]})
         
         if( req.session.user.role == "visitor") {
-            
+            console.log('role')
             if(existedList.artworks.includes(id)) {
-                existedList.artworks = existedList.artworks.filter((awID) => {awID !== id})
+                existedList.artworks = existedList.artworks.filter((awID) => awID !== id); // Fix is here
+                console.log('remove')
+                console.log(existedList.artworks)
             } else {
                 existedList.artworks.push(id)
+                console.log(existedList.artworks)
             }
 
             await existedList.save()
-
-            console.log(await existedList.populate("artworks"))
 
             res.status(200).redirect(`/browsing/${foundAW.category}/${foundAW._id}`)
             next()
