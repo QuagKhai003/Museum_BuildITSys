@@ -15,7 +15,7 @@ const bookmarks = async (req, res, next) => {
         if( req.session.user.role == "visitor") {
             console.log('role')
             if(existedList.artworks.includes(id)) {
-                existedList.artworks = existedList.artworks.filter((awID) => awID !== id); // Fix is here
+                existedList.artworks = existedList.artworks.filter((awID) => awID != id); // Fix is here
                 console.log('remove')
                 console.log(existedList.artworks)
             } else {
