@@ -8,6 +8,7 @@ const sortPending = async (req, res) => {
             return res.status(404).send('User not found');
         }
         const pendingArtworks = foundUser.uploads.filter(artwork => artwork.status === 'pending');
+        pendingArtworks.reverse();
         res.render('dashboard/artworkArtist', { foundUpload: pendingArtworks, user: req.session.user });
     } catch (err) {
         res.status(500).redirect('error');
@@ -21,6 +22,7 @@ const sortApproved = async (req, res) => {
             return res.status(404).send('User not found');
         }
         const approvedArtworks = foundUser.uploads.filter(artwork => artwork.status === 'approve');
+        approvedArtworks.reverse();
         res.render('dashboard/artworkArtist', { foundUpload: approvedArtworks, user: req.session.user });
     } catch (err) {
         res.status(500).redirect('error');
@@ -34,6 +36,7 @@ const sortDeclined = async (req, res) => {
             return res.status(404).send('User not found');
         }
         const declinedArtworks = foundUser.uploads.filter(artwork => artwork.status === 'decline');
+        declinedArtworks.reverse();
         res.render('dashboard/artworkArtist', { foundUpload: declinedArtworks, user: req.session.user });
     } catch (err) {
         res.status(500).redirect('error');

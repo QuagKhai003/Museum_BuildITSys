@@ -20,14 +20,14 @@
     <% if( foundAW ) { %>
         <div class="container-fluid artwork-detail-section">
             <div class="image-container">
-                <div class="hover-image"><img src="/images/artwork/<%= foundAW.image %>" alt="Your Image"></div>
+                <div class="hover-image"><img src="/images/artwork/<%= foundAW.image %>" alt="<%= foundAW.artworkName%>"></div>
                 <div class="image-info">
                     <% if ( !user ) { %>
                         <h2 class="artwork-title"><%= foundAW.artworkName %></h2>
                         <p class="author">Author: <%= foundAW.artworkAuthor %></p>
-                        <p class="artist">Pubblised by: <%= foundAW.artworkArtist %></p>
-                        <p class="category"><%= foundAW.artworkCategories %></p>
-                        <p class="description"><%= foundAW.artworkDescription %></p>
+                        <p class="artist">Published by: <%= foundAW.artworkArtist %></p>
+                        <p class="category">Category: <%= foundAW.category%></p>
+                        <p class="description"><%= foundAW.artworkDescription%></p>
                     <% } %>
                     <% if ( user ) { %>
                         <% if ( user.role == 'visitor') { %>
@@ -36,9 +36,9 @@
                             </form>
                         <% } %>
                         <h2 class="artwork-title"><%= foundAW.artworkName %></h2>
-                        <p class="author">Author: <%= foundAW.artworkAuthor %></p>
-                        <p class="artist">Pubblised by: <%= foundAW.artworkArtist %></p>
-                        <p class="category"><%= foundAW.artworkCategories %></p>
+                        <p class="author">Author: <%= foundAW.artworkAuthor%></p>
+                        <p class="artist">Published by: <%= foundAW.artworkArtist %></p>
+                        <p class="category">Category: <%= foundAW.category %></p>
                         <p class="description"><%= foundAW.artworkDescription %></p>
                     <% } %>
                 </div>

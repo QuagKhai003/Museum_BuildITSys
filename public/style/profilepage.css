@@ -44,3 +44,16 @@ img {
     margin-right: .4rem;
     margin-bottom: 1rem;
 }
+
+.btn { 
+    margin: .2rem
+}
+
+.logout {
+    color: red;
+    border-color: red;
+}
+
+.profile-display {
+    padding: 1rem;
+}

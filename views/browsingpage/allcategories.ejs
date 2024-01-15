@@ -57,17 +57,17 @@
                             <% if ( foundAW[i].status == "approve" ) { %>
                                 <% if ( foundAW[i].category == "painting" ) { %>
                                     <a class="slide" href="/browsing/painting/<%= foundAW[i]._id %>">
-                                        <img src="/images/artwork/<%= foundAW[i].image %>" alt="test slide effect picture">
+                                        <img src="/images/artwork/<%= foundAW[i].image %>" alt="<%= foundAW[i].artworkName %>">
                                     </a>
                                 <% } %>
                                 <% if ( foundAW[i].category == "sculpture" ) { %>
                                     <a class="slide" href="/browsing/sculpture/<%= foundAW[i]._id %>">
-                                        <img src="/images/artwork/<%= foundAW[i].image %>" alt="test slide effect picture">
+                                        <img src="/images/artwork/<%= foundAW[i].image %>" alt="<%= foundAW[i].artworkName %>">
                                     </a>
                                 <% } %>
                                 <% if ( foundAW[i].category == "fresco" ) { %>
                                     <a class="slide" href="/browsing/fresco/<%= foundAW[i]._id %>">
-                                        <img src="/images/artwork/<%= foundAW[i].image %>" alt="test slide effect picture">
+                                        <img src="/images/artwork/<%= foundAW[i].image %>" alt="<%= foundAW[i].artworkName %>">
                                     </a>
                                 <% } %>
                             <% } %>    
