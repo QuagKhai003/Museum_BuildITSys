@@ -75,7 +75,7 @@ const getArtworks = async (req, res, next) => {
             // res.send("hello")
             console.log(foundUser.uploads)
             // res.render('dashboard/artworkArtist', { foundUpload: foundUpload, user: req.session.user });
-            res.render('dashboard/artworkArtist', { foundUpload: foundUser.uploads, user: req.session.user });
+            res.render('dashboard/artworkArtist', { foundUpload: foundUser.uploads.reverse(), user: req.session.user });
         }
     } catch (err) {
         console.log("Error while get uploaded artwork",err)
@@ -94,6 +94,7 @@ const getBookmarks = async (req, res, next) => {
         });
         
         const foundBookmark = foundListBookmark.savedLists[0].artworks
+        foundBookmark.reverse();
         
         if (!foundBookmark) {
             return res.status(404).redirect('/error');
