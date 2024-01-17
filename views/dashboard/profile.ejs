@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../components/rootstyle.ejs'); %>
+        <link rel="stylesheet" href="/style/sidebar.css">
+        <link rel="stylesheet" href="/style/profilepage.css">
+        <title>Profile</title>
+        <link rel="icon" type="image/x-icon" href="/images/logo/Favicon.png">
+</head>
+
+<body>
+    <%- include('../components/header.ejs'); %>
+    <main class="mt-10">
+        
+
+        <div class="container-fluid dashboard-section">
+
+            <%- include('../components/sidebar.ejs'); %>
+
+                <!-- CONTENT SECTION -->
+                <div class="col-lg-8 dashboard-content col-md-8">
+                    <div class="hello-user" >Hello, 
+                        <% if (user.role =="admin") { %>
+                            Admin
+                        <% } %>
+                        <% if (user.role =="visitor") { %>
+                            Visitor
+                        <% } %>
+                        <% if (user.role =="artist") { %>
+                            Artist 
+                        <% } %>
+                        <%= foundUser.firstName %>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="row g-0 profile-display">
+                            <div class="text col-md-4 gradient-custom text-center">
+                                <img src="/images/avatar/<%= foundUser.avatar %>" alt="Avatar" class="img-fluid my-5">
+                                <h5><%=foundUser.username %></h5>
+                                <a href="/profile/edit" class="btn btn-outline-primary">Edit</a>
+                                <a href="/profile/password"class="btn btn-outline-info">Change password</a>
+                                <a href="/logout"class="btn btn-outline-info logout">Logout</a>                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body p-4">
+                                    <h6>Information</h6>
+                                    <hr class="mt-0 mb-4">
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>Full Name</h6>
+                                            <p class="text-muted" id="username"><%=foundUser.firstName%> <%=foundUser.lastName%></p>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>Recent Email</h6>
+                                            <p class="text-muted" id="email"><%=foundUser.email%></p>
+                                        </div>
+
+                                    </div>
+                                    <div class="d-flex justify-content-start">
+                                        <a href="#!"><i class="fab fa-facebook-f fa-lg me-3" aria-hidden="true"></i></a>
+                                        <a href="#!"><i class="fab fa-twitter fa-lg me-3" aria-hidden="true"></i></a>
+                                        <a href="#!"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <%- include('../components/rootscript.ejs'); %>
+    <%- include('../components/footer.ejs'); %>
+        
+</body>
+
+</html>

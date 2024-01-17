@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../components/rootstyle.ejs'); %>
+        <link rel="stylesheet" href="/style/sidebar.css">
+        <link rel="stylesheet" href="/style/artistArtwork.css">
+        <title>Bookmark</title>
+        <link rel="icon" type="image/x-icon" href="/images/logo/Favicon.png">
+</head>
+
+<body>
+    <%- include('../components/header.ejs'); %>
+    <main class="mt-10">
+
+        <div class="container-fluid dashboard-section">
+            <div class="row row-eq-height h-100">
+                <div class="dashboard-menu col-lg-4 col-md-4">
+                    <nav>
+                        <div class="menu-items">
+                            <ul class="nav-link">
+                                <li>
+                                    <a href="/profile" class="p-2 rounded">
+                                        <i class="fa-solid fa-user"></i>
+                                        <span class="link-name">Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/profile/bookmark" class="bg-dark p-2">
+                                        <i class="fa-solid fa-bookmark" style="color: white;"></i>
+                                        <span class="link-name" style="color: white;">Bookmark</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            
+
+                <!-- CONTENT SECTION -->
+                <div class="col-lg-8 dashboard-content col-md-8">
+                    
+                    <div class="photo-gallery">
+                        <% let columns = [[], [], []]; %>
+                        <% for(let i = 0; i < foundBookmark.length; i++) { %>
+                            <% columns[i % 3].push(foundBookmark[i]); %>
+                        <% } %>
+                        <% for(let i = 0; i < 3; i++) { %>
+                            <div class="image-column">
+                                <% for(let j = 0; j < columns[i].length; j++) { %>
+                                    <% let image = columns[i][j]; %>
+                                    <% if(image) { %>
+                                        <a href="/browsing/<%= image.category %>/<%=image._id%>" class="photo">
+                                            <img src="/images/artwork/<%= image.image %>" alt="<%= image.artworkName %>">
+                                            <div class="overlay">
+                                                <div class="text"><%= image.artworkName %></div>
+                                            </div>
+                                        </a>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>     
+        </div>
+    </main>
+    <%- include('../components/rootscript.ejs'); %>
+    <%- include('../components/footer.ejs'); %>
+
+</body>
+
+</html>

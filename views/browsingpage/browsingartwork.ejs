@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../components/rootstyle.ejs'); %>
+    <link rel="stylesheet" href="/style/br-artwork.css"/>
+    <title>Browsing Artworks</title>
+    <link rel="icon" type="image/x-icon" href="/images/logo/Favicon.png">
+</head>
+  <body>
+    <%- include('../components/header.ejs'); %>
+    <main>
+    <div class="browsing">
+      <div class="anchor-link" id="anchor_link">
+        <a class="art_type" id="all" href="/browsing/all">All</a>
+        <a class="art_type" id="painting" href="/browsing/painting">Painting</a>
+        <a class="art_type" id="sculpture" href="/browsing/sculpture">Sculpture</a>
+        <a class="art_type" id="fresco" href="/browsing/fresco">Fresco</a>
+      </div>
+      <div class="browsing" id="sort">
+        <div class="sort">
+        <div class="anchor-link" id="anchor_link">
+          <div>
+            <label>
+              <input type="checkbox" name="" id="">
+              <span>A-Z</span>
+          </label>
+          <label>
+            <input type="checkbox" name="" id="">
+            <span>Z-A</span>
+        </label>
+        <label>
+          <input type="checkbox" name="" id="">
+          <span>Newests</span>
+      </label>
+      <label>
+        <input type="checkbox" name="" id="">
+        <span>Oldests</span>
+      </label>
+        </div>
+        </div>
+      </div>
+      <div class="all-art" >
+        <div class="photo-gallery">
+          <% let imagesPerColumn = Math.ceil(foundAW.length / 3); %>
+          <% for(let i = 0; i < 3; i++) { %>
+            <div class="column">
+              <% for(let j = 0; j < imagesPerColumn; j++) { %>
+                <% let index = i * imagesPerColumn + j; %>
+                <% if(index < foundAW.length) { %>
+                  <% let AW = foundAW[index]; %>
+                  <% if(AW.status == "approve") { %>
+                    <div class="photo">
+                      <a href="/browsing/<%= AW.category %>/<%= AW.id %>">
+                        <img src="/images/artwork/<%= AW.image %>" alt="<%= AW.artowrkName %>">
+                        <div class="overlay">
+                          <div class="overlay-text">More</div>
+                          <div class="overlay-arrow">&#9654;</div>
+                        </div>
+                      </a>
+                    </div>
+                  <% } %>
+                <% } %>
+              <% } %>
+            </div>
+          <% } %>
+          <!-- <div class="column">
+            
+              <div class="photo">
+                <a href=""><img src="https://fydn.imgix.net/m/x1000/1269846e-fb2b-4cb2-8544-e1480be6c178.jpg?q=75&auto=format,compress&dpr=1" alt="">
+                  <div class="overlay">
+                    <div class="overlay-text">More</div>
+                    <div class="overlay-arrow">&#9654;</div>
+                  </div>
+                </a> 
+              </div>
+
+              <div class="photo">
+                <a href=""><img src="https://dza2a2ql7zktf.cloudfront.net/binaries-cdn/dqzqcuqf9/image/fetch/ar_16:10,q_auto:best,dpr_3.0,c_fill,f_auto,w_380/https://d2u3kfwd92fzu7.cloudfront.net/asset/cms/Art_Basel_Miami_Beach_2023_Accesibility-1.jpg" alt="">
+                  <div class="overlay">
+                    <div class="overlay-text">More</div>
+                    <div class="overlay-arrow">&#9654;</div>
+                  </div>
+                </a>
+              </div>
+
+              <div class="photo">
+                <a href=""><img src="https://thecanvasartfactory.com.au/cdn/shop/collections/modern-artworkthe-canvas-art-factory.jpg?v=1695954418" alt="">
+                  <div class="overlay">
+                    <div class="overlay-text">More</div>
+                    <div class="overlay-arrow">&#9654;</div>
+                  </div>
+                </a>
+              </div>
+
+              <div class="photo">
+                <a href=""><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Vincent_Willem_van_Gogh_127.jpg/1024px-Vincent_Willem_van_Gogh_127.jpg" alt="">
+                  <div class="overlay">
+                    <div class="overlay-text">More</div>
+                    <div class="overlay-arrow">&#9654;</div>
+                  </div>
+                </a>              
+              </div>
+
+          </div>
+
+
+          <div class="column">
+              <div class="photo">
+                <a href=""><img src="https://cdn.thecollector.com/wp-content/uploads/2020/10/michelangelos-sculpture-pieta-visionary-art-e1603458695952.jpg?width=1400&quality=55" alt="">
+                  <div class="overlay">
+                    <div class="overlay-text">More</div>
+                    <div class="overlay-arrow">&#9654;</div>
+                  </div>
+                </a>
+              </div>
+              <div class="photo">
+                <a href=""><img src="https://sculpture.ravinia.org/images/vert/29SilentMusicA.jpg" alt="">
+                  <div class="overlay">
+                    <div class="overlay-text">More</div>
+                    <div class="overlay-arrow">&#9654;</div>
+                  </div>
+                </a>
+              </div>
+              <div class="photo">
+                <a href=""><img src="https://cdn.britannica.com/30/132930-050-6DB2450A/granite-sculpture-Vishnu-dynasty-Thanjavur-Pallava-India.jpg" alt="">
+                  <div class="overlay">
+                    <div class="overlay-text">More</div>
+                    <div class="overlay-arrow">&#9654;</div>
+                  </div>
+                </a>
+              </div>
+          </div>
+
+
+          <div class="column">
+              <div class="photo">
+                <a href="">
+                  <img src="https://i0.wp.com/inspiringcity.com/wp-content/uploads/2018/08/IMG_20180817_162224.jpg?resize=1140%2C855&ssl=1" alt="">
+                  <div class="overlay">
+                    <div class="overlay-text">More</div>
+                    <div class="overlay-arrow">&#9654;</div>
+                  </div>
+                </a>
+              </div>
+              <div class="photo">
+                <a href=""><img src="https://cdn.i-scmp.com/sites/default/files/styles/og_image_young_post/public/d8/yp/images/graffiti.jpg?itok=DC5P5hJy" alt="">
+                  <div class="overlay">
+                    <div class="overlay-text">More</div>
+                    <div class="overlay-arrow">&#9654;</div>
+                  </div>
+                </a>
+              </div>
+              <div class="photo">
+                <a href=""><img src="https://previews.123rf.com/images/macrovector/macrovector1408/macrovector140800011/30350198-graffiti-spray-paint-expressive-street-crazy-dance-show-words-design-seamless-colorful-pattern.jpg" alt="">
+                  <div class="overlay">
+                    <div class="overlay-text">More</div>
+                    <div class="overlay-arrow">&#9654;</div>
+                  </div>
+                </a>
+              </div>
+              <div class="photo">
+                <a href=""><img src="https://artstreet.in/cdn/shop/products/815VtyFjTkL._SL1500_903x700.jpg?v=1587636504" alt="">
+                  <div class="overlay">
+                    <div class="overlay-text">More</div>
+                    <div class="overlay-arrow">&#9654;</div>
+                  </div>
+                </a>
+              </div>
+          </div>
+
+      </div>
+      </div>
+    </div> -->
+  </main>
+  <%- include('../components/rootscript.ejs'); %>
+  <%- include('../components/footer.ejs'); %>
+</body>
+</html>

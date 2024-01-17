@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../components/rootstyle.ejs'); %>
+    <link rel="stylesheet" href="/style/sidebar.css">
+    <link rel="stylesheet" href="/style/profilepage.css">
+    <title>Edit profile</title>
+    <link rel="icon" type="image/x-icon" href="/images/logo/Favicon.png">
+</head>
+
+<body>
+    <%- include('../components/header.ejs'); %>
+    <main class="mt-10">
+
+        <div class="container-fluid dashboard-section">
+            <%- include('../components/sidebar.ejs'); %>
+
+                <!-- CONTENT SECTION -->
+                <div class="col-lg-8 col-md-8">
+                    <div class="container">
+                        <h1>Edit Profile</h1>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>Personal info</h3>
+                                <form class="form-horizontal" role="form" action="/profile/edit" enctype="multipart/form-data" method="POST">
+                                    <img src="/images/avatar/<%= foundUser.avatar %>" class="avatar img-circle"
+                                            alt="avatar">
+                                    <label for="avatar">Choose new avatar:</label>
+                                    <input type="file" id="avatar" name="avatar">
+                                        <br>
+                                            
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Username:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="text" value="<%=foundUser.username%>"
+                                                name="username">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Email:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="text" value="<%=foundUser.email%>"
+                                                name="email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        
+                                        <input type="submit" class="btn btn-primary" value="Update">
+                                    </div>
+                                </form>
+                                <p><a href="/profile">View your profile</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <%- include('../components/rootscript.ejs'); %>
+    <%- include('../components/footer.ejs'); %>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+.vh-100 {
+    background-color: var(--bewhite);
+}
+
+.card  {
+    border-radius: .5rem;
+}
+
+.text {
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+}
+
+img {
+    width: 80px;
+    
+}
+
+.profile-display {
+    background-color: var(--bewhite);
+}
+
+.hello-user {
+    font-size: 5.5vw;
+}
+  
+.dashboard-content > .card {
+    box-shadow: 5px 5px 10px grey;
+}
+
+.dashboard-main {
+    margin-top: 5rem;
+}
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.img-circle {
+    margin-right: .4rem;
+    margin-bottom: 2rem;
+}
+
+#avatar {
+    margin-right: .4rem;
+    margin-bottom: 1rem;
+}
+
+.btn { 
+    margin: .2rem
+}
+
+.logout {
+    color: red;
+    border-color: red;
+}
+
+.profile-display {
+    padding: 1rem;
+}

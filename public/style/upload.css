@@ -1,0 +1,139 @@
+body {
+    background: url(/images/background/background12.jpg);
+    height: 100vh;
+    width: 100%;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: var(--title-text);
+    text-align: center;
+    margin-top: 36px;
+    font-weight: bold;
+}
+
+.form-container {
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url(/images/background/background13.jpg);
+    background-size: cover;
+    border-radius: 23px;
+    box-shadow: 1px 13px 12px 3px rgba(0,0,0,0,4);
+}
+
+
+.form {
+    font-family: Merriweather, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.form-item {
+    font-family: Merriweather, serif;
+    display: flex;
+    flex-direction: column;
+    margin-top: 23px;
+}
+
+input {
+    font-family: Merriweather, serif;
+    width: 300px;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+}
+
+.category_option {
+    font-family: Merriweather, serif;
+    width: 300px;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+}
+
+textarea {
+    font-family: Merriweather, serif;
+    width: 300px;
+}
+
+.pl_btn {
+    margin-bottom: 27px;
+    height: 45px;
+    padding: 12.5px 30px;
+    border: 0;
+    border-radius: 40px;
+    background-color:lightblue;
+    color: #f7f6ec;
+    font-family: Merriweather, serif;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    text-transform: uppercase;
+    font-size: 1.15rem;
+}
+
+
+.pl_btn:hover {
+    background-color: #bdd9e1;
+    color: #333333;
+    box-shadow: 0 0 20px #68a6c1c6;
+    transform: scale(1.1);
+}
+
+.pl_btn:active {
+    background-color: #68a6c1c6;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    box-shadow: none;
+    transform: scale(0.98);
+}
+
+/* Desktop resolution */
+@media screen and (max-width: 2560px) {
+    .form-container {
+        width: 70%;
+    }
+
+}
+
+/* Desktop resolution */
+@media screen and (max-width: 1440px) {
+    .form-container {
+        width: 90%;
+    }
+
+}
+
+/* Ipad resolution */
+@media screen and (max-width: 1024px) {
+    .form-container {
+        width: 90%;
+    }
+
+}
+
+/* Ipad mini resolution */
+@media screen and (max-width: 768px) {
+    .form-container {
+        width: 90%;
+    }
+
+}
+
+/* Mobile resolution */
+@media screen and (max-width: 430px) {
+    .form-container {
+        width: 90%;
+    }
+
+}

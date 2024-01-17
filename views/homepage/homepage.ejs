@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../components/rootstyle.ejs'); %>
+        <link rel="stylesheet" href="/style/homepage.css">
+        <title>Homepage</title>
+        <link rel="icon" type="image/x-icon" href="/images/logo/Favicon.png">
+</head>
+
+<body>
+    <%- include('../components/header.ejs'); %>
+        <main>
+            <div class="first-content">
+                <div class="museum-name-main">
+                    <h1>Art Museum</h1>
+                    <p class="description">“Everything you can imagine is real.”</p>
+                </div>
+
+                <a class="explore-button" href="/browsing/all">Explore
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+
+            </div>
+            <div class="painting-content">
+                <div class="museum-name">
+                    <h2>Painting</h2>
+                    <p class="description">Colors dance on canvas, telling stories in brushstrokes.</p>
+                </div>
+                <a class="explore-button" href="/browsing/painting">Explore
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+            <div class="scupture-content">
+                <div class="museum-name-right">
+                    <h2>Scupture</h2>
+                    <p class="description">Solid matter transformed, frozen in eternal grace.</p>
+                </div>
+                <a class="explore-button" href="/browsing/sculpture">Explore
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+            <div class="fresco-content">
+                <div class="museum-name">
+                    <h2>Fresco</h2>
+                    <p class="description">History unfolds on walls, a mural of ages past.</p>
+                </div>
+                <a class="explore-button" href="/browsing/fresco">Explore
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+            <div class="Art-message">
+                <div>
+                    <h2>Art message </h2>
+                    <p class="art-para">"Art breathes life into the silent canvas of existence."
+                    </p>
+                </div>
+                <div>
+                    <button class="art-mess-button" onclick="location.href='/browsing/all'">Browse all
+                        artworks</button>
+                    <button class="art-mess-button" onclick="location.href='/register'">Join our community</button>
+
+                </div>
+            </div>
+
+        </main>
+        <%- include('../components/rootscript.ejs'); %>
+            <%- include('../components/footer.ejs'); %>
+</body>
+
+</html>

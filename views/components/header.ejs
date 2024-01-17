@@ -1,0 +1,85 @@
+<header class="d-flex align-items-center">
+    <div class="logo-container">
+        <img class="Homepage-logo" src="/images/logo/Logo.jpg" alt="Logo">
+    </div>
+    <div class="Header-list">
+        <ul class="navigation">
+            <li><a href="/">Home</a></li>
+            <li><a href="/browsing">Artworks</a></li>
+            <li><a href="/about">About Us</a></li>
+            <% if(!user) { %>
+                <li>
+                    <div class="button-container">
+                        <a href="/login" class="button-login">Login</a>
+                        <a href="/register" class="button-register">Register</a>
+                    </div>
+                </li>
+            <% } %>
+            <% if (user) { %>
+                <% if (user.role == 'artist') { %>
+                    <li><a href="/upload">Upload</a></li>
+                    <li>
+                        <div class="button-container">
+                            <a href="/profile" class="button-login">PROFILE</a>
+                            <a href="/logout" class="button-register">LOGOUT</a>
+                        </div>
+                    </li>
+                <% } %>
+                <% if (user.role != 'artist') { %>
+                    <li>
+                        <div class="button-container">
+                            <a href="/profile" class="button-login">PROFILE</a>
+                            <a href="/logout" class="button-register">LOGOUT</a>
+                        </div>
+                    </li>
+                <% } %>
+            <% } %> 
+            <li><i class="staticSearchBtn fa-solid fa-magnifying-glass"></i></li>
+        </ul>
+        <form class="search" action="/browsing/all" method="post" id="searchForm">
+            <i class="searchbtn fa-solid fa-magnifying-glass"></i>
+            <input class="searchInput" type="text" name="awName" placeholder="Search...">
+            <i class="closebtn fa-solid fa-x"></i>
+        </form>
+    </div>
+    <i class="menutoggle fa-solid fa-bars"></i>
+    <!-- <div class="menu-bg"> -->
+        <div class="menu-container">
+            <form class="search-menu" action="/browsing/all" method="post" id="searchMenuForm">
+                <i class="openmenubtn fa-solid fa-magnifying-glass"></i>
+                <input class="searchMenuInput" type="text" name="awName" placeholder="Search...">
+                <i class="closemenubtn fa-solid fa-x"></i>
+            </form>
+            <a href="/">Home</a>
+            <a href="/browsing">Artworks</a>
+            <a href="/about">About Us</a>
+            <% if(!user) { %>
+                <div class="button-container">
+                    <a href="/login" class="button-login">Login</a>
+                    <a href="/register" class="button-register">Register</a>
+                </div>
+            <% } %>
+            <% if (user) { %>
+                <% if (user.role == 'visitor') { %>
+                    <div class="button-container">
+                        <a href="/dashboardVisitor" class="button-login">PROFILE</a>
+                        <a href="/logout" class="button-register">LOGOUT</a>
+                    </div>   
+                <% } %>
+                <% if (user.role == 'artist') { %>
+                    <a href="/upload">Upload</a>
+                    <div class="button-container">
+                        <a href="/dashboardArtist" class="button-login">PROFILE</a>
+                        <a href="/logout" class="button-register">LOGOUT</a>
+                    </div>
+                <% } %>
+                <% if (user.role == 'admin') { %>
+                    <div class="button-container">
+                        <a href="/dashboardAdmin" class="button-login">PROFILE</a>
+                        <a href="/logout" class="button-register">LOGOUT</a>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+    <!-- </div> -->
+</header>

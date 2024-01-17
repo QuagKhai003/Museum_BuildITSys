@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../components/rootstyle.ejs'); %>
+    <link rel="stylesheet" href="/style/sidebar.css">
+    <link rel="stylesheet" href="/style/pendingAdmin.css">
+    <title>Pending artwork</title>
+    <link rel="icon" type="image/x-icon" href="/images/logo/Favicon.png">
+</head>
+
+<body>
+    <%- include('../components/header.ejs'); %>
+        <div class="container-fluid dashboard-section">
+            <div class="dropdown dashboard-button">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Dashboard
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                    <li><a class="dropdown-item" href="/proflie/pending">Pending Artwork</a></li>
+                </ul>
+            </div>
+            <div class="pending-section">
+                <div class="dashboard-menu w-20">
+                    <div class="menu-items">
+                        <ul class="nav-link">
+                            <li>
+                                <a href="/profile" class="p-2 rounded">
+                                    <i class="fa-solid fa-user"></i>
+                                    <span class="link-name">Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/profile/pending" class="bg-dark p-2">
+                                    <i class="fa-solid fa-palette" style="color: white;"></i>
+                                    <span class="link-name" style="color: white;">Pending Artwork</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="dashboard-pending" >
+                    <% foundAW.forEach(function(AW) { %>
+                        <% if(AW.status == "pending") { %>
+                            <div class="pending-post">
+                                <a class="post-image rounded " href="/browsing/<%= AW.category %>/<%= AW._id %>">
+                                    <img src="/images/artwork/<%= AW.image %>" class="artwork-image w-100 h-100" alt="<%= AW.artworkName %>"/>
+                                </a>
+                                <a href="/browsing/<%= AW.category %>/<%= AW._id %>" class="post-title"><%= AW.artworkName %></a>
+                                <div class="post-button d-flex flex-row align-items-center">
+                                    <form action="/profile/pending/<%= AW._id %>/approve" method="post">
+                                        <button class="btn btn-outline-success" type="submit">
+                                            Approve
+                                        </button>
+                                    </form>
+                                    <form action="/profile/pending/<%= AW._id %>/decline" method="post">
+                                        <button class="btn btn-outline-danger" type="submit">
+                                            Decline
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    <%- include('../components/rootscript.ejs'); %>
+    <%- include('../components/footer.ejs'); %>
+</body>
+
+</html>
